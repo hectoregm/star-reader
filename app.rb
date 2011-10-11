@@ -1,6 +1,7 @@
 require "sinatra/base"
 require "sinatra/reloader"
 require "twitter"
+require "haml"
 
 class Star < Sinatra::Base
 
@@ -21,7 +22,7 @@ class Star < Sinatra::Base
   end
 
   get '/' do
-    Twitter.favorites[0].to_s
+    haml :index
   end
 
 end
