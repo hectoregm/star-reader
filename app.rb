@@ -2,6 +2,7 @@ require "sinatra/base"
 require "sinatra/reloader"
 require "twitter"
 require "haml"
+require "sass"
 
 class Star < Sinatra::Base
 
@@ -23,6 +24,10 @@ class Star < Sinatra::Base
 
   get '/' do
     haml :index
+  end
+
+  get '/stylesheets/*' do
+    scss '../styles/'.concat(params[:splat].join.chomp('.css')).to_sym, :style => :expanded
   end
 
 end
