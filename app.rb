@@ -7,6 +7,7 @@ require "sass"
 class Star < Sinatra::Base
 
   configure do
+    set :haml, { :format => :html5 }
     @@config = YAML.load_file('config.yml')
 
     Twitter.configure do |config|
