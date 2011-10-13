@@ -3,6 +3,7 @@ require "sinatra/reloader"
 require "twitter"
 require "haml"
 require "sass"
+require "yaml"
 
 class Star < Sinatra::Base
 

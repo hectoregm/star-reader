@@ -1,7 +1,16 @@
 source :rubygems
 
+gem 'rack', '1.3.3'
 gem "sinatra"
-gem "sinatra-reloader"
 gem "twitter"
 gem "haml"
 gem "sass"
+
+group :development, :test do
+  gem "sinatra-reloader"
+  gem "rspec"
+  gem "cucumber"
+  gem "capybara"
+  gem "autotest"
+  gem "autotest-growl"
+end
