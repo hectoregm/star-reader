@@ -1,1 +1,3 @@
-default: --format progress --format html --out=./features/features_report.html
+default: --color --format progress --format html --out=./features/features_report.html
+autotest: --color --format pretty
+autotest-all: --color --format pretty --format html --out=./features/features_report.html

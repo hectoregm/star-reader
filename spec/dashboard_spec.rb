@@ -11,9 +11,10 @@ describe Star do
     it 'should show user favorite tweets' do
       get '/'
       last_response.should be_ok
-      last_response.body.should have_selector('.tweet')
-      last_response.body.should have_selector('.tweet-image')
-      last_response.body.should have_selector('.tweet-content')
+      last_response.body.should have_selector('.star-item')
+      last_response.body.should have_selector('.star-image')
+      last_response.body.should have_selector('.star-content')
+      last_response.body.should have_selector('.star-actions')
     end
 
   end

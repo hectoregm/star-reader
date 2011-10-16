@@ -1,8 +1,128 @@
-%div.page-header
-  %h1 @hectoregm
 %div.row
-  %div.span14
-    %h2 Main Content
-    %ul
-      %li Tweet 1
-      %li Tweet 2
+  %section.span11.star-stream
+    - @tweets.each do |tweet|
+      %article.star-item
+        %div.star-image
+          %img{ :height => 48, :width => 48, :src => "#{tweet["user"]["profile_image_url"]}" }
+        %div.star-content
+          %div.star-row
+            %div.star-source
+              = tweet["user"]["screen_name"]
+          %div.star-row
+            %div.star-text
+              = linkify_text(tweet)
+          %div.star-row
+            %span.star-timestamp
+              = pretty_time(Time.parse(tweet["created_at"]))
+            %span.star-actions
+              %span.star-action.archive
+                %a{ :href => "#"}
+                  %span
+                    %img{ :height => 16, :width => 16, :src => "/images/folder-open.png" }
+                    %b Archive
+              %span.star-action.unstar
+                %a{ :href => "#"}
+                  %span
+                    %img{ :height => 16, :width => 16, :src => "/images/star.png" }
+                    %b Unstar
+
+    %article.star-item
+      %div.star-image
+        %img{ :height => 48, :width => 48, :src => "/images/twitter.png" }
+      %div.star-content
+        %div.star-row
+          %div.star-source
+            kapor
+        %div.star-row
+          %div.star-text
+            Que buenas son las mexicanas en el balonmano, que buenas jugadas.
+        %div.star-row
+          %span
+            = Time.now.strftime("%F")
+          %span.star-actions
+            %span.star-action.archive
+              %a{ :href => "#"}
+                %span
+                  %img{ :height => 16, :width => 16, :src => "/images/folder-open.png" }
+                  %b Archive
+            %span.star-action.unstar
+              %a{ :href => "#"}
+                %span
+                  %img{ :height => 16, :width => 16, :src => "/images/star.png" }
+                  %b Unstar
+    %div.star-item
+      %div.star-image
+        %img{ :height => 48, :width => 48, :src => "/images/greader.png" }
+      %div.star-content
+        %div.star-row
+          %div.star-source
+            Pivotal Blabs
+        %div.star-row
+          %div.star-text
+            How to deploy with Rails 3.1
+        %div.star-row
+          %span
+            = Time.now.strftime("%F")
+          %span.star-actions
+            %span.star-action.archive
+              %a{ :href => "#"}
+                %span
+                  %img{ :height => 16, :width => 16, :src => "/images/folder-open.png" }
+                  %b Archive
+            %span.star-action.unstar
+              %a{ :href => "#"}
+                %span
+                  %img{ :height => 16, :width => 16, :src => "/images/star.png" }
+                  %b Unstar
+    %div.star-item
+      %div.star-image
+        %img{ :height => 48, :width => 48, :src => "/images/twitter.png" }
+      %div.star-content
+        %div.star-row
+          %div.star-source
+            limitedmage
+        %div.star-row
+          %div.star-text
+            Built an awesome app, released it free and open source, had great reception, and had its code stolen and released as paid app. What do I do?
+        %div.star-row
+          %span
+            = Time.now.strftime("%F")
+          %span.star-actions
+            %span.star-action.archive
+              %a{ :href => "#"}
+                %span
+                  %img{ :height => 16, :width => 16, :src => "/images/folder-open.png" }
+                  %b Archive
+            %span.star-action.unstar
+              %a{ :href => "#"}
+                %span
+                  %img{ :height => 16, :width => 16, :src => "/images/star.png" }
+                  %b Unstar
+    %div.star-item
+      %div.star-image
+        %img{ :height => 48, :width => 48, :src => "/images/gmail.png" }
+      %div.star-content
+        %div.star-row
+          %div.star-source
+            marilu.gnava@gmail.com
+        %div.star-row
+          %div.star-text
+            Cena de Navidad
+        %div.star-row
+          %span
+            = Time.now.strftime("%F")
+          %span.star-actions
+            %span.star-action.archive
+              %a{ :href => "#"}
+                %span
+                  %img{ :height => 16, :width => 16, :src => "/images/folder-open.png" }
+                  %b Archive
+                  %span.star-action.unstar
+              %a{ :href => "#"}
+                %span
+                  %img{ :height => 16, :width => 16, :src => "/images/star.png" }
+                  %b Unstar
+  %section.span5.about
+    %h3 Star
+    %p Sinatra app to view you favorites from the main hubs of the web: Twitter, GReader, Gmail. 
+    %p More to come!!!

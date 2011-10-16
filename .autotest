@@ -2,7 +2,7 @@ require 'autotest/bundler'
 require 'autotest/growl'
 
 Autotest.add_hook(:initialize) do |at|
-  ['.autotest', '.git', 'Gemfile.lock', 'features', 'spec'].each do |exception|
+  ['.autotest', '.git', 'Gemfile.lock', 'features'].each do |exception|
     at.add_exception(exception)
   end
 end
