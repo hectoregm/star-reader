@@ -11,6 +11,7 @@ group :development, :test do
   gem "rspec"
   gem "cucumber"
   gem "capybara"
+  gem "capybara-webkit"
   gem "autotest"
   gem "autotest-growl"
 end

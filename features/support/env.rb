@@ -9,6 +9,7 @@ require 'capybara/cucumber'
 require 'rspec'
 
 Capybara.app = Star
+Capybara.javascript_driver = :webkit
 
 class StarWorld
   include Capybara::DSL
