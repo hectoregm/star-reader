@@ -2,3 +2,4 @@ config.yml
 .sass-cache
 features_report.html
 .DS_Store
+.rvmrc
