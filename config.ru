@@ -1,7 +1,8 @@
-require 'rubygems'
+ENV["RACK_ENV"] ||= "development"
+
 require 'bundler'
 
-Bundler.require
+Bundler.require(:default, ENV["RACK_ENV"].to_sym)
 
-require './app'
+require File.expand_path(File.join(File.dirname(__FILE__), 'app'))
 run Star
