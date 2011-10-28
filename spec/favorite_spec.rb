@@ -6,11 +6,18 @@ describe Favorite do
 
     before(:each) do
       @attributes = { source: "twitter",
+        source_id: 2001200,
         image_url: "/images/twitter.png",
         author: "foobarman",
         content: "Tweeting from the Golden Gate...",
         ocreated_at: Time.now
       }
+    end
+
+    it 'should have a source id' do
+      @attributes.delete :source_id
+      fav = Favorite.create(@attributes)
+      fav.persisted?.should be_false
     end
 
     it 'should have a source' do
@@ -59,7 +66,13 @@ describe Favorite do
       fav.persisted?.should be_true
     end
 
-
+    it 'should require a unique source_id per source' do
+      fav = Favorite.create(@attributes)
+      fav2 = Favorite.create(@attributes)
+      fav.persisted?.should be_true
+      fav2.persisted?.should be_false
+      fav2.errors[:source_id].should_not be_empty
+    end
 
   end
 
