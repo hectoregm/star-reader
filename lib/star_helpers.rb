@@ -2,6 +2,27 @@ require 'sinatra/base'
 
 module Sinatra
   module StarHelpers
+
+    def load_all_tweets
+      page = 1
+      loop do
+        tweets = Twitter.favorites(page: page,
+                                   include_entities: true)
+        break if tweets.empty?
+        tweets.each do |tweet|
+          next if Favorite.exists?(conditions: { source_id: tweet.id })
+          Favorite.create!(source: 'twitter',
+                           source_id: tweet.id,
+                           image_url: tweet.user.profile_image_url,
+                           author: tweet.user.screen_name,
+                           content: linkify_text(tweet.text,
+                                                 tweet.entities),
+                           ocreated_at: Time.parse(tweet.created_at))
+        end
+        page += 1
+      end
+    end
+
     def pretty_time(time)
       delta = (Time.now - time).to_i
       case delta
@@ -30,18 +51,31 @@ module Sinatra
       end
     end
 
-    def linkify_text(tweet)
-      text = tweet[:text]
-      entities = tweet[:entities][:hashtags] + tweet[:entities][:urls] + tweet[:entities][:user_mentions]
+    def linkify_text(tweet_text, tweet_entities)
+      entities = tweet_entities.collect { |e,v| v }.flatten
       entities.sort! {|x,y| y[:indices][0] <=> x[:indices][1] }
       entities.each do |entity|
         length = entity[:indices][1] - entity[:indices][0]
-        text[entity[:indices][0], length] = "<a href=\"#{entity[:url]}\">#{entity[:display_url]}</a>" if entity[:url]
-        text[entity[:indices][0], length] = "<a href=\"http://twitter.com/#{entity[:screen_name]}\">@#{entity[:screen_name]}</a>" if entity[:screen_name]
-        text[entity[:indices][0], length] = "<a href=\"http://twitter.com/search?q=%23#{entity[:text]}\">##{entity[:text]}</a>" if entity[:text]
+
+        result = case
+        when url = entity.url
+          display_url = entity.display_url || url
+          "<a href=\"#{url}\">#{display_url}</a>"
+        when user = entity.screen_name
+          "<a href=\"http://twitter.com/#{user}\">@#{user}</a>"
+        when hashtag = entity.text
+          "<a href=\"http://twitter.com/search?q=%23#{hashtag}\">##{hashtag}</a>"
+        end
+
+        tweet_text[entity[:indices][0], length] = result
       end
 
-      text
+      tweet_text
+    end
+
+    def rate_limit
+      Twitter.rate_limit_status.remaining_hits.to_s +
+        " Twitter API request(s) remaining this hour"
     end
 
   end

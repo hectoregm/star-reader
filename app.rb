@@ -30,6 +30,9 @@ class Star < Sinatra::Base
       db_name = AppConfig["mongoid"]["development"]["database"]
       c.master = Mongo::Connection.new.db(db_name)
     end
+
+    set :logging, true
+    Mongoid.logger = Logger.new($stdout)
   end
 
   configure :test do
@@ -40,19 +43,12 @@ class Star < Sinatra::Base
   end
 
   before '/' do
-    tweets = Twitter.favorites(include_entities: true)
-    tweets.each do |tweet|
-      Favorite.create!(source: 'twitter',
-                       image_url: tweet["user"]["profile_image_url"],
-                       author: tweet["user"]["screen_name"],
-                       content: linkify_text(tweet),
-                       ocreated_at: Time.parse(tweet["created_at"]))
-    end
-    @rate_limit = Twitter.rate_limit_status.remaining_hits.to_s + " Twitter API request(s) remaining this hour"
+    load_all_tweets
+    @rate_limit = rate_limit
   end
 
   get '/' do
-    @tweets = Favorite.limit(20).order_by([[:ocreated_at, :desc]])
+    @tweets = Favorite.all.order_by([[:ocreated_at, :desc]])
     haml :index
   end
 
