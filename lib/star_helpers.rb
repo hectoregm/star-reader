@@ -3,6 +3,14 @@ require 'sinatra/base'
 module Sinatra
   module StarHelpers
 
+    def first_login(user)
+      load_all_tweets
+      guser = greader_login(settings.glogin)
+      load_all_entries(guser)
+      user.first_login = false
+      user.save!
+    end
+
     def greader_login(hash)
       GoogleReaderApi::User.new(email: hash[:email],
                                 password: hash[:password])

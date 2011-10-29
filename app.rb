@@ -36,6 +36,7 @@ class Star < Sinatra::Base
 
     set :logging, true
     Mongoid.logger = Logger.new($stdout)
+    User.create!(username: "hector") unless User.exists?(conditions: { username: "hector" })
   end
 
   configure :test do
@@ -46,9 +47,8 @@ class Star < Sinatra::Base
   end
 
   before '/' do
-    load_all_tweets
-    guser = greader_login(settings.glogin)
-    load_all_entries(guser)
+    user = User.find("hector")
+    first_login(user) if user.first_login?
     @rate_limit = rate_limit
   end
 
