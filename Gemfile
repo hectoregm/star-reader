@@ -3,6 +3,7 @@ source :rubygems
 gem 'rack'
 gem "sinatra"
 gem "twitter"
+gem "GoogleReaderApi", :require => "google_reader_api"
 gem "haml"
 gem "sass"
 gem "mongoid", "~> 2.3"
