@@ -8,6 +8,7 @@ class Favorite
   field :source
   field :image_url
   field :author
+  field :author_link
   field :title
   field :content
   field :ocreated_at, type: DateTime

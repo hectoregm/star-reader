@@ -42,6 +42,10 @@ body {
     border-top: 1px solid #005080;
     border-bottom: 1px solid #005080;
 
+    .star-content .star-source a {
+      color: #0069D6;
+    }
+
     .star-actions {
       visibility: visible;
     }
@@ -56,32 +60,33 @@ body {
     margin-left: 68px;
     min-height: 60px;
 
-    .star-row {
+    .star-source {
+      font-weight: bold;
+      margin-bottom: 4px;
 
-      .star-source {
-        font-weight: bold;
-        margin-bottom: 4px;
+      a {
+        color: #404040;
       }
+    }
 
-      .star-text {
-        line-height: 19px;
-        margin-bottom: 5px;
-      }
+    .star-text {
+      line-height: 19px;
+      margin-bottom: 5px;
+    }
 
-      .star-timestamp {
-        font-size: 12px;
-        line-height: 16px;
-        color: #999;
-      }
+    .star-timestamp {
+      font-size: 12px;
+      line-height: 16px;
+      color: #999;
+    }
+      
+    .star-actions {
+      font-size: 12px;
+      line-height: 12px;
+      margin-left: 20px;
 
-      .star-actions {
-        font-size: 12px;
-        line-height: 12px;
-        margin-left: 20px;
-
-        .star-action a span img {
-          vertical-align: bottom;
-        }
+      .star-action a span img {
+        vertical-align: bottom;
       }
     }
   }

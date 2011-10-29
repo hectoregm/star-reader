@@ -3,6 +3,27 @@ require 'sinatra/base'
 module Sinatra
   module StarHelpers
 
+    def greader_login(hash)
+      GoogleReaderApi::User.new(email: hash[:email],
+                                password: hash[:password])
+    end
+
+    def link_author(fav)
+      case fav.source
+      when 'twitter'
+        "<a href=\"http://twitter.com/#{fav.author}\">#{fav.author}</a>"
+      when 'greader'
+        "<a href=\"http://twitter.com/#{fav.author_link}\">#{fav.author}</a>"
+      end
+    end
+
+    def greader_starred_items(api)
+      obj = Object.new
+      obj.extend(GoogleReaderApi::RssUtils)
+      data = api.get_link 'atom/user/-/state/com.google/starred', n: 40
+      obj.send(:create_entries, data)
+    end
+
     def load_all_tweets
       page = 1
       loop do
@@ -20,6 +41,24 @@ module Sinatra
                            ocreated_at: Time.parse(tweet.created_at))
         end
         page += 1
+      end
+    end
+
+    def load_all_entries(reader)
+      entries = greader_starred_items(reader.api)
+      entries.map! { |i| i.entry }
+      entries.each do |entry|
+        next if Favorite.exists?(conditions: { source_id: entry.id.content })
+        content = entry.content ? entry.content.content : entry.summary.content
+        title  = "<a href=\"#{entry.link.href}\">#{entry.title.content}</a>"
+        Favorite.create!(source: 'greader',
+                         source_id: entry.id.content,
+                         image_url: "/images/greader.png",
+                         author: entry.source.title.content,
+                         author_link: entry.source.link.href,
+                         title: title,
+                         content: content,
+                         ocreated_at: entry.published.content)
       end
     end
 

@@ -11,8 +11,10 @@ class Star < Sinatra::Base
   helpers Sinatra::StarHelpers
 
   configure do
-    set :haml, { :format => :html5 }
     AppConfig = YAML.load_file('config.yml')
+    set :haml, { :format => :html5 }
+    set :glogin, { email: AppConfig["greader"]["email"],
+                   password: AppConfig["greader"]["password"] }
 
     Twitter.configure do |config|
       config.consumer_key = AppConfig["twitter"]["consumer_key"]
@@ -20,6 +22,7 @@ class Star < Sinatra::Base
       config.oauth_token = AppConfig["twitter"]["oauth_token"]
       config.oauth_token_secret = AppConfig["twitter"]["oauth_token_secret"]
     end
+
   end
 
   configure :development do
@@ -44,16 +47,18 @@ class Star < Sinatra::Base
 
   before '/' do
     load_all_tweets
+    guser = greader_login(settings.glogin)
+    load_all_entries(guser)
     @rate_limit = rate_limit
   end
 
   get '/' do
-    @tweets = Favorite.all.order_by([[:ocreated_at, :desc]])
+    @favorites = Favorite.all.order_by([[:ocreated_at, :desc]])
     haml :index
   end
 
-  get '/stylesheets/*' do
-    scss '../styles/'.concat(params[:splat].join.chomp('.css')).to_sym, :style => :expanded
+  get '/stylesheets/star.css' do
+    scss :"../styles/star", :style => :expanded
   end
 
 end
