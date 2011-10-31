@@ -49,6 +49,7 @@ class Star < Sinatra::Base
   before '/' do
     user = User.find("hector")
     first_login(user) if user.first_login?
+    refresh_favorites unless user.first_login?
     @rate_limit = rate_limit
   end
 
