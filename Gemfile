@@ -6,8 +6,8 @@ gem "twitter"
 gem "GoogleReaderApi", :require => "google_reader_api"
 gem "haml"
 gem "sass"
-gem "mongoid", "~> 2.3"
-gem "bson_ext", "~> 1.4"
+gem "mongoid", "~> 2.3.3"
+gem "bson_ext", "~> 1.3"
 
 group :development do
   gem "sinatra-reloader"
