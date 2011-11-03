@@ -1,0 +1,303 @@
+<?xml version="1.0"?><feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:gr="http://www.google.com/schemas/reader/atom/" xmlns:idx="urn:atom-extension:indexing" xmlns="http://www.w3.org/2005/Atom" idx:index="no" gr:dir="ltr"><!--
+Content-type: Preventing XSRF in IE.
+
+--><generator uri="http://www.google.com/reader">Google Reader</generator><id>tag:google.com,2005:reader/user/03238720318766311921/state/com.google/starred</id><title>Hector's starred items in Google Reader</title><gr:continuation>CIDS6_i2lKwC</gr:continuation><link rel="self" href="http://www.google.com/reader/atom/user/-/state/com.google/starred?n=5&amp;c=&amp;ck=1320260438"/><author><name>Hector</name></author><updated>2011-11-02T01:16:58Z</updated><entry gr:crawl-timestamp-msec="1320196618013"><id gr:original-id="http://www.rubyinside.com/?p=5564">tag:google.com,2005:reader/item/4896d4a1db2b1ec6</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="Miscellaneous" scheme="http://www.rubyinside.com"/><category term="Tutorials" scheme="http://www.rubyinside.com"/><title type="html">Screencast: Coding Conway’s Game of Life in Ruby the TDD Way with RSpec</title><published>2011-11-02T00:25:51Z</published><updated>2011-11-02T00:48:54Z</updated><link rel="alternate" href="http://feedproxy.google.com/~r/RubyInside/~3/UsyZwWdNXuQ/screencast-coding-conways-game-of-life-in-ruby-the-tdd-way-with-rspec-5564.html" type="text/html"/><link rel="replies" href="http://www.rubyinside.com/screencast-coding-conways-game-of-life-in-ruby-the-tdd-way-with-rspec-5564.html#comments" type="text/html"/><link rel="replies" href="http://www.rubyinside.com/screencast-coding-conways-game-of-life-in-ruby-the-tdd-way-with-rspec-5564.html/feed/atom" type="application/atom+xml"/><content xml:base="http://www.rubyinside.com/screencast-coding-conways-game-of-life-in-ruby-the-tdd-way-with-rspec-5564.html" xml:lang="en" type="html">&lt;p&gt;&lt;img src="http://www.rubyinside.com/wp-content/uploads/2011/11/Gospers_glider_gun.gif" style="float:right;margin-left:18px;margin-bottom:18px"&gt;Recently, there have been many screencasts of people coding things in real time. Yesterday, &lt;strong&gt;&lt;a href="http://www.ryanbigg.com/"&gt;Ryan Bigg&lt;/a&gt;&lt;/strong&gt; released a video of him implementing &lt;a href="http://en.wikipedia.org/wiki/Conway&amp;#39;s_Game_of_Life"&gt;Conway's Game of Life&lt;/a&gt; from scratch by reading through the 'rules' and then using RSpec to take a test driven approach to fleshing out the functionality.&lt;/p&gt;
+&lt;p&gt;Ryan is a &lt;a href="http://rubyheroes.com/"&gt;Ruby Hero&lt;/a&gt; and technical writer best known for being co-author of the recently released &lt;strong&gt;&lt;a href="http://manning.com/katz/"&gt;Rails 3 in Action&lt;/a&gt;&lt;/strong&gt; (along with Yehuda Katz) which I'll be reviewing soon for Ruby Inside. But Ryan's also been getting into doing a little screencasting:&lt;/p&gt;
+&lt;p&gt;&lt;iframe src="http://player.vimeo.com/video/31403388?title=0&amp;amp;byline=0&amp;amp;portrait=0" width="640" height="480" frameborder="0"&gt;&lt;/iframe&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;If you can't see the video above, &lt;a href="http://vimeo.com/31403388"&gt;view it directly on Vimeo here.&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Ryan's technique is just one of many legitimate approaches but many of you will find something to pick up from this, especially if you're not familiar with test driven development or, perhaps, RSpec. If you're already working on koans non-stop and consider yourself well versed in the ways of TDD, you might want to skip it.&lt;/p&gt;
+&lt;p&gt;The only downside is that Ryan focuses entirely on the logic without doing a live render of the game board to see his work in action, though this was the right rational choice given the time limit. That would make a good separate project to follow on with, though, if you fancy a little challenge, but be careful to not couple the game logic tightly to any interface you choose to try.&lt;/p&gt;
+&lt;div&gt;
+&lt;a href="http://feeds.feedburner.com/~ff/RubyInside?a=UsyZwWdNXuQ:W1ZKes8nA0A:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/RubyInside?d=qj6IDK7rITs" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/RubyInside?a=UsyZwWdNXuQ:W1ZKes8nA0A:3H-1DwQop_U"&gt;&lt;img src="http://feeds.feedburner.com/~ff/RubyInside?i=UsyZwWdNXuQ:W1ZKes8nA0A:3H-1DwQop_U" border="0"&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/RubyInside/~4/UsyZwWdNXuQ" height="1" width="1"&gt;</content><author><name>Peter Cooper</name></author><gr:likingUser>06619129445745210567</gr:likingUser><source gr:stream-id="feed/http://feeds.feedburner.com/RubyInside"><id>tag:google.com,2005:reader/feed/http://feeds.feedburner.com/RubyInside</id><title type="html">Ruby Inside</title><link rel="alternate" href="http://www.rubyinside.com/" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1320196466205"><id gr:original-id="http://robots.thoughtbot.com/post/12179019201">tag:google.com,2005:reader/item/ce62f8ca7a849e23</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="ruby"/><category term="design patterns"/><category term="factory girl"/><category term="null object pattern"/><title type="html">Design Patterns in the Wild: Null Object</title><published>2011-11-01T16:26:00Z</published><updated>2011-11-01T16:26:00Z</updated><link rel="alternate" href="http://feedproxy.google.com/~r/GiantRobotsSmashingIntoOtherGiantRobots/~3/O1iY0X0F5Sk/12179019201" type="text/html"/><summary xml:base="http://robots.thoughtbot.com/" type="html">&lt;p&gt;I knocked out a pretty decent refactoring of some of the internals of Factory
+Girl this past weekend. In one of my commits, I used the Null Object pattern
+to simplify some conditional logic that was spread across a class.&lt;/p&gt;
+
+&lt;h2&gt;What’s the Null Object Pattern?&lt;/h2&gt;
+
+&lt;p&gt;The Null Object pattern describes the use of an object to define the concept
+of “null” behavior. Typically, a null object will implement a similar
+interface to a similar object but not actually &lt;em&gt;do&lt;/em&gt; anything.&lt;/p&gt;
+
+&lt;p&gt;In the instance of Factory Girl, there’s a &lt;code&gt;FactoryGirl::Factory&lt;/code&gt; object and a
+&lt;code&gt;FactoryGirl::NullFactory&lt;/code&gt; object; both have a common interface by responding
+to the instance methods &lt;code&gt;defined_traits&lt;/code&gt;, &lt;code&gt;callbacks&lt;/code&gt;, &lt;code&gt;attributes&lt;/code&gt;,
+&lt;code&gt;compile&lt;/code&gt;, &lt;code&gt;default_strategy&lt;/code&gt;, and &lt;code&gt;class_name&lt;/code&gt;. These methods are the core of
+a &lt;code&gt;FactoryGirl::Factory&lt;/code&gt; and it’s important that the methods exist on the
+&lt;code&gt;NullFactory&lt;/code&gt; (we’ll be calling these methods in &lt;code&gt;FactoryGirl::Factory&lt;/code&gt;).&lt;/p&gt;
+
+&lt;h2&gt;How to Use the Pattern&lt;/h2&gt;
+
+&lt;p&gt;In Factory Girl, the &lt;code&gt;Factory&lt;/code&gt; object deals with taking a handful of declared
+attributes and running it, resulting in an instance of a class with values
+assigned. Factory Girl supports the concept of parent factories; attributes,
+callbacks, and other features get inherited, but a parent isn’t required. Here’s
+the code before the change; as you can see, there’s a ton of checking to see if
+the parent exists.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;module FactoryGirl
+  class Factory
+    def default_strategy
+      @default_strategy || (parent &amp;amp;&amp;amp; parent.default_strategy) || :create
+    end
+
+    def compile
+      if parent
+        parent.defined_traits.each {|trait| define_trait(trait) }
+        parent.compile
+      end
+      attribute_list.ensure_compiled
+    end
+
+    protected
+
+    def class_name
+      @class_name || (parent &amp;amp;&amp;amp; parent.class_name) || name
+    end
+
+    def attributes
+      compile
+      AttributeList.new(@name).tap do |list|
+        traits.each do |trait|
+          list.apply_attribute_list(trait.attributes)
+        end
+
+        list.apply_attribute_list(attribute_list)
+        list.apply_attribute_list(parent.attributes) if parent
+      end
+    end
+
+    def callbacks
+      [traits.map(&amp;amp;:callbacks), @definition.callbacks].tap do |result|
+        result.unshift(*parent.callbacks) if parent
+      end.flatten
+    end
+
+    private
+
+    def parent
+      return unless @parent
+      FactoryGirl.factory_by_name(@parent)
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Not only does it add extra lines of code (and every line of code is a liability),
+but it also forces other developers reading the code to remember if a parent exists.
+This context-switching across five different methods makes it hard to remember what
+the actual behavior of each method is doing because certain things may or may not
+be executed.&lt;/p&gt;
+
+&lt;p&gt;To use the pattern, all I did was create a NullFactory object and implement
+the interface I knew I needed to get rid of all the conditionals. For
+each method, I returned a “sensible” result; &lt;code&gt;nil&lt;/code&gt; for &lt;code&gt;class_name&lt;/code&gt;,
+&lt;code&gt;default_strategy&lt;/code&gt;, and &lt;code&gt;compile&lt;/code&gt;, and I delegated the remaining few
+methods (&lt;code&gt;defined_traits&lt;/code&gt;, &lt;code&gt;callbacks&lt;/code&gt;, and &lt;code&gt;attributes&lt;/code&gt;) to &lt;code&gt;definition&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;module FactoryGirl
+  class NullFactory
+    attr_reader :definition
+
+    def initialize
+      @definition = Definition.new
+    end
+
+    delegate :defined_traits, :callbacks, :attributes, :to =&amp;gt; :definition
+
+    def compile; end
+    def default_strategy; end
+    def class_name; end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Testing is pretty straightforward since the behavior is straightforward.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;describe FactoryGirl::NullFactory do
+  it { should delegate(:defined_traits).to(:definition) }
+  it { should delegate(:callbacks).to(:definition) }
+  it { should delegate(:attributes).to(:definition) }
+
+  its(:compile)          { should be_nil }
+  its(:default_strategy) { should be_nil }
+  its(:class_name)       { should be_nil }
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, the private instance method will always return something that behaves
+like a &lt;code&gt;FactoryGirl::Factory&lt;/code&gt;. Perfect.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  def parent
+    if @parent # the only conditional to determine if a parent exists
+      FactoryGirl.factory_by_name(@parent)
+    else
+      NullFactory.new
+    end
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Results&lt;/h2&gt;
+
+&lt;p&gt;Here are those methods after introducing the Null Object pattern.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;module FactoryGirl
+  class Factory
+    def default_strategy
+      @default_strategy || parent.default_strategy || :create
+    end
+
+    def compile
+      parent.defined_traits.each {|trait| define_trait(trait) }
+      parent.compile
+      attribute_list.ensure_compiled
+    end
+
+    protected
+
+    def class_name
+      @class_name || parent.class_name || name
+    end
+
+    def attributes
+      compile
+      AttributeList.new(@name).tap do |list|
+        traits.each do |trait|
+          list.apply_attribute_list(trait.attributes)
+        end
+
+        list.apply_attribute_list(attribute_list)
+        list.apply_attribute_list(parent.attributes)
+      end
+    end
+
+    def callbacks
+      [parent.callbacks, traits.map(&amp;amp;:callbacks), @definition.callbacks].flatten
+    end
+
+    private
+
+    def parent
+      if @parent
+        FactoryGirl.factory_by_name(@parent)
+      else
+        NullFactory.new
+      end
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The commit in Factory Girl can be found &lt;a href="https://github.com/thoughtbot/factory_girl/commit/aee300aa90a82970c1fa73df48bbc8305b99532a"&gt;here&lt;/a&gt;.
+As you can see, the logic is simplified greatly across all the methods because
+there’s no more conditional checking. The developer reading this code doesn’t
+have to care if a parent is assigned or not because he can be sure that the
+parent, regardless of what it is, will behave in the correct manner when that
+method is executed.&lt;/p&gt;
+
+&lt;p&gt;A couple of months ago, &lt;a href="http://thoughtbot.com/about/#gberkewilliams"&gt;Gabe&lt;/a&gt;
+and I implemented the same pattern in
+&lt;a href="https://github.com/thoughtbot/kumade"&gt;Kumade&lt;/a&gt; by &lt;a href="https://github.com/thoughtbot/kumade/commit/d854184744a70d1786e65a3a4bbd6429988b7f00#lib/kumade/packagers/noop_packager.rb"&gt;introducing a &lt;code&gt;NoopPackager&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Have you used the Null Object pattern recently? If you haven’t, your code is
+probably ripe for some Null Object pattern disruption!&lt;/p&gt;</summary><author gr:unknown-author="true"><name>(author unknown)</name></author><gr:likingUser>06619129445745210567</gr:likingUser><source gr:stream-id="feed/http://feeds.feedburner.com/GiantRobotsSmashingIntoOtherGiantRobots"><id>tag:google.com,2005:reader/feed/http://feeds.feedburner.com/GiantRobotsSmashingIntoOtherGiantRobots</id><title type="html">giant robots smashing into other giant robots</title><link rel="alternate" href="http://robots.thoughtbot.com/" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1320165357154"><id gr:original-id="http://www.dzone.com/links/689329.html">tag:google.com,2005:reader/item/f75295952070571e</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="how-to"/><category term="python"/><category term="ruby"/><category term="tools"/><title type="html">Ruby is beautiful (but I'm moving to Python)</title><published>2011-11-01T14:40:44Z</published><updated>2011-11-01T14:40:44Z</updated><link rel="alternate" href="http://feeds.dzone.com/~r/dzone/ruby/~3/tlAdt4IsjOM/ruby_is_beautiful_but_im_moving_to_python_2.html" type="text/html"/><content xml:base="http://www.dzone.com/links/tag/ruby.html" type="html">&lt;a href="http://www.dzone.com/links/r/ruby_is_beautiful_but_im_moving_to_python_2.html"&gt;&lt;img src="http://cdn.dzone.com/images/thumbs/120x90/689329.jpg" style="width:120;height:90;float:left;vertical-align:top;border:1px solid #ccc"&gt;&lt;/a&gt;&lt;p style="margin-left:130px"&gt;Six years ago, I added Ruby to my technical arsenal. I learned C++ and Java in high school, and I planned to use them for data analysis in college—mainly for research kung fu. But when I discovered Ruby, I knew something was different. &lt;br&gt;&lt;br&gt;&lt;a href="http://www.dzone.com/links/rss/ruby_is_beautiful_but_im_moving_to_python_2.html"&gt;&lt;img src="http://www.dzone.com/links/voteCountImage?linkId=689329" border="0"&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/dzone/ruby/~4/tlAdt4IsjOM" height="1" width="1"&gt;</content><author><name>dotCore</name></author><source gr:stream-id="feed/http://www.dzone.com/feed/frontpage/ruby/rss.xml"><id>tag:google.com,2005:reader/feed/http://www.dzone.com/feed/frontpage/ruby/rss.xml</id><title type="html">dzone.com: ruby</title><link rel="alternate" href="http://www.dzone.com/links/tag/ruby.html" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1320165353041"><id gr:original-id="http://programmingpraxis.com/?p=5036">tag:google.com,2005:reader/item/e2e775d9a7af8021</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><title type="html">Programming Praxis: RIP John McCarthy</title><published>2011-11-01T09:00:46Z</published><updated>2011-11-01T09:00:46Z</updated><link rel="alternate" href="http://programmingpraxis.com/2011/11/01/rip-john-mccarthy/" type="text/html"/><content xml:base="http://scheme.dk/planet/" type="html">&lt;p&gt;John McCarthy, the inventor of Lisp, died on October 23, 2011. In his honor we will implement a Lisp interpreter in today’s exercise. He first described Lisp in an &lt;a href="http://www-formal.stanford.edu/jmc/recursive.pdf"&gt;academic paper&lt;/a&gt;, and the &lt;a href="http://www.softwarepreservation.org/projects/LISP/book/LISP%201.5%20Programmers%20Manual.pdf"&gt;LISP 1.5 Programmer’s Manual&lt;/a&gt;, published in 1962 but still in print, is an early definition of the language (the LISP 1.0 manual by Patricia Fox was dated 1960, which is usually cited as the birth year of Lisp, even though Lisp was formally specified as early as 1958). McCarthy defines the eval/apply yin/yang that is at the heart of Lisp on page 13, in what Alan Kay &lt;a href="http://queue.acm.org/detail.cfm?id=1039523"&gt;described&lt;/a&gt; as the Maxwell’s equations of software. We begin with the definition of &lt;code&gt;apply&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;apply[fn;x;a] =&lt;br&gt;
+     [atom[fn] → [eq[fn;CAR] → caar[x];&lt;br&gt;
+                 eq[fn;CDR] → cdar[x];&lt;br&gt;
+                 eq[fn;CONS] → cons[car[x];cadr[x]];&lt;br&gt;
+                 eq[fn;ATOM] → atom[car[x]];&lt;br&gt;
+                 eq[fn;EQ] → eq[car[x];cadr[x]];&lt;br&gt;
+                 T → apply[eval[fn;a];x;a]];&lt;br&gt;
+     eq[car[fn];LAMBDA] → eval[caddr[fn]; pairlis[cadr[fn];x;a]];&lt;br&gt;
+     eq[car[fn];LABEL] → apply[caddr[fn];x;cons[cons[cadr[fn];caddr[fn]];a]]]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Apply&lt;/code&gt; interprets expressions. The first clause dispatches on the various built-in functions of Lisp, calling the underlying language (in this case, Lisp, since this is a &lt;em&gt;meta-circular&lt;/em&gt; evaluator) to evaluate the function. The second clause evaluates functions defined by &lt;code&gt;lambda&lt;/code&gt; by calling &lt;code&gt;eval&lt;/code&gt;. The third clause is special; it evaluates recursive functions defined by &lt;code&gt;label&lt;/code&gt; by first adding the function to the environment, then calling &lt;code&gt;apply&lt;/code&gt; recursively to evaluate the new function. &lt;code&gt;Apply&lt;/code&gt; uses an auxiliary function &lt;code&gt;pairlis&lt;/code&gt; to insert function definitions in the environment &lt;code&gt;a&lt;/code&gt;; as an example, &lt;code&gt;pairlis[(A B C);(U V W);((D . X) (E . Y))]&lt;/code&gt; evaluates to &lt;code&gt;((A . U) (B . V) (C . W) (D . X) (E . Y))&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pairlis[x;y;a] = [null[x] → a; T → cons[cons[car[x];car[y]];&lt;br&gt;
+                 pairlis[cdr[x];cdr[y];a]]]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Eval&lt;/code&gt; handles statements, which are known as &lt;em&gt;special forms&lt;/em&gt; in the parlance of Lisp. In a function, the elements of an expression are all evaluated before the function at the head of the expression is called, but in a statement the order of evaluation may change; for instance, in an &lt;code&gt;if&lt;/code&gt; statement only one of the two consequents is evaluated. Here is &lt;code&gt;eval&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;eval[e;a] = [atom[e] → cdr[assoc[e;a]];&lt;br&gt;
+     atom[car[e]] →&lt;br&gt;
+             [eq[car[e];QUOTE] → cadr[e];&lt;br&gt;
+             eq[car[e];COND] → evcon[cdr[e];a];&lt;br&gt;
+             T → apply[car[e];evlis[cdr[e];a];a]];&lt;br&gt;
+     T → apply[car[e];evlis[cdr[e];a];a]]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Eval&lt;/code&gt; handles two special forms: &lt;code&gt;Quote&lt;/code&gt; handles its argument literally rather than evaluating it as an expressions. &lt;code&gt;Cond&lt;/code&gt; executes code conditionally, checking the predicate of each clause until it finds one that is true, when it evaluates the associated expression. &lt;code&gt;Eval&lt;/code&gt; uses three auxiliary functions. The first is &lt;code&gt;assoc&lt;/code&gt;, which performs a lookup in an environment; for instance, &lt;code&gt;assoc[B;((A . (M N)), (B . (CAR X)), (C . (QUOTE M)), (C . (CDR X)))]&lt;/code&gt; evaluates to &lt;code&gt;(B . (CAR X))&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;assoc[x;a] = [equal[caar[a];x]→car[a]; T → assoc[x;cdr[a]]]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Evcon&lt;/code&gt; interprets a &lt;code&gt;cond&lt;/code&gt; statement, evaluating the predicate of each clause, then evaluating the expression associated with the first predicate that is true:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;evcon[c;a] = [eval[caar[c];a] → eval[cadar[c];a];&lt;br&gt;
+             T → evcon[cdr[c];a]]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Evlis&lt;/code&gt; evaluates the elements of a list, in order, returning a new list with the results of each evaluation:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;evlis[m;a] = [null[m] → NIL;&lt;br&gt;
+             T → cons[eval[car[m];a];evlis[cdr[m];a]]]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Finally, &lt;code&gt;evalquote&lt;/code&gt; is the entrance to the evaluator:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;evalquote[fn;x] = apply[fn;x;NIL]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Your task is to implement a simple Lisp interpreter in the style of John McCarthy. When you are finished, you are welcome to &lt;a href="http://programmingpraxis.com/2011/11/01/rip-john-mccarthy/2/"&gt;read&lt;/a&gt; or &lt;a href="http://programmingpraxis.codepad.org/8cfeZ3ER"&gt;run&lt;/a&gt; a suggested solution, or to post your own solution or discuss the exercise in the comments below.&lt;/p&gt;
+&lt;br&gt;  &lt;a href="http://feeds.wordpress.com/1.0/gocomments/programmingpraxis.wordpress.com/5036/" rel="nofollow"&gt;&lt;img src="http://feeds.wordpress.com/1.0/comments/programmingpraxis.wordpress.com/5036/" alt="" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.wordpress.com/1.0/godelicious/programmingpraxis.wordpress.com/5036/" rel="nofollow"&gt;&lt;img src="http://feeds.wordpress.com/1.0/delicious/programmingpraxis.wordpress.com/5036/" alt="" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.wordpress.com/1.0/gofacebook/programmingpraxis.wordpress.com/5036/" rel="nofollow"&gt;&lt;img src="http://feeds.wordpress.com/1.0/facebook/programmingpraxis.wordpress.com/5036/" alt="" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.wordpress.com/1.0/gotwitter/programmingpraxis.wordpress.com/5036/" rel="nofollow"&gt;&lt;img src="http://feeds.wordpress.com/1.0/twitter/programmingpraxis.wordpress.com/5036/" alt="" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.wordpress.com/1.0/gostumble/programmingpraxis.wordpress.com/5036/" rel="nofollow"&gt;&lt;img src="http://feeds.wordpress.com/1.0/stumble/programmingpraxis.wordpress.com/5036/" alt="" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.wordpress.com/1.0/godigg/programmingpraxis.wordpress.com/5036/" rel="nofollow"&gt;&lt;img src="http://feeds.wordpress.com/1.0/digg/programmingpraxis.wordpress.com/5036/" alt="" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.wordpress.com/1.0/goreddit/programmingpraxis.wordpress.com/5036/" rel="nofollow"&gt;&lt;img src="http://feeds.wordpress.com/1.0/reddit/programmingpraxis.wordpress.com/5036/" alt="" border="0"&gt;&lt;/a&gt; &lt;img src="http://stats.wordpress.com/b.gif?host=programmingpraxis.com&amp;amp;blog=6649073&amp;amp;post=5036&amp;amp;subd=programmingpraxis&amp;amp;ref=&amp;amp;feed=1" alt="" height="1" border="0" width="1"&gt;</content><author><name>programmingpraxis</name></author><source gr:stream-id="feed/http://www.scheme.dk/planet/atom.xml"><id>tag:google.com,2005:reader/feed/http://www.scheme.dk/planet/atom.xml</id><title type="html">Planet Scheme</title><link rel="alternate" href="http://scheme.dk/planet/" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1320115957476"><id gr:original-id="tag:github.com,2008:Post/977">tag:google.com,2005:reader/item/50fccc4393e5ee91</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><title type="html">Access your Event timelines and OAuth tokens through the API</title><published>2011-10-31T19:33:21Z</published><updated>2011-10-31T19:45:04Z</updated><link rel="alternate" href="https://github.com/blog/977-access-your-event-timelines-and-oauth-tokens-through-the-api" type="text/html"/><content xml:base="https://github.com/blog" xml:lang="en-US" type="html">&lt;p&gt;Today we're announcing two new API features: &lt;a href="http://developer.github.com/v3/events/"&gt;Event Timeline access&lt;/a&gt;, and &lt;a href="http://developer.github.com/v3/oauth/#oauth-authorizations-api"&gt;OAuth Authorizations&lt;/a&gt;.  We've also tweaked the way &lt;a href="http://developer.github.com/v3/mime/"&gt;mime types work&lt;/a&gt; in preparation for the finalization of API v3.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;&lt;center&gt;
+&lt;img src="https://github-images.s3.amazonaws.com/blog/2011/tron.jpeg" alt=""&gt;
+&lt;/center&gt;
+
+&lt;h2&gt;Event Timelines&lt;/h2&gt;
+
+&lt;p&gt;You can now access the events that power the various activity streams on GitHub.  You may notice some timelines that don't actually exist on the site too.  Some highlights include:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# get events for a repository
+$ curl https://api.github.com/repos/github/github/events
+
+# get events for a public network
+$ curl https://api.github.com/networks/sinatra/sinatra/events
+
+# get events that a user has received
+# this shows events from public repos that a user is watching.
+$ curl https://api.github.com/users/technoweenie/received_events/public
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check out the &lt;a href="http://developer.github.com/v3/events/"&gt;full Event timeline docs&lt;/a&gt;, as well as description of the payloads for &lt;a href="http://developer.github.com/v3/events/types/"&gt;every Event type&lt;/a&gt;.  These payloads are what custom webhooks will receive, too.&lt;/p&gt;
+
+&lt;h2&gt;OAuth Authorizations&lt;/h2&gt;
+
+&lt;p&gt;One complaint we hear about API v3 is the lack of token support.  People want to be able to setup scripts without the hassle of authorizing the app through the OAuth workflow.  For this, we've added the OAuth Authorizations API.  If you want to create a quick token with the &lt;code&gt;repo&lt;/code&gt; scope:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ curl -i -u "user:pass" \
+  https://api.github.com/authorizations \
+  -d '{"scopes":["repo"]}'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can also add/remove scopes from authorizations, or delete them.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="http://developer.github.com/v3/oauth/#oauth-authorizations-api"&gt;OAuth docs&lt;/a&gt; have the specifics.&lt;/p&gt;
+
+&lt;h2&gt;Mime Types&lt;/h2&gt;
+
+&lt;p&gt;All resource mime types were simplified.  Instead of sending a type like this to get HTML rendered comments:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;application/vnd.github-pull.html+json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can now just use this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;application/vnd.github.html+json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We also plan to make a few breaking changes in the next month before we move the API out of its beta state.  If you're using API v3, start specifying the 'beta' version so that you can have a graceful transition period at your own pace.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# for all API requests
+Accept: application/vnd.github.v3+json
+
+# when you want HTML comments:
+Accept: application/vnd.github.v3.html+json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ curl -H "Accept: application/vnd.github.beta.html+json" \
+  https://api.github.com/repos/github/hubot/issues/123
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Read more about the &lt;a href="http://developer.github.com/v3/mime/"&gt;new mime types&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/mtodd"&gt;@mtodd&lt;/a&gt; wishes everyone a Happy Halloween!&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;&lt;center&gt;
+&lt;img src="https://github-images.s3.amazonaws.com/blog/2011/animated-tubby.gif" alt="@mtodd wishes everyone a Happy Halloween"&gt;
+&lt;/center&gt;</content><author><name>technoweenie</name></author><gr:likingUser>13818729232887425322</gr:likingUser><gr:likingUser>10004537214883882894</gr:likingUser><source gr:stream-id="feed/http://github.com/blog.atom"><id>tag:google.com,2005:reader/feed/http://github.com/blog.atom</id><title type="html">The GitHub Blog</title><link rel="alternate" href="https://github.com/blog" type="text/html"/></source></entry></feed>

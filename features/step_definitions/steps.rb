@@ -6,7 +6,5 @@ When /^I go to the dashboard$/ do
 end
 
 Then /^I will see my favorite tweets$/ do
-  page.should have_selector('.item')
-  #page.should have_selector('.')
-  #page.should have_selector('.tweet-content')
+  page.should have_selector('.star-item')
 end

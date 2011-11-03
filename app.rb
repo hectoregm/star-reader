@@ -4,6 +4,7 @@ require_relative "lib/star_helpers"
 require_relative 'models/user'
 require_relative 'models/favorite'
 require "twitter"
+require "google_reader_api"
 require "yaml"
 require "time"
 
@@ -17,10 +18,11 @@ class Star < Sinatra::Base
                    password: AppConfig["greader"]["password"] }
 
     Twitter.configure do |config|
-      config.consumer_key = AppConfig["twitter"]["consumer_key"]
-      config.consumer_secret = AppConfig["twitter"]["consumer_secret"]
-      config.oauth_token = AppConfig["twitter"]["oauth_token"]
-      config.oauth_token_secret = AppConfig["twitter"]["oauth_token_secret"]
+      twitter_conf = AppConfig["twitter"]
+      config.consumer_key = twitter_conf["consumer_key"]
+      config.consumer_secret = twitter_conf["consumer_secret"]
+      config.oauth_token = twitter_conf["oauth_token"]
+      config.oauth_token_secret = twitter_conf["oauth_token_secret"]
     end
 
   end
@@ -44,6 +46,7 @@ class Star < Sinatra::Base
       db_name = AppConfig["mongoid"]["test"]["database"]
       c.master = Mongo::Connection.new.db(db_name)
     end
+    User.create!(username: "hector") unless User.exists?(conditions: { username: "hector" })
   end
 
   before '/' do
