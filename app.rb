@@ -50,13 +50,14 @@ class Star < Sinatra::Base
   end
 
   before '/' do
-    user = User.find("hector")
-    first_login(user) if user.first_login?
-    refresh_favorites unless user.first_login?
+    @user = User.find("hector")
+    first_login(@user) if @user.first_login?
+    refresh_favorites unless @user.first_login?
     @rate_limit = rate_limit
   end
 
   get '/' do
+    @page_title = "#{@user.username}'s Favorites"
     @favorites = Favorite.all.order_by([[:ocreated_at, :desc]])
     haml :index
   end

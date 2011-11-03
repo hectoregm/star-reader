@@ -1,12 +1,12 @@
 %div.row
   %section.span11.star-stream
     - @favorites.each do |fav|
-      %article.star-item
+      %article.star-item{ :"data-source" => "#{fav.source}"}
         %div.star-image
           %img{ :height => 48, :width => 48, :src => "#{fav.image_url}" }
         %div.star-content
           %div.star-row
-            %div.star-source
+            %div.star-author
               = link_author(fav)
           %div.star-row
             %div.star-text
@@ -27,5 +27,5 @@
                     %b Unstar
   %section.span5.about
     %h3 Star
-    %p Sinatra app to view you favorites from the main hubs of the web: Twitter, GReader, Gmail. 
+    %p Sinatra app to view you favorites from the main hubs of the web: Twitter, GReader, Gmail.
     %p More to come!!!

@@ -6,30 +6,49 @@ describe Star do
     Star
   end
 
-  describe "GET /" do
+  describe '.star-item' do
 
-    context "First Login" do
-
-      before :each do
-        User.destroy_all
-        User.create!(username: "hector")
-      end
-
-      it 'shows user favorites' do
-        get '/'
-        last_response.should be_ok
-        last_response.body.should have_selector('.star-item')
-      end
-
+    it 'has an image' do
+      get '/'
+      last_response.should be_ok
+      last_response.body.should have_selector('.star-item .star-image img')
     end
 
-    context "After first login" do
+    it 'has a content box' do
+      get '/'
+      last_response.should be_ok
+      last_response.body.should have_selector('.star-item .star-content')
+    end
 
-      it 'shows user favorites' do
-        get '/'
-        last_response.should be_ok
-      end
+    it 'has an author' do
+      get '/'
+      last_response.should be_ok
+      last_response.body.should have_selector('.star-item .star-content .star-author')
+    end
 
+    it 'has text' do
+      get '/'
+      last_response.should be_ok
+      last_response.body.should have_selector('.star-item .star-content .star-text')
+    end
+
+    it 'has a timestamp' do
+      get '/'
+      last_response.should be_ok
+      last_response.body.should have_selector('.star-item .star-content .star-timestamp')
+    end
+
+    it 'has an archive action' do
+      get '/'
+      last_response.should be_ok
+      last_response.body.should have_selector('.star-item .star-action.archive')
+    end
+
+    it 'has a data-source attribute' do
+      get '/'
+      last_response.should be_ok
+      last_response.body.should have_selector('.star-item[data-source="twitter"]')
+      last_response.body.should have_selector('.star-item[data-source="greader"]')
     end
 
   end

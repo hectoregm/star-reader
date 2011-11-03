@@ -31,6 +31,8 @@ FakeWeb.register_uri(:get,
                      "https://api.twitter.com/1/account/rate_limit_status.json",
                      body: "{\"remaining_hits\":347}")
 
+Capybara.app = Star
+
 RSpec.configure do |c|
   c.include Rack::Test::Methods
   c.include Capybara::RSpecMatchers
@@ -38,6 +40,6 @@ RSpec.configure do |c|
   c.after(:each) do
     Mongoid.master.collections
       .select { |cl| cl.name !~ /system/ }.each(&:drop)
-    User.create!(username: "hector", first_login: false)
+    User.create!(username: "hector")
   end
 end
