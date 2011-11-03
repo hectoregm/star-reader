@@ -3,8 +3,6 @@ require "sinatra/reloader"
 require_relative "lib/star_helpers"
 require_relative 'models/user'
 require_relative 'models/favorite'
-require "twitter"
-require "google_reader_api"
 require "yaml"
 require "time"
 

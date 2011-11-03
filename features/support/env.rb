@@ -1,10 +1,10 @@
 ENV['RACK_ENV'] = 'test'
 
-require File.join(File.dirname(__FILE__), '..', '..', 'app.rb')
-
-require 'capybara'
+require 'bundler'
+Bundler.require(:default, :test)
+require File.expand_path(File.join(File.dirname(__FILE__), '../../app'))
 require 'capybara/cucumber'
-require 'rspec'
+
 
 Capybara.app = Star
 Capybara.javascript_driver = :webkit
