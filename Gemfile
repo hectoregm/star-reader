@@ -20,4 +20,5 @@ group :test do
   gem "capybara-webkit"
   gem "autotest"
   gem "autotest-growl"
+  gem "fakeweb"
 end
