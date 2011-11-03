@@ -2,7 +2,23 @@ require 'autotest/bundler'
 require 'autotest/growl'
 
 Autotest.add_hook(:initialize) do |at|
-  ['.autotest', '.git', 'Gemfile.lock', 'features'].each do |exception|
+  at.clear_exceptions
+  at.clear_mappings
+
+  ['.autotest', '.git', 'Gemfile.lock'].each do |exception|
     at.add_exception(exception)
   end
+
+  at.add_mapping(%r{^spec/**/.*_spec\.rb}) do |f, _|
+    f
+  end
+
+  at.add_mapping(%r{^app.rb$}) do |f, _|
+    Dir['spec/**/*_spec.rb']
+  end
+
+  at.add_mapping(%r{^(models|lib)/.*\.rb$}) do |f, _|
+    Dir['spec/**/*_spec.rb']
+  end
+
 end
