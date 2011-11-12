@@ -9,6 +9,10 @@ gem "sass"
 gem "mongoid", "~> 2.3.3"
 gem "bson_ext", "~> 1.3"
 
+group :test, :development do
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
+
 group :development do
   gem "sinatra-reloader"
 end
