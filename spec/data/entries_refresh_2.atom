@@ -1,0 +1,442 @@
+<?xml version="1.0"?><feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:gr="http://www.google.com/schemas/reader/atom/" xmlns:idx="urn:atom-extension:indexing" xmlns="http://www.w3.org/2005/Atom" idx:index="no" gr:dir="ltr"><!--
+Content-type: Preventing XSRF in IE.
+
+--><generator uri="http://www.google.com/reader">Google Reader</generator><id>tag:google.com,2005:reader/user/03238720318766311921/state/com.google/starred</id><title>Hector's starred items in Google Reader</title><gr:continuation>COvA2LKSr6wC</gr:continuation><link rel="self" href="http://www.google.com/reader/atom/user/-/state/com.google/starred?n=5"/><author><name>Hector</name></author><updated>2011-11-11T17:52:28Z</updated><entry gr:crawl-timestamp-msec="1321033948196"><id gr:original-id="http://robots.thoughtbot.com/post/12641715592">tag:google.com,2005:reader/item/d77e771b11d8930b</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="open source"/><category term="thanks"/><category term="hacking"/><title type="html">Nearby in Open Source</title><published>2011-11-11T14:58:10Z</published><updated>2011-11-11T14:58:10Z</updated><link rel="alternate" href="http://feedproxy.google.com/~r/GiantRobotsSmashingIntoOtherGiantRobots/~3/AB5jxNw2zE4/12641715592" type="text/html"/><summary xml:base="http://robots.thoughtbot.com/" type="html">&lt;p&gt;We have a weekly blog post on the state of our gems, which we affectionately call “This Week in Open Source”. My favorite part about it (the reason I started it!) is that we get to thank the contributors publicly and officially.&lt;/p&gt;
+
+&lt;p&gt;Today I’d like to expand the thanks just a tiny bit: I’d like to thank people who are building on top of our open source work, extending it beyond our dreams. While I’m at it, I’d also like to highlight some of the non-thoughtbot open source work we build. I call this … &lt;strong&gt;Nearby in Open Source&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2&gt;capybara-screenshot&lt;/h2&gt;
+
+&lt;p&gt;Matthew O’Riordan (&lt;a href="http://github.com/mattheworiordan/"&gt;mattheworiordan&lt;/a&gt;) built on top of &lt;a href="http://github.com/thoughtbot/capybara-webkit"&gt;capybara-webkit&lt;/a&gt; to give the world &lt;a href="http://github.com/mattheworiordan/capybara-screenshot"&gt;capybara-screenshot&lt;/a&gt;. It’s pretty slick: any time you have a capybara test failure, it saves a screenshot of the headless browser.&lt;/p&gt;
+
+&lt;p&gt;Installation is simple; toss this in your app’s &lt;code&gt;Gemfile&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+group :test do
+  gem 'capybara-screenshot'
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;… and that’s it. It saves screenshots away in &lt;code&gt;tmp/capybara&lt;/code&gt;. The simplicity is beautiful.&lt;/p&gt;
+
+&lt;p&gt;So give it a try and maybe send him a pull request or a follow.&lt;/p&gt;
+
+&lt;h2&gt;delayed_paperclip&lt;/h2&gt; 
+
+&lt;p&gt;Jesse Storimer (&lt;a href="http://github.com/jstorimer"&gt;jstorimer&lt;/a&gt;), from all the way up in Ottawa, figured out how to process Paperclip attachments in the background using delayed_job or Resque. He packaged it all together as &lt;a href="http://github.com/jstorimer/delayed_paperclip"&gt;delayed_paperclip&lt;/a&gt;, and it’s the way to go for delaying Paperclip processing. It even works with S3.&lt;/p&gt;
+
+&lt;p&gt;It’s a little trickier than capybara-screenshot to get running, due to the nature of the beast. But it’s also well-documented in &lt;a href="https://github.com/jstorimer/delayed_paperclip/blob/master/README.textile"&gt;the README&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In your &lt;code&gt;Gemfile&lt;/code&gt; add &lt;code&gt;delayed_paperclip&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+gem 'paperclip'
+gem 'delayed_paperclip'
+gem 'resque'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You must also have &lt;a href="https://github.com/defunkt/resque"&gt;Resque&lt;/a&gt; (or &lt;a href="https://github.com/tobi/delayed_job"&gt;DJ&lt;/a&gt;) configured and running properly.&lt;/p&gt;
+
+&lt;p&gt;To have things function more smoothly you should add an &lt;code&gt;&lt;var&gt;attachment&lt;/var&gt;_processing&lt;/code&gt; boolean to your database table. Like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+./script/rails g migration add_avatar_processing_to_users avatar_processing:boolean
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In your model you need to explicitly state that the attachment is to be processed in the background:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+class User &amp;lt; ActiveRecord::Base
+  has_attached_file :avatar, :styles =&amp;gt; { :medium =&amp;gt; &amp;quot;300x300&amp;gt;&amp;quot;, :thumb =&amp;gt; &amp;quot;100x100&amp;gt;&amp;quot; }
+
+  process_in_background :avatar
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And there you go; background processing for your Paperclip uploads. Thanks, Jesse!&lt;/p&gt;
+
+&lt;h2&gt;mongoid-paperclip&lt;/h2&gt;
+
+&lt;p&gt;Speaking of Paperclip, Michael van Rooijen (&lt;a href="http://github.com/meskyanichi"&gt;meskyanichi&lt;/a&gt;) of The Netherlands figured out how to use MongoDB to store file upload data. He’s named this solution &lt;a href="http://github.com/meskyanichi/mongoid-paperclip"&gt;mongoid-paperclip&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The set up is straight-forward. In your &lt;code&gt;Gemfile&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+gem &amp;#39;mongoid-paperclip&amp;#39;, :require =&amp;gt; &amp;#39;mongoid_paperclip&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And in your model, where normally you would use &lt;code&gt;has_attached_file&lt;/code&gt;, instead use &lt;code&gt;has_mongoid_attached_file&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+class User
+  include Mongoid::Document
+  include Mongoid::Paperclip
+
+  has_mongoid_attached_file :avatar
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;We hack code too&lt;/h2&gt;
+
+&lt;p&gt;Speaking of having things to share, we coders at thoughtbot are also coders outside of thoughtbot. Here’s a quicker summary of some sweet hacks we’ve rocked:&lt;/p&gt;
+
+&lt;h2&gt;Nick Quaranto&lt;/h2&gt;
+
+&lt;p&gt;Nick is &lt;a href="http://github.com/qrush"&gt;qrush&lt;/a&gt; on Github. Follow him if you like these things:&lt;/p&gt;
+
+&lt;dl&gt;&lt;dt&gt;&lt;a href="http://github.com/gitready/gitready"&gt;gitready&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;A bunch of tips for using git.&lt;/dd&gt;
+  &lt;dt&gt;&lt;a href="https://github.com/rubygems/contribute"&gt;rubygems.org&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;Some central storage Web site for gems. &lt;a href="http://rubygems.org/"&gt;You might have heard of it&lt;/a&gt;.&lt;/dd&gt;
+  &lt;dt&gt;&lt;a href="http://github.com/qrush/danger_danger"&gt;danger_danger&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;A sample Web site, mixing Rails with high_voltage. He wrote &lt;a href="http://robots.thoughtbot.com/post/11744619917/danger-danger-high-voltage-use-rails-3-1-for-static"&gt;a blog post&lt;/a&gt; about this.&lt;/dd&gt;
+  &lt;dt&gt;&lt;a href="http://github.com/qrush/counter"&gt;counter&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;A tool to help score a game of Carcassonne.&lt;/dd&gt;
+&lt;/dl&gt;&lt;h2&gt;Jason Morrison&lt;/h2&gt;
+
+&lt;p&gt;Jason is &lt;a href="http://github.com/jasonm"&gt;jasonm&lt;/a&gt; on Github. Maybe these tickle your fancy:&lt;/p&gt;
+
+&lt;p&gt;Sample apps:&lt;/p&gt;
+&lt;dl&gt;&lt;dt&gt;&lt;a href="http://github.com/jasonm/backbone_sync-rails"&gt;backbone_sync-rails&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;A spike of a WebSockets-based, instant feedback, Rails and Backbone app.&lt;/dd&gt;
+  &lt;dt&gt;&lt;a href="http://github.com/jasonm/chat_app"&gt;chat_app&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;A chat app showing how to mix Backbone, Cucumber, and Jasmine.&lt;/dd&gt;
+&lt;/dl&gt;&lt;p&gt;Presentations:&lt;/p&gt;
+&lt;dl&gt;&lt;dt&gt;&lt;a href="https://github.com/jasonm/backbone-js-on-rails-talk/tree/gh-pages"&gt;backbone-js-on-rails-talk&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;A talk on mixing Backbone and Rails, delivered at &lt;a href="http://nhruby.org/2011/09/18/september-2011-meetup-backbonejs.html"&gt;NH.rb&lt;/a&gt; and Boston.rb last month.&lt;/dd&gt;
+  &lt;dt&gt;&lt;a href="https://github.com/jasonm/backbone-front-end-presentation/tree/gh-pages"&gt;backbone-front-end-presentation&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;A talk on using Backbone, delivered at the &lt;a href="http://www.meetup.com/Boston-Frontend-Developers/events/37125612/"&gt;Boston Frontend Developers&lt;/a&gt; meetup.&lt;/dd&gt;
+&lt;/dl&gt;&lt;h2&gt;Ben Orenstein&lt;/h2&gt;
+
+&lt;p&gt;Ben is the amusingly-named &lt;a href="http://github.com/r00k"&gt;r00k&lt;/a&gt; on Github. Two things in the past month, both related to his mouth:&lt;/p&gt;
+
+&lt;dl&gt;&lt;dt&gt;&lt;a href="http://github.com/r00k/talk_notes"&gt;talk_notes&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;Notes from his talk on Vim for Rails, which he gave both at &lt;a href="http://en.oreilly.com/rails2010/public/schedule/speaker/61001"&gt;RailsConf 2010&lt;/a&gt; and at &lt;a href="http://robots.thoughtbot.com/post/10695356836/boston-vim-meetup"&gt;the first Boston Vim meetup&lt;/a&gt;.&lt;/dd&gt;
+  &lt;dt&gt;&lt;a href="http://github.com/r00k/dtx_site"&gt;dtx_site&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;The Web site for &lt;a href="http://www.downtowncrossingquartet.com/"&gt;the quartet in which he sings&lt;/a&gt;.&lt;/dd&gt;
+&lt;/dl&gt;&lt;h2&gt;Chad Pytel&lt;/h2&gt;
+
+&lt;p&gt;Chad, or &lt;a href="http://github.com/cpytel"&gt;cpytel&lt;/a&gt; as we like to call him, had one talk-related repo last month:&lt;/p&gt;
+
+&lt;dl&gt;&lt;dt&gt;&lt;a href="http://github.com/cpytel/fowa-backbone"&gt;fowa-backbone&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;A talk on Backbone delivered at the Future of Web Apps in London.&lt;/dd&gt;
+&lt;/dl&gt;&lt;h2&gt;Gabe Berke-Williams&lt;/h2&gt;
+
+&lt;p&gt;Gabe, with his long name and all, can be followed as &lt;a href="http://github.com/gabebw"&gt;gabebw&lt;/a&gt; on Github. Here’s some chat-related stuff he’s done in the past month:&lt;/p&gt;
+
+&lt;dl&gt;&lt;dt&gt;&lt;a href="http://github.com/gabebw/chat_stew"&gt;chat_stew&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;An Adium log parser.&lt;/dd&gt;
+  &lt;dt&gt;&lt;a href="http://github.com/gabebw/pidgin2adium"&gt;pidgin2adium&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;A tool for importing pidgin logs into Adium.&lt;/dd&gt;
+  &lt;dt&gt;&lt;a href="http://github.com/gabebw/memetron"&gt;memetron&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;Natural language processing simulator for things that Reddit finds funny.&lt;/dd&gt;
+  &lt;dt&gt;&lt;a href="http://github.com/gabebw/fuckyeahfuckyeahproxy"&gt;fuckyeahfuckyeahproxy&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;A proxy server to make Campfire understand images that don’t end in &lt;code&gt;.jpg&lt;/code&gt;, specifically targetting &lt;a href="http://fuckyeah.heroku.com"&gt;fuckyeah.heroku.com&lt;/a&gt;.&lt;/dd&gt;
+&lt;/dl&gt;&lt;h2&gt;Harold Gimenez&lt;/h2&gt;
+
+&lt;p&gt;Harold—&lt;a href="http://github.com/hgimenez"&gt;hgimenez&lt;/a&gt; on Github—
+
+  &lt;/p&gt;&lt;dl&gt;&lt;dt&gt;&lt;a href="http://github.com/hgimenez/presentations"&gt;presentations&lt;/a&gt;&lt;/dt&gt;
+    &lt;dd&gt;A talk on using Redis, amusingly titled “Redis: Nimble Data Bacon”, &lt;a href="https://www.postgresqlconference.org/content/redis-nimble-data-bacon"&gt;presented at PG West 2011&lt;/a&gt;.&lt;/dd&gt;
+    &lt;dt&gt;&lt;a href="http://github.com/hgimenez/truncate_html"&gt;truncate_html&lt;/a&gt;&lt;/dt&gt;
+    &lt;dd&gt;A classic Rails gem for truncating a piece of HTML. (I also &lt;a href="http://mikeburnscoder.wordpress.com/2006/11/11/truncating-html-in-ruby/"&gt;wrote this&lt;/a&gt; a bunch of years back!)&lt;/dd&gt;
+    &lt;dt&gt;&lt;a href="http://github.com/hgimenez/stack"&gt;stack&lt;/a&gt;&lt;/dt&gt;
+    &lt;dd&gt;A sample app, serving as a gentle introduction to test-driven development.&lt;/dd&gt;
+  &lt;/dl&gt;&lt;h2&gt;Mike Burns&lt;/h2&gt;
+
+&lt;p&gt;I can be found on Github as &lt;a href="http://github.com/mike-burns"&gt;mike-burns&lt;/a&gt;. Some things I’m excited about:&lt;/p&gt;
+
+&lt;dl&gt;&lt;dt&gt;&lt;a href="http://github.com/mike-burns/liaison"&gt;liaison&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;An abstraction of the Rails presenter pattern, in a non-intrusive, object-oriented manner.&lt;/dd&gt;
+  &lt;dt&gt;&lt;a href="http://github.com/mike-burns/method_missing"&gt;method_missing&lt;/a&gt;&lt;/dt&gt;
+  &lt;dd&gt;Those methods that should have existed on Ruby’s &lt;code&gt;Method&lt;/code&gt; object.&lt;/dd&gt;
+&lt;/dl&gt;&lt;h2&gt;… And More?&lt;/h2&gt;
+
+&lt;p&gt;Those are the gems that metaphorically came across my metaphorical desk over the past literal month. Do you have any to share? Any you’ve written?&lt;/p&gt;</summary><author gr:unknown-author="true"><name>(author unknown)</name></author><source gr:stream-id="feed/http://feeds.feedburner.com/GiantRobotsSmashingIntoOtherGiantRobots"><id>tag:google.com,2005:reader/feed/http://feeds.feedburner.com/GiantRobotsSmashingIntoOtherGiantRobots</id><title type="html">giant robots smashing into other giant robots</title><link rel="alternate" href="http://robots.thoughtbot.com/" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1321033909541"><id gr:original-id="http://mgmt.smashingmagazine.com/?p=119065">tag:google.com,2005:reader/item/e58b52b2141ce167</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="Opinion column" scheme="http://www.smashingmagazine.com"/><category term="HTML5" scheme="http://www.smashingmagazine.com"/><title type="html">Our Pointless Pursuit Of Semantic Value</title><published>2011-11-11T13:52:05Z</published><updated>2011-11-11T19:10:20Z</updated><link rel="alternate" href="http://www.smashingmagazine.com/2011/11/11/our-pointless-pursuit-of-semantic-value/" type="text/html"/><link rel="replies" href="http://www.smashingmagazine.com/2011/11/11/our-pointless-pursuit-of-semantic-value/#comments" type="text/html"/><link rel="replies" href="http://www.smashingmagazine.com/2011/11/11/our-pointless-pursuit-of-semantic-value/feed/atom/" type="application/atom+xml"/><content xml:base="http://www.smashingmagazine.com/2011/11/11/our-pointless-pursuit-of-semantic-value/" xml:lang="en" type="html">&lt;table width="650"&gt;
+&lt;tr&gt;
+&lt;td width="650"&gt;
+&lt;div style="width:650px"&gt;
+        &lt;img src="http://statisches.auslieferung.commindo-media-ressourcen.de/advertisement.gif" alt="" border="0"&gt;&lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=1"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=1" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;&lt;br&gt;
+         &lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=2"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=2" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;&lt;br&gt;
+         &lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=3"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=3" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Important disclaimer&lt;/strong&gt;: This article is published in the &lt;em&gt;Opinion column&lt;/em&gt; section in which we provide active members of the community with the opportunity to share their thoughts and ideas publicly. Do you agree with the author? Please leave a comment. And if you disagree, would you like to write a rebuttal or counter piece? Leave a comment, too, and we will get back to you! Thank you.&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;Meta-utopia is a world of reliable meta data. When poisoning the well confers benefits to the poisoners, the meta-waters get awfully toxic in short order.&lt;/p&gt;
+&lt;p&gt;– &lt;a href="http://www.well.com/~doctorow/metacrap.htm"&gt;Cory Doctorow&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Allow me to paint a picture:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;You are busy creating a website.&lt;/li&gt;
+&lt;li&gt;You have a thought, “Oh, now I have to add an element.”&lt;/li&gt;
+&lt;li&gt;Then another thought, “I feel so guilty adding a &lt;code&gt;div&lt;/code&gt;. Div-itis is terrible, I hear.”&lt;/li&gt;
+&lt;li&gt;Then, “I should use something else. The &lt;code&gt;aside&lt;/code&gt; element might be appropriate.”&lt;/li&gt;
+&lt;li&gt;Three searches and five articles later, you’re fairly confident that&lt;br&gt;
+&lt;code&gt;aside&lt;/code&gt; is not semantically correct.&lt;/li&gt;
+&lt;li&gt;You decide on &lt;code&gt;article&lt;/code&gt;, because at least it’s not a &lt;code&gt;div&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;You’ve wasted 40 minutes, with no tangible benefit to show for it.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;This Just Straight Up Sucks&lt;/h3&gt;
+&lt;p&gt;This is not the first time this topic has been broached. In 2004, Andy Budd wrote on &lt;a href="http://www.andybudd.com/archives/2004/05/semantic_coding/"&gt;semantic purity versus semantic realism&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If your biggest problem with HTML5 is the &lt;a href="http://www.impressivewebs.com/aside-vs-blockquote-html5/"&gt;distinction between an aside and a blockquote&lt;/a&gt; or the &lt;a href="http://twitter.theinfo.org/29661575610630145"&gt;right way to mark up addresses&lt;/a&gt;, then you are not using HTML5 the way it was intended.&lt;/p&gt;
+&lt;p&gt;Mark-up structures content, but your choice of tags matters a lot less than we’ve been taught for a while. Let’s go through some of the reasons why.&lt;/p&gt;
+&lt;h4&gt;The Web No Longer Consists Of Structured Content&lt;/h4&gt;
+&lt;p&gt;In the golden days of the Web, Web pages were supposed to be repositories of information and meaning, nothing more. Today, the Web has content, but meaning is derived from users’ interactions with it.&lt;/p&gt;
+&lt;p&gt;XML, RDFA, Dublin Core and other structured specifications have very solid use cases, but those use cases &lt;a href="http://www.alexa.com/topsites"&gt;do not account for the majority of interactions&lt;/a&gt; on the Web. Heck, no website really has the purity of semantic mark-up that such specifications demand. &lt;a href="http://web.archive.org/web/20060428021228/http://diveintomark.org/archives/2002/12/30/the_tag_soup_of_a_new_generation"&gt;Mark Pilgrim writes about this&lt;/a&gt; much better than I do.&lt;/p&gt;
+&lt;p&gt;If you have content that demands semantic purity — such as a library database, a document that needs a table of contents, or an online book (i.e. anything for which semantic purity makes sense) — then by all means stick to the HTML5 outlining algorithm, and split hairs on which element should be an &lt;code&gt;article&lt;/code&gt; and which a &lt;code&gt;section&lt;/code&gt;. No customer-facing tool exists that takes advantage of this algorithm by producing a table of contents. No browser seems to exploit such tools either.&lt;/p&gt;
+&lt;h4&gt;Is It Really Accessible?&lt;/h4&gt;
+&lt;p&gt;If accessibility is your reason for using semantic mark-up, then understand that accessibility and semantic mark-up have very little correlation, due to the massive abuse of HTML mark-up on the Web. (I would love to link to Mark Pilgrim’s post on this, but it is dead, so &lt;a href="http://krijnhoetmer.nl/irc-logs/whatwg/20090604#l-877"&gt;this will have to do&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;b&lt;/code&gt;,  &lt;code&gt;strong&lt;/code&gt;, &lt;code&gt;i&lt;/code&gt; and &lt;code&gt;em&lt;/code&gt; tags are equivalent to the &lt;code&gt;span&lt;/code&gt; tag as far as the &lt;a href="http://www.w3.org/TR/2011/WD-html-aapi-20110414/"&gt;specification is concerned&lt;/a&gt;. And so are some of HTML5’s tags.&lt;/p&gt;
+&lt;p&gt;As stated on &lt;a href="http://www.html5accessibility.com/"&gt;HTML5 Accessibility&lt;/a&gt;, almost every new HTML5 element currently provides to assistive technology only as much semantic information as a div element. So, if you thought that using HTML5 elements would make your website more accessible, think again. (How much additional information do &lt;code&gt;&amp;lt;figure&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;figcaption&amp;gt;&lt;/code&gt; bring? &lt;a href="http://www.paciellogroup.com/blog/2011/08/html5-accessibility-chops-the-figure-and-figcaption-elements/"&gt;None&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;The recent &lt;a href="http://html5doctor.com/time-and-data-element/"&gt;debate (or debacle?) on the &lt;code&gt;&amp;lt;time&amp;gt;&lt;/code&gt; element&lt;/a&gt; is just more proof of the impermanence of the semantic meanings associated with elements.&lt;/p&gt;
+&lt;h4&gt;Is It Really Searchable?&lt;/h4&gt;
+&lt;p&gt;If SEO is your grand purpose for using semantic mark-up, then know that most search engines do not give more credence to a page just because of its mark-up. The only thing recommended in this &lt;a href="http://www.google.com/support/webmasters/bin/answer.py?hl=en&amp;amp;answer=35291"&gt;SEO guide from Google&lt;/a&gt; is to use relevant headings and anchor links (other search engines work similarly). Your use of HTML5 elements or of &lt;code&gt;strong&lt;/code&gt; or &lt;code&gt;span&lt;/code&gt; tags will not affect how your content is read by them.&lt;/p&gt;
+&lt;p&gt;There is another way to provide rich data to search engines, and that is via &lt;a href="http://schema.org/"&gt;micro-data&lt;/a&gt;. In no way does this make your website rank better on search engines; it simply &lt;a href="http://www.google.com/support/webmasters/bin/answer.py?answer=1211158"&gt;adds value to the search result&lt;/a&gt; when a relevant one is found for your website.&lt;/p&gt;
+&lt;h4&gt;Is It Really Portable?&lt;/h4&gt;
+&lt;p&gt;Another much-touted advantage of the semantic Web is data portability. Miraculously, all devices are supposed to understand the semantic mark-up used everywhere and be able to parse the information therein with no effort. Aryeh Gregor &lt;a href="https://plus.google.com/105458233028934590147/posts/Q2Wnvy1ysBD"&gt;puts that myth to sleep&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;… +Manu Sporny said that semantic Web people had received feedback that out-of-band data was harder to keep in sync with content. I can attest that in MediaWiki’s case this isn’t true, though… The only times I can see where you’d want to use RDFa or microdata instead of separate RDF is if either you don’t have good enough page-generation tools, or you want the metadata to be consumed by specific known clients that only support inline metadata (e.g. search engines supporting schema.org or such). If the page is being processed by a script anyway, and if the script author has ready access to server-side tools that can extract the metadata into a separate RDF stream, then it’s normally going to be just as easy to publish as a separate stream as to publish inline. And it saves a lot of bloat on every page view.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3&gt;What Now, Then?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;There is no harm using &lt;code&gt;div&lt;/code&gt; elements; you can continue using them instead of &lt;code&gt;section&lt;/code&gt; and &lt;code&gt;article&lt;/code&gt;. I believe we should use the new elements to make your mark-up readable, not for any inherent semantic advantage. If you want to use HTML5 &lt;code&gt;section&lt;/code&gt; and &lt;code&gt;article&lt;/code&gt; tags to enhance some particular textual documentation for a future document reader, do it.&lt;/li&gt;
+&lt;li&gt;Tools exist today that take advantage of the &lt;code&gt;nav&lt;/code&gt;, &lt;code&gt;header&lt;/code&gt; and &lt;code&gt;footer&lt;/code&gt; elements. &lt;a href="http://www.accessibleculture.org/research/html5-aria-2011/"&gt;NVDA now assigns implied semantics&lt;/a&gt; with these elements. The elements are straightforward to understand and use.&lt;/li&gt;
+&lt;li&gt;There is &lt;a href="http://www.html5accessibility.com/tests/landmarks.html"&gt;good support&lt;/a&gt; for ARIA landmarks in screen readers, but &lt;a href="http://www.accessibleculture.org/articles/2011/04/html5-aria-2011/"&gt;be careful&lt;/a&gt; when using them with HTML5 elements.&lt;/li&gt;
+&lt;li&gt;HTML5 has a host of &lt;a href="http://platform.html5.org"&gt;new features&lt;/a&gt;. Learn about them, use them, give feedback. Make these features more robust and stable. Yes, most of these features require that you understand and write JavaScript and expose features that create a richer experience for your audience. If that task sounds formidable to you, then start &lt;a href="http://www.highercomputingforeveryone.com/"&gt;learning how to code&lt;/a&gt;, &lt;a href="http://yuilibrary.com/theater/douglas-crockford/crockford-tjpl/"&gt;particularly JavaScript&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;(al)&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;small&gt;© Divya Manian for &lt;a href="http://www.smashingmagazine.com"&gt;Smashing Magazine&lt;/a&gt;, 2011.&lt;/small&gt;&lt;/p&gt;</content><author><name>Divya Manian</name></author><gr:likingUser>09112262175061780009</gr:likingUser><source gr:stream-id="feed/http://rss1.smashingmagazine.com/feed/"><id>tag:google.com,2005:reader/feed/http://rss1.smashingmagazine.com/feed/</id><title type="html">Smashing Magazine Feed</title><link rel="alternate" href="http://www.smashingmagazine.com/" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1321033883624"><id gr:original-id="http://opinionatedprogrammer.com/?p=952">tag:google.com,2005:reader/item/1b7ada09520520c6</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="Uncategorized"/><category term="bootstrap"/><category term="css"/><category term="less"/><category term="rails"/><category term="ruby"/><title type="html">Twitter’s Bootstrap on Rails</title><published>2011-11-10T02:12:24Z</published><updated>2011-11-10T02:12:24Z</updated><link rel="alternate" href="http://opinionatedprogrammer.com/2011/11/twitter-bootstrap-on-rails/" type="text/html"/><content xml:base="http://opinionatedprogrammer.com/" type="html">&lt;h3&gt;“Twitter’s &lt;a href="http://twitter.github.com/bootstrap/"&gt;Bootstrap&lt;/a&gt; looks shiny! How do I use it in Rails 3.1?”&lt;/h3&gt;
+&lt;p&gt;Just add @metaskill’s &lt;a href="https://github.com/metaskills/less-rails-bootstrap"&gt;less-rails-bootstrap&lt;/a&gt; gem (&lt;a href="http://metaskills.net/2011/09/26/less-is-more-using-twitter-bootstrap-in-the-rails-3-1-asset-pipeline/"&gt;announced recently&lt;/a&gt; on his blog) to your Gemfile:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;gem &lt;span style="color:#996600"&gt;'less-rails-bootstrap'&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Require it in your &lt;tt&gt;app/assets/stylesheets/application.css&lt;/tt&gt;:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt; *= require twitter/bootstrap&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Done.&lt;/p&gt;
+&lt;p&gt;Now the Bootstrap rules are available for use in your views. For instance, try adding a button in any view file — it should be rendered pretty:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;&lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;input&lt;/span&gt; &lt;span style="color:#000066"&gt;type&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;button&amp;quot;&lt;/span&gt; &lt;span style="color:#000066"&gt;value&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;Click me&amp;quot;&lt;/span&gt; &lt;span style="color:#000066"&gt;class&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;btn primary&amp;quot;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Or try adding a &lt;a href="http://twitter.github.com/bootstrap/#navigation"&gt;black navigation bar&lt;/a&gt; to your layout:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;&lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;div&lt;/span&gt; &lt;span style="color:#000066"&gt;class&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;topbar&amp;quot;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;div&lt;/span&gt; &lt;span style="color:#000066"&gt;class&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;topbar-inner&amp;quot;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;div&lt;/span&gt; &lt;span style="color:#000066"&gt;class&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;container&amp;quot;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+      &lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;a&lt;/span&gt; &lt;span style="color:#000066"&gt;class&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;brand&amp;quot;&lt;/span&gt; &lt;span style="color:#000066"&gt;href&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;Whizboo App&lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;/a&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+      &lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;ul&lt;/span&gt; &lt;span style="color:#000066"&gt;class&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;nav&amp;quot;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+        &lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;li&lt;/span&gt; &lt;span style="color:#000066"&gt;class&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;active&amp;quot;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;a&lt;/span&gt; &lt;span style="color:#000066"&gt;href&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;Home&lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;/a&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;/li&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+        &lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;li&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;a&lt;/span&gt; &lt;span style="color:#000066"&gt;href&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;/about&amp;quot;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;About&lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;/a&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;/li&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+      &lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;/ul&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+      &lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;p&lt;/span&gt; &lt;span style="color:#000066"&gt;class&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;pull-right&amp;quot;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;Logged in as &lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;a&lt;/span&gt; &lt;span style="color:#000066"&gt;href&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;#&amp;quot;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;snape@hogwarts.ac.uk&lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;/a&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;/p&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;/div&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;/div&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span style="color:#009900"&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;lt;/div&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;By the way: Did you know that Bootstrap is written in &lt;a href="http://lesscss.org/"&gt;LESS&lt;/a&gt;, a stylesheet language like SCSS?&lt;/p&gt;
+&lt;h3&gt;“Ugh, I hate LESS, can I get Bootstrap as plain CSS please?”&lt;/h3&gt;
+&lt;p&gt;Sure. Behind the scenes, less-rails-bootstrap uses the &lt;a href="https://github.com/metaskills/less-rails"&gt;less-rails&lt;/a&gt; gem to compile the Bootstrap LESS files into CSS through Rails’s asset pipeline. This means that there is no scary client-side compilation with less.js (like the LESS website advertises). And on the Rails side, you can just carry on using SCSS. In other words, Bootstrap by default acts like any regular CSS library — all the LESS stuff is hidden from you.&lt;/p&gt;
+&lt;h3&gt;“I love LESS, can I use the &lt;a href="http://twitter.github.com/bootstrap/#less"&gt;Bootstrap mixins&lt;/a&gt; in my LESS code?”&lt;/h3&gt;
+&lt;p&gt;Sure you can. Just import the mixins and variables in any stylesheet file ending in &lt;tt&gt;.less&lt;/tt&gt; (like &lt;tt&gt;posts.css.less&lt;/tt&gt;):&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;&lt;span style="color:#a1a100"&gt;@import &amp;quot;twitter/bootstrap/variables&amp;quot;;&lt;/span&gt;
+&lt;span style="color:#a1a100"&gt;@import &amp;quot;twitter/bootstrap/mixins&amp;quot;;&lt;/span&gt;
+ 
+div&lt;span style="color:#6666ff"&gt;.post&lt;/span&gt; &lt;span style="color:#00aa00"&gt;{&lt;/span&gt;
+   &lt;span style="color:#000000;font-weight:bold"&gt;color&lt;/span&gt;&lt;span style="color:#00aa00"&gt;:&lt;/span&gt; &lt;span style="color:#a1a100"&gt;@yellow;  // &amp;lt;-- using variables&lt;/span&gt;
+   &lt;span style="color:#cc00cc"&gt;#gradient&lt;/span&gt;.vertical&lt;span style="color:#00aa00"&gt;(&lt;/span&gt;&lt;span style="color:#a1a100"&gt;@black, @blue);  // &amp;lt;-- using mixins&lt;/span&gt;
+&lt;span style="color:#00aa00"&gt;}&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;b&gt;Warning:&lt;/b&gt; Do not get confused about requiring vs importing:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use &lt;tt&gt;= require twitter/bootstrap&lt;/tt&gt; at least once (typically in application.css) to get all the CSS rules that come with Bootstrap. The files will be processed through Sprockets (Rails’s asset handler), which guards against duplicate inclusion. If you tried to &lt;tt&gt;require&lt;/tt&gt; the mixins or variables, it would have no effect, since Sprockets compiles them separately from your stylesheets.&lt;/li&gt;
+&lt;li&gt;Add the two &lt;tt&gt;@import&lt;/tt&gt; lines above to &lt;em&gt;every&lt;/em&gt; LESS file in which you want to use Bootstrap mixins or variables. As you can verify by inspecting the CSS output, importing them has no effect (i.e. no CSS rules are generated) until you actually use the mixins and variables in your own CSS rules. If you tried to &lt;tt&gt;@import&lt;/tt&gt; the entire “twitter/bootstrap” library, it would show up multiple times in your compiled CSS assets, because Sprockets can’t guard against duplicate inclusion when you use &lt;tt&gt;@import&lt;/tt&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To summarize, &lt;tt&gt;require&lt;/tt&gt; the entire toolkit, and &lt;tt&gt;@import&lt;/tt&gt; the mixins and variables.&lt;/p&gt;
+&lt;h3&gt;“Can I use Bootstrap’s &lt;a href="http://twitter.github.com/bootstrap/#javascript"&gt;JavaScript plugins&lt;/a&gt;?”&lt;/h3&gt;
+&lt;p&gt;Easy enough. Add this to your &lt;tt&gt;application.js&lt;/tt&gt;:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;&lt;span style="color:#006600;font-style:italic"&gt;//= require twitter/bootstrap&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The plugins load through jQuery’s &lt;tt&gt;&lt;a href="http://api.jquery.com/ready/"&gt;.ready&lt;/a&gt;&lt;/tt&gt;, so be sure to wrap your own code as well:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;$&lt;span style="color:#009900"&gt;(&lt;/span&gt;document&lt;span style="color:#009900"&gt;)&lt;/span&gt;.&lt;span style="color:#660066"&gt;ready&lt;/span&gt;&lt;span style="color:#009900"&gt;(&lt;/span&gt;&lt;span style="color:#003366;font-weight:bold"&gt;function&lt;/span&gt;&lt;span style="color:#009900"&gt;(&lt;/span&gt;&lt;span style="color:#009900"&gt;)&lt;/span&gt; &lt;span style="color:#009900"&gt;{&lt;/span&gt;
+  &lt;span style="color:#006600;font-style:italic"&gt;// ...&lt;/span&gt;
+&lt;span style="color:#009900"&gt;}&lt;/span&gt;&lt;span style="color:#009900"&gt;)&lt;/span&gt;&lt;span style="color:#339933"&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3&gt;“Help! Stuff is breaking.”&lt;/h3&gt;
+&lt;p&gt;Keep in mind that less-rails is still fairly new, and there are likely some kinks to be ironed out. Ken appreciates your patches, as I am sure!&lt;/p&gt;
+&lt;img src="http://feeds.feedburner.com/~r/OpinionatedProgrammer/~4/LXnM4-WHCd8" height="1" width="1"&gt;</content><author><name>Jo Liss</name></author><source gr:stream-id="feed/http://feeds.opinionatedprogrammer.com/OpinionatedProgrammer"><id>tag:google.com,2005:reader/feed/http://feeds.opinionatedprogrammer.com/OpinionatedProgrammer</id><title type="html">Opinionated Programmer</title><link rel="alternate" href="http://opinionatedprogrammer.com" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1321033879421"><id gr:original-id="http://opinionated-programmer.com/?p=930">tag:google.com,2005:reader/item/943d868a9374dab1</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="Uncategorized"/><category term="agile"/><category term="coffeescript"/><category term="hackathon"/><category term="rails"/><category term="solitr"/><title type="html">18-Hour Hackathon: Making a CoffeeScript Solitaire</title><published>2011-11-07T21:38:32Z</published><updated>2011-11-07T21:38:32Z</updated><link rel="alternate" href="http://opinionatedprogrammer.com/2011/11/hackathon-making-solitr-a-coffeescript-solitaire/" type="text/html"/><content xml:base="http://opinionatedprogrammer.com/" type="html">&lt;p&gt;The making of &lt;a href="http://www.solitr.com/"&gt;solitr.com&lt;/a&gt; (source at &lt;a href="https://github.com/joliss/solitr"&gt;github.com/joliss/solitr&lt;/a&gt;), a CoffeeScript solitaire, in one 18-hour hackathon:&lt;/p&gt;
+&lt;h3&gt;Hackathon Diary&lt;/h3&gt;
+&lt;p&gt;9:15 am: S&lt;em&gt;hreeeek-shreeek-shreeeeeeeek!&lt;/em&gt; &lt;em&gt;Get-up-get-dressed-have-breakfast-coffee-go-go-go.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;9:50 am: Sit down at laptop. What do I name my project? What CSS syntax do I use? What CSS libraries?&lt;/p&gt;
+&lt;p&gt;10:45 am: Too much reading, let’s just decide and keep moving! “rails new solitaire” (it’s 100% static, but I need Rails’s asset handling with Sprockets), drop in yui-reset. Make controller, route root to play#index.&lt;/p&gt;
+&lt;p&gt;11:10 am: Alright, let’s code up a data model (no ORM, just JS classes). Cards first. Then a GameState class to hold the card positions. Lots of googling for CoffeeScript and JavaScript basics in the process.&lt;/p&gt;
+&lt;p&gt;12:15 pm: &lt;em&gt;Microwave-yesterday’s-food-have-lunch-coffee-go-go-go-keep-moving!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;12:35 pm: Finish up data model. Make presentation layer. Code up CSS for makeshift card rendering. Drop in &lt;a href="http://documentcloud.github.com/underscore/"&gt;Underscore.js&lt;/a&gt; for more coding sanity.&lt;/p&gt;
+&lt;p&gt;4:00 pm: Work-in-progress (completely static): &lt;strong&gt;&lt;a href="http://demo.solitr.com/1db973871d8bf7e3c0ddbab2950543df5b1ca296/"&gt;1db97387&lt;/a&gt;&lt;/strong&gt;. Next up is event-handling. Read up on jQuery’s &lt;a href="http://api.jquery.com/on/"&gt;.on&lt;/a&gt;. Figure out how to drop in jQuery 1.7 without making frickin jquery-rails unhappy with its outdated jQuery. Code up some easy events.&lt;/p&gt;
+&lt;p&gt;6:30 pm: &lt;em&gt;Put-pizza-in-the-oven-go-jogging-yes-it’s-cold-but-you-gotta-keep-running-for-30-minutes-or-your-brain-will-be-fried-by-midnight. Get-back-exhausted-&lt;em&gt;pizza-ready-&lt;/em&gt;house-not-burnt-down-very-good-let’s-eat-eat-eat. Coffee. Back-to-coding-no-time-to-waste!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;7:40 pm: Brain in reasonable condition. 7.5 hours to go, still on schedule I think. Time to start reading about &lt;a href="http://jqueryui.com/demos/draggable/"&gt;dragging&lt;/a&gt; and &lt;a href="http://jqueryui.com/demos/droppable/"&gt;dropping&lt;/a&gt;. Painful stuff as expected.&lt;/p&gt;
+&lt;p&gt;10:35 pm: Houston! Problem! The way I set up the DOM structure is not looking to work out with drag’n&amp;#39;drop. Check in work-in-progress and revert to 7:40 pm instantly. Three hours lost, I think I’m off schedule now. Let’s try again, using HTML/CSS only as a dumb rendering canvas, with less DOM structure.&lt;/p&gt;
+&lt;p&gt;11:05 pm: Yup, looking better. Now for dragging and dropping, fingers crossed. Time’s tight.&lt;/p&gt;
+&lt;p&gt;2:25 am: First working version: &lt;strong&gt;&lt;a href="http://demo.solitr.com/c475ae9e78f8f75ed64a06df19cc53b9ff473647/"&gt;c475ae9e&lt;/a&gt;&lt;/strong&gt;. Tired, but brain’s still producing reasonable code. Time to drop in a pretty card deck with CSS sprite handling, test, fix undo handling, add double-clicking, “you win” message, “new game” buttons, make production environment work, test some more.&lt;/p&gt;
+&lt;p&gt;5:35 am: It got late, but I’m done: &lt;strong&gt;&lt;a href="http://demo.solitr.com/18961aa1cf7be72176c5ba1ad4d3174fbca49eff/"&gt;18961aa1&lt;/a&gt;&lt;/strong&gt;. More than 2h over budget, my 18h hackathon has become a 20h hackathon. And dragging of multiple cards has a rendering issue. Still, I’m very happy with the result. Brain is fried, off to bed.&lt;/p&gt;
+&lt;p&gt;(And the next day I set up &lt;a href="http://www.solitr.com/"&gt;solitr.com&lt;/a&gt; and pushed the code to &lt;a href="https://github.com/joliss/solitr"&gt;github.com/joliss/solitr&lt;/a&gt;. But I’ll blog about the whole domain/DNS/deployment thing some other time in detail.)&lt;/p&gt;
+&lt;h3&gt;Hackathon Retrospective&lt;/h3&gt;
+&lt;p&gt;Oh my gosh. This was &lt;em&gt;so&lt;/em&gt; much fun. I’ll definitely do hackathons again. Being able to whip up a webapp on a whim is such a good feeling. Also, I picked up a lot of CoffeeScript and jQuery that I wouldn’t have been exposed to otherwise.&lt;/p&gt;
+&lt;p&gt;I’ve found that by doing a hackathon, I’m forced to just keep working, so I’m producing code all day. I’ve rarely gotten so much output from my brain in one day.&lt;/p&gt;
+&lt;p&gt;Pulling 18 hour work-days, of course, is rather not sustainable, let alone the 20 real hours that it turned into. But when you’re writing an app from scratch, it’s only satisfying if at the end you have it &lt;em&gt;actually working,&lt;/em&gt; so compromising on scope is not really an option. I think the better alternative is trying to get faster at creating new apps. Now that I know my way around the basics of CoffeeScript and jQuery, I think I might be able to do the same thing in 16 hours, which seems much more reasonable.&lt;/p&gt;
+&lt;p&gt;Next time I’ll try to get started faster at the beginning (less agonizing about things like the name or the CSS library — it’s all trivial to change later), and I’ll also try to be more disciplined in the last 2 hours to not let non-essential features creep in.&lt;/p&gt;
+&lt;img src="http://feeds.feedburner.com/~r/OpinionatedProgrammer/~4/vCiaiBlTCWY" height="1" width="1"&gt;</content><author><name>Jo Liss</name></author><source gr:stream-id="feed/http://feeds.opinionatedprogrammer.com/OpinionatedProgrammer"><id>tag:google.com,2005:reader/feed/http://feeds.opinionatedprogrammer.com/OpinionatedProgrammer</id><title type="html">Opinionated Programmer</title><link rel="alternate" href="http://opinionatedprogrammer.com" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1321033859702"><id gr:original-id="http://opinionated-programmer.com/?p=613">tag:google.com,2005:reader/item/361297af0f1e9c2a</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="Uncategorized"/><category term="chef"/><category term="deployment"/><category term="devops"/><title type="html">Chef Solo tutorial: Managing a single server with Chef</title><published>2011-06-27T11:57:52Z</published><updated>2011-06-27T11:57:52Z</updated><link rel="alternate" href="http://opinionatedprogrammer.com/2011/06/chef-solo-tutorial-managing-a-single-server-with-chef/" type="text/html"/><content xml:base="http://opinionatedprogrammer.com/" type="html">&lt;p&gt;The &lt;a href="http://wiki.opscode.com/display/chef/Documentation"&gt;Chef documentation&lt;/a&gt; assumes you have an entire server farm to manage, so it hits you with a lot of complexity. If all you want is to set up and maintain a single VM, this tutorial will help.&lt;/p&gt;
+&lt;div style="width:270px;float:right;border:1px solid #bbbbbb;padding:0.6em 0.6em 0em;margin:0.4em"&gt;
+&lt;h4&gt;This is the cloud&lt;/h4&gt;
+&lt;p&gt;We will be creating “throwaway” VMs that we can recreate with a single call. If you need to have a single server system persist for years across all changes, you should perhaps check out &lt;a href="http://www.puppetlabs.com/"&gt;Puppet&lt;/a&gt; for a less cloudy solution.&lt;/p&gt;
+&lt;h4&gt;Using Amazon EC2?&lt;/h4&gt;
+&lt;p&gt;Any fresh instance of an &lt;a href="https://help.ubuntu.com/community/EC2StartersGuide#Official%20Ubuntu%20Amazon%20Machine%20Images%20(AMIs)"&gt;Ubuntu AMI&lt;/a&gt; will do, for example &lt;tt&gt;ami-06ad526f&lt;/tt&gt; (11.04, 32-bit EBS in us-east-1).&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Hint:&lt;/i&gt; The EC2 API tools are (by nature) complex and error-prone, so I recommend you stay with the point-and-click &lt;a href="https://console.aws.amazon.com/ec2/"&gt;web interface&lt;/a&gt; for as long as possible, instead of trying to automate launching new instances.&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Hint 2:&lt;/i&gt; Create a separate EBS volume as a data partition to hold your databases, etc.&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Hint 3:&lt;/i&gt; Use Elastic IPs for all your instances.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;All you need is&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a laptop with Bash and SSH (no need to even install Chef), and&lt;/li&gt;
+&lt;li&gt;any &lt;i&gt;vanilla&lt;/i&gt; Linux server that you can SSH into.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Why do we run against vanilla servers? In my opinion, the system your deployment scripts run against should be as minimal possible, essentially straight from the vendor. So instead of manually installing packages like Chef and then creating a snapshot to instantiate our VMs from, we will use a freshly installed system and make the entire process scripted. On the downside, we need some bootstrapping code (~30 LOC), but on the upside we get more repeatability and less maintenance overhead, and we stay independent from any specific cloud or virtualization provider.&lt;/p&gt;
+&lt;h3 style="clear:none"&gt;Overview&lt;/h3&gt;
+&lt;p&gt;Since we only have one server to manage, using Chef Server and Chef Clients is clearly overkill. We will use Chef Solo instead. In a newly created directory on our laptop, we will have the following files (all under version control if you like):&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;deploy.sh     &amp;lt;--- run &amp;quot;./deploy.sh&amp;quot; on your laptop to deploy
+install.sh    &amp;lt;--- this is run on the server to bootstrap and call chef-solo
+solo.json     &amp;lt;--- chef configuration
+solo.rb       &amp;lt;--- chef configuration
+cookbooks/op/recipes/default.rb   &amp;lt;--- the most important file -- your
+                                       server recipe goes here&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That’s all we need to turn any bare-bones Linux system into a fully equipped server. Let’s now take a look at the contents of each file. You can copy and paste freely (everything was written by me, and it’s in the public domain). Some of it assumes Ubuntu — adjust accordingly.&lt;/p&gt;
+&lt;h3&gt;deploy.sh&lt;/h3&gt;
+&lt;p&gt;The &lt;tt&gt;deploy.sh&lt;/tt&gt; script is the one you run on your laptop every time you want to (re-)apply your Chef recipe to your server. It only copies the tree to the server and runs &lt;tt&gt;install.sh&lt;/tt&gt;:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;&lt;span style="color:#666666;font-style:italic"&gt;#!/bin/bash&lt;/span&gt;
+ 
+&lt;span style="color:#666666;font-style:italic"&gt;# Usage: ./deploy.sh [host]&lt;/span&gt;
+ 
+&lt;span style="color:#007800"&gt;host&lt;/span&gt;=&lt;span style="color:#ff0000"&gt;&amp;quot;&lt;span style="color:#007800"&gt;${1:-ubuntu@opinionatedprogrammer.com}&lt;/span&gt;&amp;quot;&lt;/span&gt;
+ 
+&lt;span style="color:#666666;font-style:italic"&gt;# The host key might change when we instantiate a new VM, so&lt;/span&gt;
+&lt;span style="color:#666666;font-style:italic"&gt;# we remove (-R) the old host key from known_hosts&lt;/span&gt;
+&lt;span style="color:#c20cb9;font-weight:bold"&gt;ssh-keygen&lt;/span&gt; &lt;span style="color:#660033"&gt;-R&lt;/span&gt; &lt;span style="color:#ff0000"&gt;&amp;quot;&lt;span style="color:#007800"&gt;${host#*@}&lt;/span&gt;&amp;quot;&lt;/span&gt; &lt;span style="color:#000000"&gt;2&lt;/span&gt;&lt;span style="color:#000000;font-weight:bold"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color:#000000;font-weight:bold"&gt;/&lt;/span&gt;dev&lt;span style="color:#000000;font-weight:bold"&gt;/&lt;/span&gt;null
+ 
+&lt;span style="color:#c20cb9;font-weight:bold"&gt;tar&lt;/span&gt; cj . &lt;span style="color:#000000;font-weight:bold"&gt;|&lt;/span&gt; &lt;span style="color:#c20cb9;font-weight:bold"&gt;ssh&lt;/span&gt; &lt;span style="color:#660033"&gt;-o&lt;/span&gt; &lt;span style="color:#ff0000"&gt;'StrictHostKeyChecking no'&lt;/span&gt; &lt;span style="color:#ff0000"&gt;&amp;quot;&lt;span style="color:#007800"&gt;$host&lt;/span&gt;&amp;quot;&lt;/span&gt; &lt;span style="color:#ff0000"&gt;&amp;#39;
+sudo rm -rf ~/chef &amp;amp;&amp;amp;
+mkdir ~/chef &amp;amp;&amp;amp;
+cd ~/chef &amp;amp;&amp;amp;
+tar xj &amp;amp;&amp;amp;
+sudo bash install.sh&amp;#39;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;(Remember to change the default host name to match yours.)&lt;/p&gt;
+&lt;h3&gt;install.sh&lt;/h3&gt;
+&lt;p&gt;&lt;tt&gt;install.sh&lt;/tt&gt; is responsible for bootstrapping the system if necessary (installing Chef), and then calling the &lt;tt&gt;chef-solo&lt;/tt&gt; binary. (You don’t ever need to run it manually. Keep it mode 644 as a precaution against wrecking your development machine.)&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;&lt;span style="color:#666666;font-style:italic"&gt;#!/bin/bash&lt;/span&gt;
+ 
+&lt;span style="color:#666666;font-style:italic"&gt;# This runs as root on the server&lt;/span&gt;
+ 
+&lt;span style="color:#007800"&gt;chef_binary&lt;/span&gt;=&lt;span style="color:#000000;font-weight:bold"&gt;/&lt;/span&gt;var&lt;span style="color:#000000;font-weight:bold"&gt;/&lt;/span&gt;lib&lt;span style="color:#000000;font-weight:bold"&gt;/&lt;/span&gt;gems&lt;span style="color:#000000;font-weight:bold"&gt;/&lt;/span&gt;1.9.1&lt;span style="color:#000000;font-weight:bold"&gt;/&lt;/span&gt;bin&lt;span style="color:#000000;font-weight:bold"&gt;/&lt;/span&gt;chef-solo
+ 
+&lt;span style="color:#666666;font-style:italic"&gt;# Are we on a vanilla system?&lt;/span&gt;
+&lt;span style="color:#000000;font-weight:bold"&gt;if&lt;/span&gt; &lt;span style="color:#000000;font-weight:bold"&gt;!&lt;/span&gt; &lt;span style="color:#7a0874;font-weight:bold"&gt;test&lt;/span&gt; &lt;span style="color:#660033"&gt;-f&lt;/span&gt; &lt;span style="color:#ff0000"&gt;&amp;quot;&lt;span style="color:#007800"&gt;$chef_binary&lt;/span&gt;&amp;quot;&lt;/span&gt;; &lt;span style="color:#000000;font-weight:bold"&gt;then&lt;/span&gt;
+    &lt;span style="color:#7a0874;font-weight:bold"&gt;export&lt;/span&gt; &lt;span style="color:#007800"&gt;DEBIAN_FRONTEND&lt;/span&gt;=noninteractive
+    &lt;span style="color:#666666;font-style:italic"&gt;# Upgrade headlessly (this is only safe-ish on vanilla systems)&lt;/span&gt;
+    &lt;span style="color:#c20cb9;font-weight:bold"&gt;aptitude&lt;/span&gt; update &lt;span style="color:#000000;font-weight:bold"&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+    &lt;span style="color:#c20cb9;font-weight:bold"&gt;apt-get&lt;/span&gt; &lt;span style="color:#660033"&gt;-o&lt;/span&gt; Dpkg::Options::=&lt;span style="color:#ff0000"&gt;&amp;quot;--force-confnew&amp;quot;&lt;/span&gt; \
+        &lt;span style="color:#660033"&gt;--force-yes&lt;/span&gt; &lt;span style="color:#660033"&gt;-fuy&lt;/span&gt; dist-upgrade &lt;span style="color:#000000;font-weight:bold"&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+    &lt;span style="color:#666666;font-style:italic"&gt;# Install Ruby and Chef&lt;/span&gt;
+    &lt;span style="color:#c20cb9;font-weight:bold"&gt;aptitude&lt;/span&gt; &lt;span style="color:#c20cb9;font-weight:bold"&gt;install&lt;/span&gt; &lt;span style="color:#660033"&gt;-y&lt;/span&gt; ruby1.9.1 ruby1.9.1-dev &lt;span style="color:#c20cb9;font-weight:bold"&gt;make&lt;/span&gt; &lt;span style="color:#000000;font-weight:bold"&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+    &lt;span style="color:#c20cb9;font-weight:bold"&gt;sudo&lt;/span&gt; gem1.9.1 &lt;span style="color:#c20cb9;font-weight:bold"&gt;install&lt;/span&gt; &lt;span style="color:#660033"&gt;--no-rdoc&lt;/span&gt; &lt;span style="color:#660033"&gt;--no-ri&lt;/span&gt; chef &lt;span style="color:#660033"&gt;--version&lt;/span&gt; 0.10.0
+&lt;span style="color:#000000;font-weight:bold"&gt;fi&lt;/span&gt; &lt;span style="color:#000000;font-weight:bold"&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+ 
+&lt;span style="color:#ff0000"&gt;&amp;quot;&lt;span style="color:#007800"&gt;$chef_binary&lt;/span&gt;&amp;quot;&lt;/span&gt; &lt;span style="color:#660033"&gt;-c&lt;/span&gt; solo.rb &lt;span style="color:#660033"&gt;-j&lt;/span&gt; solo.json&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3&gt;solo.rb&lt;/h3&gt;
+&lt;p&gt;&lt;tt&gt;solo.rb&lt;/tt&gt; only sets two paths for Chef Solo. You should go with this:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;root = &lt;span style="color:#cc00ff;font-weight:bold"&gt;File&lt;/span&gt;.&lt;span style="color:#9900cc"&gt;absolute_path&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#cc00ff;font-weight:bold"&gt;File&lt;/span&gt;.&lt;span style="color:#9900cc"&gt;dirname&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#0000ff;font-weight:bold"&gt;__FILE__&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;)&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;)&lt;/span&gt;
+ 
+file_cache_path root
+cookbook_path root &lt;span style="color:#006600;font-weight:bold"&gt;+&lt;/span&gt; &lt;span style="color:#996600"&gt;'/cookbooks'&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3&gt;solo.json&lt;/h3&gt;
+&lt;p&gt;&lt;tt&gt;solo.json&lt;/tt&gt; holds a pointer to the recipe(s) we want to run (that’s only one recipe for now). My cookbook is called “op” (for &lt;i&gt;Opinionated Programmer&lt;/i&gt;) — you should name yours after your server or your site.&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;&lt;span style="color:#009900"&gt;{&lt;/span&gt;
+    &lt;span style="color:#3366cc"&gt;&amp;quot;run_list&amp;quot;&lt;/span&gt;&lt;span style="color:#339933"&gt;:&lt;/span&gt; &lt;span style="color:#009900"&gt;[&lt;/span&gt; &lt;span style="color:#3366cc"&gt;&amp;quot;recipe[op::default]&amp;quot;&lt;/span&gt; &lt;span style="color:#009900"&gt;]&lt;/span&gt;
+&lt;span style="color:#009900"&gt;}&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3&gt;cookbooks/op/recipes/default.rb&lt;/h3&gt;
+&lt;p&gt;I like to just have a single “default” recipe that holds all the server configuration. If it gets out of hand, you can always split it up, but for small sites, a single recipe file should be easiest to deal with.&lt;/p&gt;
+&lt;p&gt;A recipe is simply a list of resources. The &lt;a href="http://wiki.opscode.com/display/chef/Resources"&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/a&gt; page on the Chef wiki is probably the one piece of documentation you will be consulting a lot.&lt;/p&gt;
+&lt;p&gt;I will give you a few examples of things you might want to do in your recipe:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;&lt;span style="color:#008000;font-style:italic"&gt;# --- Install packages we need ---&lt;/span&gt;
+package &lt;span style="color:#996600"&gt;'ntp'&lt;/span&gt;
+package &lt;span style="color:#996600"&gt;'sysstat'&lt;/span&gt;
+package &lt;span style="color:#996600"&gt;'apache2'&lt;/span&gt;
+ 
+&lt;span style="color:#008000;font-style:italic"&gt;# --- Add the data partition ---&lt;/span&gt;
+directory &lt;span style="color:#996600"&gt;'/mnt/data_joliss'&lt;/span&gt;
+ 
+mount &lt;span style="color:#996600"&gt;'/mnt/data_joliss'&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+  action &lt;span style="color:#006600;font-weight:bold"&gt;[&lt;/span&gt;&lt;span style="color:#ff3333;font-weight:bold"&gt;:mount&lt;/span&gt;, &lt;span style="color:#ff3333;font-weight:bold"&gt;:enable&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;]&lt;/span&gt;  &lt;span style="color:#008000;font-style:italic"&gt;# mount and add to fstab&lt;/span&gt;
+  device &lt;span style="color:#996600"&gt;'data_joliss'&lt;/span&gt;
+  device_type &lt;span style="color:#ff3333;font-weight:bold"&gt;:label&lt;/span&gt;
+  options &lt;span style="color:#996600"&gt;'noatime,errors=remount-ro'&lt;/span&gt;
+&lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;
+ 
+&lt;span style="color:#008000;font-style:italic"&gt;# --- Set host name ---&lt;/span&gt;
+&lt;span style="color:#008000;font-style:italic"&gt;# Note how this is plain Ruby code, so we can define variables to&lt;/span&gt;
+&lt;span style="color:#008000;font-style:italic"&gt;# DRY up our code:&lt;/span&gt;
+hostname = &lt;span style="color:#996600"&gt;'opinionatedprogrammer.com'&lt;/span&gt;
+ 
+file &lt;span style="color:#996600"&gt;'/etc/hostname'&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+  content &lt;span style="color:#996600"&gt;&amp;quot;#{hostname}&lt;span style="color:#000099"&gt;\n&lt;/span&gt;&amp;quot;&lt;/span&gt;
+&lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;
+ 
+service &lt;span style="color:#996600"&gt;'hostname'&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+  action &lt;span style="color:#ff3333;font-weight:bold"&gt;:restart&lt;/span&gt;
+&lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;
+ 
+file &lt;span style="color:#996600"&gt;'/etc/hosts'&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+  content &lt;span style="color:#996600"&gt;&amp;quot;127.0.0.1 localhost #{hostname}&lt;span style="color:#000099"&gt;\n&lt;/span&gt;&amp;quot;&lt;/span&gt;
+&lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;
+ 
+&lt;span style="color:#008000;font-style:italic"&gt;# --- Deploy a configuration file ---&lt;/span&gt;
+&lt;span style="color:#008000;font-style:italic"&gt;# For longer files, when using &amp;#39;content &amp;quot;...&amp;quot;&amp;#39; becomes too&lt;/span&gt;
+&lt;span style="color:#008000;font-style:italic"&gt;# cumbersome, we can resort to deploying separate files:&lt;/span&gt;
+cookbook_file &lt;span style="color:#996600"&gt;'/etc/apache2/apache2.conf'&lt;/span&gt;
+&lt;span style="color:#008000;font-style:italic"&gt;# This will copy cookbooks/op/files/default/apache2.conf (which&lt;/span&gt;
+&lt;span style="color:#008000;font-style:italic"&gt;# you'll have to create yourself) into place. Whenever you edit&lt;/span&gt;
+&lt;span style="color:#008000;font-style:italic"&gt;# that file, simply run &amp;quot;./deploy.sh&amp;quot; to copy it to the server.&lt;/span&gt;
+ 
+service &lt;span style="color:#996600"&gt;'apache2'&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+  action &lt;span style="color:#ff3333;font-weight:bold"&gt;:restart&lt;/span&gt;
+&lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that all dependencies are implicitly given by the ordering of the resources.&lt;/p&gt;
+&lt;p&gt;This should be enough examples to get you going. Again, all of these resources (and many more) are documented on the &lt;a href="http://wiki.opscode.com/display/chef/Resources"&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/a&gt; page.&lt;/p&gt;
+&lt;h3&gt;Hints&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;As you write your recipe, re-run &lt;tt&gt;./deploy.sh&lt;/tt&gt; frequently, like you would recompile a piece of software.&lt;/li&gt;
+&lt;li&gt;When you are done, tear down your VM and redeploy on a fresh system, just to make sure everything is working OK. Sometimes subtle dependency/ordering issues creep in that are only revealed by applying the entire recipe on a vanilla system. You don’t want to be left with a non-working recipe when your server goes down and you need to re-deploy afresh.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src="http://feeds.feedburner.com/~r/OpinionatedProgrammer/~4/WIIWdst7AUk" height="1" width="1"&gt;</content><author><name>Jo Liss</name></author><source gr:stream-id="feed/http://feeds.opinionatedprogrammer.com/OpinionatedProgrammer"><id>tag:google.com,2005:reader/feed/http://feeds.opinionatedprogrammer.com/OpinionatedProgrammer</id><title type="html">Opinionated Programmer</title><link rel="alternate" href="http://opinionatedprogrammer.com" type="text/html"/></source></entry></feed>

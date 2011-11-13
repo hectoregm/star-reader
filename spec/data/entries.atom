@@ -1,0 +1,450 @@
+<?xml version="1.0"?><feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:gr="http://www.google.com/schemas/reader/atom/" xmlns:idx="urn:atom-extension:indexing" xmlns="http://www.w3.org/2005/Atom" idx:index="no" gr:dir="ltr"><!--
+Content-type: Preventing XSRF in IE.
+
+--><generator uri="http://www.google.com/reader">Google Reader</generator><id>tag:google.com,2005:reader/user/03238720318766311921/state/com.google/starred</id><title>Hector's starred items in Google Reader</title><gr:continuation>CKr7noHapKwC</gr:continuation><link rel="self" href="http://www.google.com/reader/atom/user/-/state/com.google/starred?n=5&amp;c=CILWkOrdrawC"/><author><name>Hector</name></author><updated>2011-11-11T04:22:08Z</updated><entry gr:crawl-timestamp-msec="1320985328626"><id gr:original-id="http://mgmt.smashingmagazine.com/?p=118997">tag:google.com,2005:reader/item/5bdbe30d3a04ebe5</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="UX Design" scheme="http://www.smashingmagazine.com"/><category term="forms" scheme="http://www.smashingmagazine.com"/><category term="usability" scheme="http://www.smashingmagazine.com"/><category term="UX" scheme="http://www.smashingmagazine.com"/><title type="html">An Extensive Guide To Web Form Usability</title><published>2011-11-08T14:22:55Z</published><updated>2011-11-08T14:24:49Z</updated><link rel="alternate" href="http://www.smashingmagazine.com/2011/11/08/an-extensive-guide-to-web-form-usability/" type="text/html"/><link rel="replies" href="http://www.smashingmagazine.com/2011/11/08/an-extensive-guide-to-web-form-usability/#comments" type="text/html"/><link rel="replies" href="http://www.smashingmagazine.com/2011/11/08/an-extensive-guide-to-web-form-usability/feed/atom/" type="application/atom+xml"/><content xml:base="http://www.smashingmagazine.com/2011/11/08/an-extensive-guide-to-web-form-usability/" xml:lang="en" type="html">&lt;table width="650"&gt;
+&lt;tr&gt;
+&lt;td width="650"&gt;
+&lt;div style="width:650px"&gt;
+        &lt;img src="http://statisches.auslieferung.commindo-media-ressourcen.de/advertisement.gif" alt="" border="0"&gt;&lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=1"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=1" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;&lt;br&gt;
+         &lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=2"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=2" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;&lt;br&gt;
+         &lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=3"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=3" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;Contrary to what you may read, peppering your form with nice buttons, color and typography and plenty of jQuery plugins will not make it usable. Indeed, in doing so, you would be addressing (in an unstructured way) only one third of what constitutes form usability.&lt;/p&gt;
+&lt;p&gt;&lt;img title="An Extensive Guide to Web Form Usability" src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/Guidelines-For-Webform-Usability.jpg" width="500" height="332"&gt;&lt;/p&gt;
+&lt;p&gt;In this article, we’ll provide practical guidelines that you can easily follow. These guidelines have been crafted from usability testing, field testing, website tracking, eye tracking, Web analytics and actual complaints made to customer support personnel by disgruntled users.&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;Why Web Form Usability Is Important&lt;/h3&gt;
+&lt;p&gt;The ISO 9241 standard defines website usability as the “effectiveness, efficiency and satisfaction with which specified users achieve specified goals in particular environments.” When using a website, users have a particular goal. If designed well, the website will meet that goal and align it with the goals of the organization behind the website. &lt;strong&gt;Standing between the user’s goal and the organization’s goals is very often a form&lt;/strong&gt;, because, despite the advances in human-computer interaction, forms remain the predominant form of interaction for users on the Web. In fact, forms are often considered to be the last and most important stage of the journey to the completion of goals.&lt;/p&gt;
+&lt;p&gt;Let’s clarify this last point by discussing the three main uses of forms. As Luke Wroblewski states in his book &lt;a href="http://www.lukew.com/resources/web_form_design.asp"&gt;&lt;em&gt;Web Form Design: Filling in the Blanks&lt;/em&gt;&lt;/a&gt;, every form exists for one of three main reasons: commerce, community or productivity. The following table translates each of these reasons into the user and business objectives that lie behind them:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.lukew.com/resources/web_form_design.asp"&gt;&lt;img title="Webform Objectives" src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/00-Table-webform-objectives.jpg" alt="Webform Uses" width="500" height="391"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Uses of forms, based on Luke Wroblewski’s&lt;/em&gt; &lt;a href="http://www.lukew.com/resources/web_form_design.asp"&gt;Web Form Design: Filling in the Blanks&lt;/a&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Thus, the relationship between forms and usability have two aspects:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Forms can make a website usable&lt;/strong&gt; or unusable, because they stand in the way of the user achieving their goal;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Forms need to be usable&lt;/strong&gt; in order to help the user achieve that goal.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This post will focus on the second point, because a usable form will naturally contribute to the overall usability of the website, hence the first aspect.&lt;/p&gt;
+&lt;h3&gt;The Six Components Of Web Forms&lt;/h3&gt;
+&lt;p&gt;Web forms are a necessity and often a pain point for both designers and users. Over time, users have formed expectations of how a form should look and behave. They typically expect Web forms to have the following six components:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Labels&lt;/strong&gt; These tell users what the corresponding input fields mean.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Input Fields&lt;/strong&gt; Input fields enable users to provide feedback. They include text fields, password fields, check boxes, radio buttons, sliders and more.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Actions&lt;/strong&gt; These are links or buttons that, when pressed by the user, perform an action, such as submitting the form.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Help&lt;/strong&gt; This provides assistance on how to fill out the form.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Messages&lt;/strong&gt; Messages give feedback to the user based on their input. They can be positive (such as indicating that the form was submitted successfully) or negative (“The user name you have selected is already taken”).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Validation&lt;/strong&gt; These measures ensure that the data submitted by the user conforms to acceptable parameters.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href="http://www.skype.com"&gt;&lt;img title="Skype-webform-components-a" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/Skype-webform-components-a.jpg" alt="" width="500" height="234"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.skype.com"&gt;&lt;img title="Skype-webform-components-b" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/Skype-webform-components-b.jpg" alt="" width="500" height="234"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href="http://www.skype.com"&gt;Skype&lt;/a&gt;’s registration form contains all six components.&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Tackling Usability Via Three Aspects Of Forms&lt;/h3&gt;
+&lt;p&gt;Despite differences in layout, functionality and purpose, all forms have three main aspects, as noted by Caroline Jarrett and Gerry Gaffney in their book &lt;a href="http://www.formsthatwork.com/"&gt;&lt;em&gt;Forms That Work: Designing Web Forms for Usability&lt;/em&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Relationship&lt;/strong&gt; Forms establish a relationship between the user and the organization.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Conversation&lt;/strong&gt; They establish a dialogue between the user and the organization.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Appearance&lt;/strong&gt; By the way they look, they establish a relationship and a conversation.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For a form to be usable, &lt;strong&gt;all three aspects need to be tackled&lt;/strong&gt;. Let’s look at each aspect in turn to figure out how to make a form truly usable, along with practical guidelines that you can easily follow.&lt;/p&gt;
+&lt;h3&gt;Aspect 1: The Relationship&lt;/h3&gt;
+&lt;p&gt;“No man is an island,” the 17th-century English poet, satirist, lawyer and priest &lt;a href="http://en.wikipedia.org/wiki/John_Donne"&gt;John Donne&lt;/a&gt; once said. Indeed, human beings thrive on relationships, be they amorous, friendly, professional or business. A form is a means to establish or enhance a relationship between the user and the organization. When done badly, it can pre-empt or terminate such a relationship.&lt;/p&gt;
+&lt;p&gt;With this in mind, a number of principles emerge:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Relationships are based on trust&lt;/strong&gt;, so establishing trust in your form is critical. This can be achieved through the logo, imagery, color, typography and wording. The user will feel at ease knowing that the form comes from a sincere organization.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Every relationship has a goal&lt;/strong&gt;, be it love and happiness in a romantic relationship or financial gain in a business relationship. Ask yourself, what is the goal of your form?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Base the name of the form on its purpose.&lt;/strong&gt; That name will inform users what the form is about and why they should fill it in.&lt;/li&gt;
+&lt;li&gt;Just as in a relationship, &lt;strong&gt;getting to know the other person&lt;/strong&gt; is essential. Get to know your users and always consider whether the questions you’re asking are appropriate and, if so, whether they are timely. This will instill a natural flow to your form.&lt;/li&gt;
+&lt;li&gt;Knowing your users will also help you &lt;strong&gt;choose appropriate language and remove superfluous text&lt;/strong&gt;. And it will help you craft an interface that balances your needs and the user’s.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Do not ask questions beyond the scope of the form&lt;/strong&gt;. In a relationship, you would become distrustful of someone who asked questions that were out of place. The same thing happens online. Consult with relevant stakeholders to see what information really is required.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sudden changes in behavior or appearance&lt;/strong&gt; will make users edgy. Likewise, never introduce sudden changes between forms or between steps in a form.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="http://www.debenhams.com/"&gt;&lt;img title="Debenhams login webform" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/debenhams.jpg" alt="Debenhams login webform" width="500" height="450"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Know your users. Make it easy for registered users to log in and for new users to register. &lt;a href="http://www.debenhams.com/"&gt;Debenhams&lt;/a&gt; makes this distinction barely noticeable.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.amazon.com/"&gt;&lt;img title="Amazon Sign in Form" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/amazon1.jpg" alt="Amazon Sign in Form" width="500" height="423"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href="http://www.amazon.com"&gt;Amazon&lt;/a&gt;, on the other hand, simplifies the process for registered and new customers.&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Aspect 2: The Conversation&lt;/h3&gt;
+&lt;p&gt;A form is a conversation. And like a conversation, it represents two-way communication between two parties, in this case, the user and the organization. In fact, the user has filled out the form in order to initiate communication with the organization.&lt;/p&gt;
+&lt;p&gt;For instance, with a social network, a user would fill out a registration form to inform the organization that they would like to join. In inviting their request (whether automatically or manually), the organization would ask the user a number of questions (in the form of labels), such as their first name, last name, email address and so forth. Upon acceptance (or denial), the company would inform the user of the outcome, thus completing the communication process.&lt;/p&gt;
+&lt;p&gt;Viewing forms from this perspective yields some useful guidelines:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;As mentioned, &lt;strong&gt;a form is a conversation, not an interrogation&lt;/strong&gt;. Aggressive wording in labels will make users feel edgy, and (if they do not leave) they will most likely give you the answers that you want to hear, rather than the truth.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Order the labels logically&lt;/strong&gt;, reflecting the natural flow of a conversation. For example, wouldn’t it be weird to ask someone their name only after having asked a number of other questions? More involved questions should come towards the end of the form.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Group related information&lt;/strong&gt;, such as personal details. The flow from one set of questions to the next will better resemble a conversation.
+&lt;p&gt;&lt;a href="http://www.yahoo.com/"&gt;&lt;img title="Yahoo Form" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/yahoo.jpg" alt="Yahoo Form" width="500" height="350"&gt;&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href="http://www.yahoo.com/"&gt;Yahoo’s&lt;/a&gt; registration form effectively groups related content through purple headings and fine lines.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.constantcontact.com/"&gt;&lt;img title="Constant Contact Form" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/cc1.jpg" alt="Constant Contact Form" width="500" height="423"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;While &lt;a href="http://www.constantcontact.com/"&gt;Constant Contact&lt;/a&gt; groups related content, it separates the groups too much, which could confuse the user.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;As in a real conversation, each label should &lt;strong&gt;address one topic at a time&lt;/strong&gt;, helping the user to respond in the corresponding input field.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;natural pauses&lt;/strong&gt; in a conversation will indicate where to introduce white space, how to group labels and whether to break the form up over multiple pages.&lt;/li&gt;
+&lt;li&gt;In any conversation, people get distracted by background noise. So, &lt;strong&gt;remove clutter&lt;/strong&gt; such as banners and unnecessary navigation that might distract users from filling out the form.
+&lt;p&gt;&lt;a href="https://www.dropbox.com/"&gt;&lt;img title="Dropbox Form" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/dropbox1.jpg" alt="Dropbox Form" width="500" height="423"&gt;&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href="https://www.dropbox.com/"&gt;Dropbox&lt;/a&gt; provides a fine example of what a registration form should look like. The white space is effective, and the page uncluttered.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Aspect 3: The Appearance&lt;/h3&gt;
+&lt;p&gt;The appearance or user interface (UI) is central to the usability of a Web form, and there are several guidelines for this. To simplify the discussion, let’s group them into the six components presented earlier.&lt;/p&gt;
+&lt;h4&gt;1. Labels&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Individual words vs. sentences&lt;/strong&gt; If the purpose of a label is simple to understand, such as to ask for a name or telephone number, then a word or two should suffice. But a phrase or sentence might be necessary to eliminate ambiguity.
+&lt;p&gt;&lt;a href="http://www.amazon.com/"&gt;&lt;img title="Amazon Registration" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/amazon_reg.jpg" alt="Amazon Registration" width="500" height="423"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href="http://www.amazon.com/"&gt;Amazon’s&lt;/a&gt; registration form contains full sentences, whereas individual words would have sufficed.&lt;/em&gt;
+&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sentence case vs. title case&lt;/strong&gt; Should it be “Name and &lt;strong&gt;&lt;span style="text-decoration:underline"&gt;S&lt;/span&gt;&lt;/strong&gt;urname” or “Name and &lt;strong&gt;&lt;span style="text-decoration:underline"&gt;s&lt;/span&gt;&lt;/strong&gt;urname”? Sentence case is slightly easier — and thus faster — to follow grammatically than title case. One thing is for sure: never use all caps, or else the form would look unprofessional and be difficult to scan.
+&lt;p&gt;&lt;a href="http://www.barnesandnoble.com/"&gt;&lt;img title="Barnes and Noble Form" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/bn1.jpg" alt="Barnes and Noble Form" width="500" height="423"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;See how difficult it is to quickly scan the labels in &lt;a href="http://www.barnesandnoble.com/"&gt;Barnes &amp;amp; Noble’s&lt;/a&gt; registration form?&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Colons at the end of labels&lt;/strong&gt; UI guidelines for some desktop applications and operating systems such as Windows recommend adding colons at the end of form labels. Some designers of online forms adhere to this, primarily because old screen readers mostly rely on the colon symbol to indicate a label. Modern screen readers rely on mark-up (specifically, the &lt;code&gt;label&lt;/code&gt; tag). Otherwise, the colon is a matter of preference and neither enhances nor detracts from the form’s usability, as long as the style is consistent.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Alignment of labels: top vs. left vs. right&lt;/strong&gt; Contrary to common advice, above the input field is not always the most usable location for a label. It’s ideal if you want users to fill in the form as fast as possible. But there are times when you’ll want to deliberately slow them down, so that they notice and read the labels attentively. Also, keeping a long form to a single column and making users scroll down the page is better than breaking it up into columns in an attempt to keep everything “above the fold.” Each style of alignment has its advantages and disadvantages:
+&lt;p&gt;&lt;img title="Table webform alignment" src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/00-Table-webform-alignment.jpg" alt="Table webform alignment" width="500" height="615"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;*Times retrieved from “&lt;a href="http://www.uxmatters.com/mt/archives/2006/07/label-placement-in-forms.php"&gt;Label Placement in Forms&lt;/a&gt;” by Matteo Penzo.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.makeupgeek.com/"&gt;&lt;img title="Makeup Geek" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/makeup1.jpg" alt="Makeup Geek" width="500" height="350"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Forms should never consist of more than one column. Notice how easy it is to ignore the column on the right here on &lt;a href="http://www.makeupgeek.com/"&gt;Makeup Geek&lt;/a&gt; (not to mention the note about “Required fields” at the bottom).&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;2. Input Fields&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Type of input field&lt;/strong&gt; Provide the appropriate type of input field based on what is being requested. Each type of input field has its own characteristics, which users are accustomed to. For instance, use radio buttons if only one option of several is permitted, and check boxes if multiple choices are allowed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customizing input fields&lt;/strong&gt; Do not invent new types of input fields. This was common in the early days of Flash websites, and it seems to be making a comeback; I have seen some odd input fields implemented with jQuery. Simple is often the most useful. Keep input fields as close to their unaltered HTML rendering as possible.
+&lt;p&gt;&lt;a href="http://www.bitsolutions.com.mt/get-in-touch"&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/bit.jpg" alt="Bit Solutions Form" title="Bit Solutions Form" width="500" height="350"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Altering the interface of input fields will confuse users.&lt;/em&gt;
+&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Restricting the format of input fields&lt;/strong&gt; If you need to restrict the format of data inputted by users, then at least do so in a way that won’t irritate users. For example, instead of displaying &lt;code&gt;MM/DD/YYYY&lt;/code&gt; next to a text field for a date, consider using three drop-down fields or, better yet, a calendar control.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mandatory vs. optional fields&lt;/strong&gt; Clearly distinguish which input fields cannot be left blank by the user. The convention is to use an asterisk (&lt;code&gt;*&lt;/code&gt;). Any symbol will do, as long as a legend is visible to indicate what it means (even if it’s an asterisk).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;3. Actions&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Primary vs. secondary actions&lt;/strong&gt; Primary actions are links and buttons in a form that perform essential “final” functionality, such as “Save” and “Submit.” Secondary actions, such as “Back” and “Cancel,” enable users to retract data that they have entered. If clicked by mistake, secondary actions typically have undesired consequences, so use only primary actions where possible. If you must include secondary actions, give them less visual weight than primary actions.
+&lt;p&gt;&lt;a href="http://www.stlcc.edu/"&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/StLouisCommunityCollege-webform-actionbuttons-a.jpg" alt="" title="StLouisCommunityCollege-webform-actionbuttons-a" width="450" height="364"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Not clearly distinguishing between primary and secondary actions can easily lead to failure. The above action buttons are found at the end of a lengthy form for enrolling in &lt;a href="http://www.stlcc.edu/"&gt;St. Louis Community College&lt;/a&gt;. Just imagine pressing the “Reset Form” button by accident.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Naming conventions&lt;/strong&gt; Avoid generic words such as “Submit” for actions, because they give the impression that the form itself is generic. Descriptive words and phrases, such as “Join LinkedIn,” are preferred.
+&lt;p&gt;&lt;a href="http://www.coca-cola.com/"&gt;&lt;img title="Coca-Cola Form" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/coke.jpg" alt="Coca-Cola Form" width="500" height="350"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Although &lt;a href="http://www.coca-cola.com/"&gt;Coca-Cola&lt;/a&gt; correctly gives more importance to the primary action button, it settles for the generic word “Submit.” “Register with us” would have been more helpful.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;4. Help&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Text to accompany forms&lt;/strong&gt; Your should never have to explain to users how to fill out a form. If it does not look like a form or it’s too complicated to fill out, then redesigning it is your only option. Accompanying text should be used only where needed, such as to explain why credit card data is being requested or how a birth date will be used or to link to the “Terms and conditions.” Such text tends to be ignored, so make it succinct and easy to read. As a rule of thumb, do not exceed 100 words of explanation (combined).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;User-triggered and dynamic help&lt;/strong&gt; Rather than include help text next to each input field, show it only where required. You could show an icon next to an input field that the user can click on when they need help for that field. Even better, show help dynamically when the user clicks into an input field to enter data. Such implementation is becoming more common and is relatively easy to implement with JavaScript libraries such as jQuery.
+&lt;p&gt;&lt;a href="http://www.skype.com/"&gt;&lt;img title="Skype Form" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/skype1.jpg" alt="Skype Form" width="500" height="243"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href="http://www.skype.com/"&gt;Skype’s&lt;/a&gt; registration form contains both user-triggered help (the blue box that is triggered by clicking the question mark) and dynamic help (the suggested user names).&lt;/em&gt;
+&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;5. Messages&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Error message&lt;/strong&gt; This notifies the user that an error has occurred, and it usually prevents them from proceeding further in the form. Emphasize error messages through color (typically red), familiar iconography (such as a warning sign), prominence (typically at the top of the form or beside where the error occurred), large font, or a combination of these.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Success message&lt;/strong&gt; Use this to notify users that they have reached a meaningful milestone in the form. If the form is lengthy, a success message encourages the user to continue filling it out. Like error messages, success messages should be prominent. But they should not hinder the user from continuing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;6. Validation&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Only where needed&lt;/strong&gt; Excessive validation is as bad as its complete absence, because it will frustrate users. Restrict validation to confirming key points (such as the availability of a user name), ensuring realistic answers (such as not allowing ages above 130) and suggesting responses where the range of possible data is finite but too long to include in a drop-down menu (such as a country-code prefix).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Smart defaults&lt;/strong&gt; Use smart defaults to make the user’s completion of the form faster and more accurate. For example, pre-select the user’s country based on their IP address. But use these with caution, because users tend to leave pre-selected fields as they are.
+&lt;p&gt;&lt;a href="http://twitter.com/"&gt;&lt;img title="Twitter Form" src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/twitter.jpg" alt="Twitter Form" width="500" height="350"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href="http://twitter.com/"&gt;Twitter’s&lt;/a&gt; registration form uses both dynamic validation (for the name, email address, password and user name) and smart defaults (“Keep me logged in”).&lt;/em&gt;
+&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;del&gt;Conclusion&lt;/del&gt; The Beginning&lt;/h3&gt;
+&lt;p&gt;The word “conclusion” is not right here. Let this be your starting point to take what I have written about and apply it to your own forms. The good news is that there is much more to say about all this; you can find an abundance of resources on each point made here. For starters, three books are listed below that inspired me when writing this post. As I stated at the beginning, taking shortcuts by only tweaking the UI will not make your forms more usable. What more can I say? The theory is now with you. Go get your hands dirty.&lt;/p&gt;
+&lt;h4&gt;Further Reading&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.formsthatwork.com/"&gt;&lt;em&gt;Forms That Work: Designing Web Forms for Usability&lt;/em&gt;&lt;/a&gt;, Caroline Jarrett and Gerry Gaffney&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.useit.com/eyetracking/"&gt;&lt;em&gt;Eyetracking Web Usability&lt;/em&gt;&lt;/a&gt;, Jakob Nielsen and Kara Pernice&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.lukew.com/resources/web_form_design.asp"&gt;&lt;em&gt;Web Form Design, Filling in the Blanks&lt;/em&gt;&lt;/a&gt;, Luke Wroblewski&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;(al)&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;small&gt;© Justin Mifsud for &lt;a href="http://www.smashingmagazine.com"&gt;Smashing Magazine&lt;/a&gt;, 2011.&lt;/small&gt;&lt;/p&gt;</content><author><name>Justin Mifsud</name></author><gr:likingUser>08444551714908603200</gr:likingUser><gr:likingUser>00408495078868841956</gr:likingUser><gr:likingUser>11336483227424766764</gr:likingUser><gr:likingUser>15084963198113465056</gr:likingUser><gr:likingUser>16039903515083273640</gr:likingUser><gr:likingUser>00307139363976123950</gr:likingUser><gr:likingUser>17736381900446163393</gr:likingUser><gr:likingUser>00048640862741442703</gr:likingUser><gr:likingUser>00098612839404937973</gr:likingUser><gr:likingUser>17634544236601895154</gr:likingUser><source gr:stream-id="feed/http://rss1.smashingmagazine.com/feed/"><id>tag:google.com,2005:reader/feed/http://rss1.smashingmagazine.com/feed/</id><title type="html">Smashing Magazine Feed</title><link rel="alternate" href="http://www.smashingmagazine.com/" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1320760634765"><id gr:original-id="http://www.rubyflow.com/items/6767-what-s-your-checklist-for-starting-a-new-rails-application">tag:google.com,2005:reader/item/600df3941b827fcc</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><title type="html">What's your checklist for starting a new Rails application?</title><published>2011-11-08T00:19:56Z</published><updated>2011-11-08T00:19:56Z</updated><link rel="alternate" href="http://feedproxy.google.com/~r/Rubyflow/~3/Hq80TNVpKmU/6767-what-s-your-checklist-for-starting-a-new-rails-application" type="text/html"/><summary xml:base="http://www.rubyflow.com/" type="html">It's easy to create a new Rails application using "rails new myapp". But after that, what do you do? What gems do you always add? What decisions do you make before beginning development? What important items are often overlooked before deploying an app? I'd like to put together a reference checklist to share. Any suggestions? I've asked on Stack Overflow: &lt;a href="http://stackoverflow.com/questions/8044303/reference-checklist-for-starting-a-new-rails-application"&gt;Checklist for starting a new Rails application?&lt;/a&gt;&lt;div&gt;
+&lt;a href="http://feeds.feedburner.com/~ff/Rubyflow?a=Hq80TNVpKmU:bQfD6IGQMqQ:3H-1DwQop_U"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Rubyflow?i=Hq80TNVpKmU:bQfD6IGQMqQ:3H-1DwQop_U" border="0"&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Rubyflow/~4/Hq80TNVpKmU" height="1" width="1"&gt;</summary><author gr:unknown-author="true"><name>(author unknown)</name></author><source gr:stream-id="feed/http://feeds.feedburner.com/Rubyflow"><id>tag:google.com,2005:reader/feed/http://feeds.feedburner.com/Rubyflow</id><title type="html">RubyFlow</title><link rel="alternate" href="http://www.rubyflow.com/" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1320760613016"><id gr:original-id="http://www.dzone.com/links/692527.html">tag:google.com,2005:reader/item/1656d60d1514bb49</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="agile"/><category term="how-to"/><category term="ruby"/><category term="tools"/><title type="html">Modern Cucumber and Rails: No More Training Wheels</title><published>2011-11-07T21:25:35Z</published><updated>2011-11-07T21:25:35Z</updated><link rel="alternate" href="http://feeds.dzone.com/~r/dzone/ruby/~3/UMQlHU_nDCY/modern_cucumber_and_rails_no_more_training_wheels.html" type="text/html"/><content xml:base="http://www.dzone.com/links/tag/ruby.html" type="html">&lt;a href="http://www.dzone.com/links/r/modern_cucumber_and_rails_no_more_training_wheels.html"&gt;&lt;img src="http://cdn.dzone.com/images/thumbs/120x90/692527.jpg" style="width:120;height:90;float:left;vertical-align:top;border:1px solid #ccc"&gt;&lt;/a&gt;&lt;p style="margin-left:130px"&gt;Last month, cucumber-rails 1.1 was released, and like most developers I ignored the warning that web_steps.rb was going to be removed. Instead of copying and pasting it from an older app or using the newly created cucumber-rails-training-wheels gem, I decided to accept the challenge and refactor its steps out of the app’s existing features. Here’s a short overview of the main refactorings.&lt;br&gt;&lt;br&gt;&lt;a href="http://www.dzone.com/links/rss/modern_cucumber_and_rails_no_more_training_wheels.html"&gt;&lt;img src="http://www.dzone.com/links/voteCountImage?linkId=692527" border="0"&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/dzone/ruby/~4/UMQlHU_nDCY" height="1" width="1"&gt;</content><author><name>rudyjahchan</name></author><source gr:stream-id="feed/http://www.dzone.com/feed/frontpage/ruby/rss.xml"><id>tag:google.com,2005:reader/feed/http://www.dzone.com/feed/frontpage/ruby/rss.xml</id><title type="html">dzone.com: ruby</title><link rel="alternate" href="http://www.dzone.com/links/tag/ruby.html" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1320759814895"><id gr:original-id="http://mgmt.smashingmagazine.com/?p=118900">tag:google.com,2005:reader/item/d8aa35a6caf1a8fb</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="Coding" scheme="http://www.smashingmagazine.com"/><title type="html">The Future Of CSS: Embracing The Machine</title><published>2011-11-07T13:47:40Z</published><updated>2011-11-07T13:48:46Z</updated><link rel="alternate" href="http://www.smashingmagazine.com/2011/11/07/the-future-of-css-embracing-the-machine/" type="text/html"/><link rel="replies" href="http://www.smashingmagazine.com/2011/11/07/the-future-of-css-embracing-the-machine/#comments" type="text/html"/><link rel="replies" href="http://www.smashingmagazine.com/2011/11/07/the-future-of-css-embracing-the-machine/feed/atom/" type="application/atom+xml"/><content xml:base="http://www.smashingmagazine.com/2011/11/07/the-future-of-css-embracing-the-machine/" xml:lang="en" type="html">&lt;table width="650"&gt;
+&lt;tr&gt;
+&lt;td width="650"&gt;
+&lt;div style="width:650px"&gt;
+        &lt;img src="http://statisches.auslieferung.commindo-media-ressourcen.de/advertisement.gif" alt="" border="0"&gt;&lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=1"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=1" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;&lt;br&gt;
+         &lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=2"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=2" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;&lt;br&gt;
+         &lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=3"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=3" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;Designers hold CSS close to their hearts. It’s just code, but it is also what makes our carefully crafted designs come to life. Thoughtful CSS is CSS that respects our designs, that is handcrafted with precision. The common conception among Web designers is that a good style sheet is created by hand, each curly bracket meticulously placed, each vendor prefix typed in manually.&lt;/p&gt;
+&lt;p&gt;But how does this tradition fit in a world where the websites and applications that we want to create are becoming increasingly complex?&lt;/p&gt;
+&lt;h3&gt;Looking Back&lt;/h3&gt;
+&lt;p&gt;If we look back in history, deep into the Industrial Revolution, we will see a parallel with what will happen with our handcrafted style sheets once the complexity of the products that we want to build becomes too great.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="http://en.wikipedia.org/wiki/Industrial_Revolution"&gt;Industrial Revolution&lt;/a&gt; (which took place approximately between the middles of the 18th and 19th centuries, starting in the UK) was a period of upheaval in society; several aspects of life were changing. Much of this was due to the way people produced goods: during this period, &lt;strong&gt;manual labor started to become mechanized&lt;/strong&gt;. The textile industry, for example, moved from primarily human- to machine-based production, and its artisans started looking at ways to be more efficient.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.flickr.com/photos/museemccordmuseum/5324104788/"&gt;&lt;img src="http://coding.smashingmagazine.com/wp-content/uploads/2011/09/02-passenger-train.jpg" alt="C. P. R. passenger train at Donald Station, BC, about 1887" title="C. P. R. passenger train at Donald Station, BC, about 1887" width="500" height="366"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;One of the many products of the Industrial Revolution. (Image: &lt;a href="http://www.flickr.com/photos/museemccordmuseum/5324104788/"&gt;McCord Museum&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;These machines that were created with efficiency in mind were initially quite primitive, and the public didn’t know what to think of them. It took us some time to adapt the way we worked with them and the way we thought of them.&lt;/p&gt;
+&lt;p&gt;Jobs that previously required human labor now didn’t require anyone; a machine could do the job cheaper and faster; employees became redundant. But the jobs in which people were being replaced by machines were mainly repetitive ones, jobs for which manual labor didn’t necessarily make for better products — at least not in any significant way.&lt;/p&gt;
+&lt;p&gt;Some argued that the output suffered in quality, that machine-made objects lacked personality, that craftsmanship was being lost, and yet production improved and evolved. We were also getting to the point that some products were getting too complex to be made by hand anymore.&lt;/p&gt;
+&lt;p&gt;This revolution shaped the world we live in today and gave us access to things that were until then too expensive or even non-existent.&lt;/p&gt;
+&lt;p&gt;Getting back to our topic, we’re seeing increasing complexity in the world of Web design and CSS. We want to &lt;strong&gt;create increasingly complex websites&lt;/strong&gt; and apps — systems so complicated that they cannot be made entirely by hand.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.me.com/"&gt;&lt;img src="http://coding.smashingmagazine.com/wp-content/uploads/2011/09/mobileme.jpg" alt="MobileMe Calendar app" title="MobileMe Calendar app" width="500" height="291"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;&lt;a href="https://www.me.com/"&gt;MobileMe&lt;/a&gt;, with its extensive functionality and comprehensive interface, is an example of a complex Web application.&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;The World Of Developers&lt;/h3&gt;
+&lt;p&gt;Developers and programmers are already inclined towards automation. Developers instinctively avoid reinventing the wheel. They understand the need to automate production (at least some stages of it); they understand that hand-crafted code is not needed at every step of the process.&lt;/p&gt;
+&lt;p&gt;Even if you are a great front-end developer who knows JavaScript like the back of your hand, you still defer a lot of your work to &lt;a href="http://jquery.com/"&gt;jQuery&lt;/a&gt; or some other library. Even if you’re able to write the code yourself, the time you’d save by not doing that frees you to deal with more significant problems. The gains in writing a script from scratch are no match for the gains in being able to focus attention on &lt;strong&gt;problems that no machine or automated process can solve&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://jquery.com/"&gt;&lt;img src="http://coding.smashingmagazine.com/wp-content/uploads/2011/09/jquery-screenshot66.jpg" alt="jQuery website" title="jQuery website" width="500" height="385"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;&lt;a href="http://jquery.com/"&gt;jQuery&lt;/a&gt;, a well-known developer’s tool.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The skills and knowledge you’ve gathered through the years are not in vain, though. This knowledge is what makes you the best person to decide whether to choose jQuery; it’s what makes you able to adjust a plugin that doesn’t quite do what you need; and it’s what makes you capable of determining the best tool for the job.&lt;/p&gt;
+&lt;h3&gt;The Wrong Attitude&lt;/h3&gt;
+&lt;p&gt;Web designers don’t approve of these kinds of shortcuts. This way of thinking doesn’t translate to CSS; in the world of CSS, taking these “shortcuts” is not well regarded.&lt;/p&gt;
+&lt;p&gt;We CSS authors have a list of &lt;strong&gt;dirty words&lt;/strong&gt; that we avoid saying when we’re speaking with fellow Web designer friends. For example, when someone says they’ve used a CSS framework, the apology immediately follows: “It wasn’t our fault.”&lt;/p&gt;
+&lt;p&gt;Principles such as &lt;a href="http://en.wikipedia.org/wiki/Don%27t_repeat_yourself"&gt;DRY (don’t repeat yourself)&lt;/a&gt; are not present in CSS.&lt;/p&gt;
+&lt;p&gt;DRY states that “Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.” This applies not only to code but to every aspect of a product, such as design itself. When DRY principles are followed, we’re supposed to end up with products that are of higher quality and easier to maintain.&lt;/p&gt;
+&lt;p&gt;We CSS authors don’t think of the &lt;strong&gt;cost of maintenance&lt;/strong&gt; or the increased complexity that duplication and cancelling out of styles add to our CSS sheets.&lt;/p&gt;
+&lt;p&gt;We usually follow something closer to &lt;a href="http://c2.com/cgi/wiki?DontRepeatYourself"&gt;WET: we enjoy typing&lt;/a&gt;. Why someone would want to hand-code vendor prefixes for CSS gradients is beyond my understanding, but the truth is that some people do, and they take pride in it.&lt;/p&gt;
+&lt;p&gt;CSS authors — i.e. Web designers who write CSS — don’t like the machine. We don’t think any CSS that the machine can produce will ever be as good as the one we make ourselves by hand. But what if this is not true? What if the result is as good as our own manual labor from scratch?&lt;/p&gt;
+&lt;p&gt;Other groups have had the same fears. The &lt;a href="http://en.wikipedia.org/wiki/Luddite"&gt;Luddites&lt;/a&gt; were workers who fiercely opposed the Industrial Revolution and progress. They said that machines were taking their jobs — which was true. But they fought, protested, became violent and eventually lost. Things would evolve whether they liked it or not.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/File:FrameBreaking-1812.jpg"&gt;&lt;img src="http://coding.smashingmagazine.com/wp-content/uploads/2011/09/05-luddites.jpg" alt="Luddites, frame breaking" title="Luddites, frame breaking" width="419" height="402"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;The Luddites, smashing the machine. (Image: &lt;a href="http://en.wikipedia.org/wiki/File:FrameBreaking-1812.jpg"&gt;Wikipedia&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Context Matters&lt;/h3&gt;
+&lt;p&gt;It’s true that we don’t all code for the Facebooks and Yahoos of this world; your CSS’ performance might not be the most important thing to focus on in your projects. But this is why considering context matters, and this is why it’s important not to dismiss techniques and solutions because someone once told us they were wrong or dirty.&lt;/p&gt;
+&lt;p&gt;We can embrace the flexibility that &lt;strong&gt;some measure of automation&lt;/strong&gt; gives us and focus our worries and energies on deeper problems. We could focus on so many things: accessibility, usability, design theory, psychology, business, economics, experimentation and even programming are all suitable candidates and are areas in which having some knowledge, even at a basic level, can greatly improve our work.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.flickr.com/photos/mikek/3504927651/"&gt;&lt;img src="http://coding.smashingmagazine.com/wp-content/uploads/2011/09/06-reading-list.jpg" alt="Reading list" title="Reading list" width="500" height="375"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;An interesting reading list. (Image: &lt;a href="http://www.flickr.com/photos/mikek/3504927651/"&gt;Mike Kuniavsky&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Expanding our skill set can give us a better understanding of the products we create, the people we create them for (and their context), and how they are supposed to work behind the curtains.&lt;/p&gt;
+&lt;p&gt;Rethinking our processes might lead to better quality work. It might lead to perfecting &lt;strong&gt;a machine still in its infancy&lt;/strong&gt;. If we don’t deny mechanization from coming into our work, we get the chance to shape it so that it does exactly what we want it to do.&lt;/p&gt;
+&lt;h3&gt;Try This At Home&lt;/h3&gt;
+&lt;p&gt;If we look around, we’ll see that several people are already trying to change the way we write our CSS, whether by introducing some kind of automation or by looking at ways of creating style sheets that don’t bypass issues such as maintainability. We can take inspiration from the work they produce in a number of interesting ways. Below are some of the most prominent examples, but feel free to add your own list in the comments section.&lt;/p&gt;
+&lt;h4&gt;Frameworks: Don’t Reinvent the Wheel&lt;/h4&gt;
+&lt;p&gt;As mentioned, “frameworks” are probably the &lt;strong&gt;dirtiest word&lt;/strong&gt; in a CSS author’s vocabulary — or second dirtiest, after “Dreamweaver.” (Note: this article was written before the advent of Adobe’s Muse.)&lt;/p&gt;
+&lt;p&gt;Often when discussing the subject of this article, people walk away assuming that the message I am trying to get across is to use CSS frameworks. That’s not correct. But it isn’t entirely incorrect either. Let me explain.&lt;/p&gt;
+&lt;p&gt;Frameworks are an important tool in a CSS author’s repertoire. By that, I don’t mean that you should blindly use popular frameworks such as &lt;a href="http://www.blueprintcss.org/"&gt;Blueprint&lt;/a&gt; or &lt;a href="http://960.gs/"&gt;960 Grid System&lt;/a&gt;. Sure, these frameworks have nailed some things, and we can certainly learn a lot from their flexibility and modularity, but it’s more important that you — especially if you’re on a team — adapt a framework to the needs of you, your company and your team.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.blueprintcss.org/"&gt;&lt;img src="http://coding.smashingmagazine.com/wp-content/uploads/2011/09/blueprint.jpg" alt="Blueprint website" title="Blueprint website" width="500" height="279"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;&lt;a href="http://www.blueprintcss.org/"&gt;Blueprint&lt;/a&gt;, a popular CSS framework.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Perhaps you or your company works with such disparate clients and projects that a framework wouldn’t really be helpful, though. Perhaps a library in which you can collect snippets of frequently used code would be more useful. Or perhaps a starter template is what you need.&lt;/p&gt;
+&lt;p&gt;Whatever you need, more often than not you can find a way without having to reinvent the wheel from project to project. And if indeed you work with a number of other designers and developers and share CSS, then these tools will make collaboration easier, and you won’t have to adapt to the style of the person who created a particular file.&lt;/p&gt;
+&lt;p&gt;Frameworks can also be useful tools for wireframing and prototyping, especially when there are time constraints and you need to put something in front of users or stakeholders quickly.&lt;/p&gt;
+&lt;p&gt;There are differences between a framework and a patterns library, components or even a simple collection of code snippets. A framework is a system that is flexible and can be adjusted to a myriad types of layouts, creating various page templates, whereas a library constitutes smaller individual modules that don’t have to be tied to any particular overarching framework or page construction.&lt;/p&gt;
+&lt;p&gt;A pattern demonstrates how, for example, tabbed navigation should function or how to mark it up; a design component could be the exact visual representation of an instance of tabbed navigation, with its colors, shapes and fonts. This explanation of these two distinct and important concepts is very simplistic. The “Further Reading“ section at the end of this article lists some useful resources on both.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://developer.yahoo.com/ypatterns/"&gt;&lt;img src="http://coding.smashingmagazine.com/wp-content/uploads/2011/09/yahoolibrary.jpg" alt="Yahoo&amp;#39;s Design Pattern Library" title="Yahoo&amp;#39;s Design Pattern Library" width="500" height="326"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;The Yahoo Design Pattern &lt;a href="http://developer.yahoo.com/ypatterns/"&gt;Library&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;A framework doesn’t have to spit out numerous unsemantic class names to every container in your markup. If you are creating your own, you are free to name those classes whatever you feel is right.&lt;/p&gt;
+&lt;p&gt;Let’s imagine you are starting to write a framework that can be shared across various development teams in your news organization. You might start with the following skeleton:&lt;/p&gt;
+&lt;pre&gt;
+/* Resets */
+
+/* Structure */
+
+/* Global elements */
+
+/* Visual media */
+
+/* Article structure */
+
+/* Forms */
+
+/* Tables */
+
+/* Reusable */
+&lt;/pre&gt;
+&lt;p&gt;This structure is probably similar to many of your own style sheets. Let’s look at the “Article structure” section as an example of something that would probably benefit from some framework inspiration. In the project, you will probably have to accommodate several variations of templates from various departments, sub-departments, content creators, editors, etc. Rather than using classes like &lt;code&gt;span-6&lt;/code&gt; and &lt;code&gt;pull-3&lt;/code&gt;, you can define a naming system that better ties into the website’s content. For example:&lt;/p&gt;
+&lt;pre&gt;
+/* Article structure */
+
+article {
+	width: 80%;
+}
+article.charticle { /* Charticle pages have no sidebar */
+	width: 100%;
+}
+article.listicle {
+	width: 70%;
+}
+
+article &amp;gt; .headline {
+	font-size: 2em;
+}
+article.feature &amp;gt; .headline {
+	color: #000;
+}
+article.breaking &amp;gt; .headline {
+	text-decoration: underline;
+}
+
+article &amp;gt; section {
+	border-bottom: 1px solid #efefef;
+} 
+
+article &amp;gt; aside {
+	background: #efefef;
+	padding: .5em;
+}
+
+article &amp;gt; footer {
+	font-size: .9em;
+}
+&lt;/pre&gt;
+&lt;p&gt;Several things about the above CSS could be debated (I’m sure many of you have strong feelings about descendent selectors and named elements and even whether some of these classes could have been simple element selectors — to name but a few points), but none of this matters in this example. What does matter is how you can be influenced by what popular do-it-all frameworks are doing, and how you can apply that to your clean, semantic and perfectly named markup and CSS.&lt;/p&gt;
+&lt;p&gt;If you can plan for and analyze the needs of the people who create the content, then you can ensure that they have the flexibility they need to do their jobs and that you can be &lt;strong&gt;proud of your code&lt;/strong&gt;. Sometimes an extra class is necessary, but if that makes everyone’s life easier, then why not, right?&lt;/p&gt;
+&lt;h4&gt;Think of Others&lt;/h4&gt;
+&lt;p&gt;Following what we discussed in the previous section, the fact that your CSS doesn’t live in a vacuum can be extremely useful.&lt;/p&gt;
+&lt;p&gt;Other people — and the future you — might need to come back later on to edit the style sheet that you’re creating today. Wouldn’t you want your future self to be free to go home to your spouse and kids earlier on a Friday afternoon rather than have to stay up late refactoring a CSS file that is hard to comprehend and impossible to extend?&lt;/p&gt;
+&lt;p&gt;Do yourself and others a favor by considering what you’re doing. Add comments to your CSS files for such things as the following:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Calculations&lt;/strong&gt;&lt;br&gt;
+Font sizes (especially when dealing with ems) and layout measurements are great candidates for these types of comments.&lt;/p&gt;
+&lt;pre&gt;
+h2 {
+font-size: 18px;
+line-height: 1.167; /* 21 (original line-height) / 18 (h2 font-size) */
+}
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Hacks&lt;/strong&gt;&lt;br&gt;
+On the rare occasion that you use a hack, explain what you’re doing, refer to the hack by its common name, and link to an online reference that explains what you’ve just done.&lt;/p&gt;
+&lt;pre&gt;
+aside section {
+float: left;
+width: 50%;
+display: inline; /* fixes the double float margin bug on IE5/6. More on this bug/solution: http://www.positioniseverything.net/explorer/doubled-margin.html */
+}
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;To-dos&lt;/strong&gt;&lt;br&gt;
+Even CSS documents have “nice to haves,” so listing what you’ve been planning to do but haven’t gotten around to yet might be a good idea.&lt;/p&gt;
+&lt;pre&gt;
+/* To-do
+Change all colors to RGB format.
+Sanitize reusable classes section.
+*/
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;File structure&lt;/strong&gt;&lt;br&gt;
+Summarizing what is contained in a particular file can save time when someone is looking for a certain selector.&lt;/p&gt;
+&lt;pre&gt;
+/*  Table of contents
+Resets
+Structure
+Links
+Typography
+Small screens
+*/
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Dependencies&lt;/strong&gt;&lt;br&gt;
+Is this file being imported by some other file? Does it override something else? Explain what and how.&lt;/p&gt;
+&lt;pre&gt;
+/* Christmas style sheet 2011
+
+Overriding: main.css
+Importing reset file: reset.css */
+&lt;/pre&gt;
+&lt;p&gt;The fact that CSS comments are not standardized could cause a problem with all of this preparedness: everyone does them differently. In my quest for the ideal CSS formatting style, I discovered the dusty &lt;a href="http://cssdoc.net/"&gt;&lt;strong&gt;CSSDOC standard&lt;/strong&gt;&lt;/a&gt;, which tries (or tried) to introduce some kind of sanity to the situation.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://cssdoc.net/"&gt;&lt;img src="http://coding.smashingmagazine.com/wp-content/uploads/2011/09/cssdocsite.jpg" alt="CSSDOC website" title="CSSDOC website" width="500" height="326"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;The old dusty &lt;a href="http://cssdoc.net/"&gt;CSSDOC&lt;/a&gt; website.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;CSSDOC is an adaptation of &lt;a href="http://en.wikipedia.org/wiki/Javadoc"&gt;Javadoc&lt;/a&gt; (a documentation generator that extracts comments from Java source code into HTML). It is also similar to &lt;a href="http://en.wikipedia.org/wiki/Phpdoc"&gt;PHPDoc&lt;/a&gt;, Javadoc’s adaptation for PHP. A comment that follows the CSSDOC format (a “DocBlock”) looks like the following:&lt;/p&gt;
+&lt;pre&gt;
+/**
+ * Short description
+ *
+ * Long description (optional)
+ *
+ * @tags (optional)
+ */
+&lt;/pre&gt;
+&lt;p&gt;Every block starts with &lt;code&gt;/**&lt;/code&gt; and ends with a space followed by &lt;code&gt;*/&lt;/code&gt;. Every line must start with a space followed by an asterisk. The tags may contain information such as &lt;code&gt;@author&lt;/code&gt;, &lt;code&gt;@copyright&lt;/code&gt;, &lt;code&gt;@todo&lt;/code&gt; and so on.&lt;/p&gt;
+&lt;p&gt;The CSSDOC standard suggests that a CSS file should include a comment about the file itself at the top, containing meta data that is relevant to the whole file. This comment should include information such as the title of the document, a description and tags such as &lt;code&gt;@project&lt;/code&gt;, &lt;code&gt;@version&lt;/code&gt;, &lt;code&gt;@author&lt;/code&gt;, &lt;code&gt;@copyright&lt;/code&gt; and even &lt;code&gt;@colordef&lt;/code&gt;, indicating which colors are used in the file. The file comment may be followed by any number of section comments that divide the style sheet into relevant blocks. Section comments include the tag &lt;code&gt;@section&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;
+/**
+ * Typography
+ *
+ * @section typography
+ */
+&lt;/pre&gt;
+&lt;p&gt;The CSSDOC documentation is not lengthy. Also, it hasn’t been maintained for a while, but I did find it interesting and have started applying it to my projects because it takes some of the guesswork and subjectivity out of comments.&lt;/p&gt;
+&lt;p&gt;Another way to make sharing documents on a team easier is to &lt;strong&gt;standardize the style&lt;/strong&gt;. We all have our preferences on how to format CSS, how to name classes and IDs, address bugs, etc. Creating a style guide that recommends a way to do these things in your company will make it easier for anyone who edits the CSS to dive straight into what they need to do, rather than having to decipher someone else’s style.&lt;/p&gt;
+&lt;p&gt;This may be overkill for a team of one or two, but it can improve efficiency and save time when the team grows. In this case, &lt;strong&gt;consistency should have final say&lt;/strong&gt;; personal preference is not important. If you’re the only one on a team of 12 who prefers single-line CSS, you will have to take one for the team. (Pardon me if I sound bitter; perhaps I still recall what happened on my own team…)&lt;/p&gt;
+&lt;p&gt;Here are some examples of style guidelines:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;“Class and ID names must be lowercase.”&lt;/li&gt;
+&lt;li&gt;“Do not specify units for values of 0 (zero). They are unnecessary.”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When creating a style guide, include a succinct explanation for its inclusion, otherwise it will be easy for people to challenge it. The &lt;a href="http://www.bbc.co.uk/guidelines/futuremedia/technical/css.shtml"&gt;BBC has some great examples of guidelines&lt;/a&gt; that are relevant to CSS authors.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.bbc.co.uk/guidelines/futuremedia/technical/css.shtml"&gt;&lt;img src="http://coding.smashingmagazine.com/wp-content/uploads/2011/09/bbc-css.jpg" alt="BBC&amp;#39;s CSS Guidelines" title="BBC&amp;#39;s CSS Guidelines" width="500" height="310"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;An example of &lt;a href="http://www.bbc.co.uk/guidelines/futuremedia/technical/css.shtml"&gt;CSS guidelines&lt;/a&gt;, part of BBC’s “Future Media Standards &amp;amp; Guidelines” documents.&lt;/em&gt;&lt;/p&gt;
+&lt;h4&gt;Learn About Object-Oriented CSS&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://oocss.org/"&gt;Object-oriented CSS&lt;/a&gt; was started by front-end performance consultant Nicole Sullivan. The methodology brings modularity and flexibility to CSS by forcing you to create small flexible style sheets.&lt;/p&gt;
+&lt;p&gt;It follows two main principles. First, it states that an element should behave predictably, no matter where you place it on a page. So, a child element should behave the same &lt;strong&gt;independent of the parent&lt;/strong&gt;, and parent elements shouldn’t need child elements to render correctly.&lt;/p&gt;
+&lt;p&gt;The second principle is that the rules that control the structure of elements should be separate from the rules that control their skin.&lt;/p&gt;
+&lt;p&gt;So, if you look at the pages that you need to build in a modular way and think of individual objects first and the pages second, then after creating the initial CSS you should be able to &lt;strong&gt;build any page layout using just the existing modules&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;All of this sounds great, but object-oriented CSS does have some drawbacks.&lt;/p&gt;
+&lt;p&gt;For instance, in order for an element to be adaptable enough to be placed anywhere on the page, the name of its class should also be flexible. If you style a box and give it a class name of &lt;code&gt;footer&lt;/code&gt;, and later on you decide to apply that style to a box in the sidebar, then the initial class name you gave it will be wrong — it’s not flexible enough. Thus, class names in style sheets that follow object-oriented CSS can sometimes be less content-driven or less semantic than we’d like.&lt;/p&gt;
+&lt;p&gt;Despite its drawbacks, object-oriented CSS has its value in certain situations. If we are working on a big website for which a small style sheet (small file size) and flexibility and maintainability are important, then following the principles of object-oriented CSS can bring huge improvements to our processes and huge savings to our company.&lt;/p&gt;
+&lt;p&gt;Once again, you don’t have to follow this methodology blindly in order to gain from its benefits.&lt;/p&gt;
+&lt;p&gt;Going back to the news company, let’s imagine you want to make a box that sits in the sidebar more prominent than other elements contained there. You might write the following CSS:&lt;/p&gt;
+&lt;pre&gt;
+#sidebar .highlight {
+	background: #efefef;
+	border: 1px solid #000;
+	box-shadow: 0 0 .5em #000;
+}
+
+#sidebar .highlight &amp;gt; h1 {
+	font-weight: bold;
+}
+&lt;/pre&gt;
+&lt;p&gt;What’s so wrong with the CSS above? If you are following object-oriented CSS, then you shouldn’t restrict a style that you will probably reuse in the main content area by confining it to the &lt;code&gt;#sidebar&lt;/code&gt; container. In our example, though, we’ll happily keep the descendent element selector in the second rule (object-oriented CSS advises against child elements being dependent on parent elements, but &lt;strong&gt;you can draw the line&lt;/strong&gt; on how closely to adhere to a particular technique as you see fit, and that’s the beauty of it!).&lt;/p&gt;
+&lt;p&gt;So much more could be said about this technique. It is indeed &lt;a href="http://www.slideshare.net/stubbornella/object-oriented-css"&gt;well worth looking into&lt;/a&gt;, all bias aside. You will read things that you probably don’t consider good practice, but remember: context is important, and your expertise equips you to adopt the principles that will help you in your situation.&lt;/p&gt;
+&lt;h4&gt;Step Into Programming&lt;/h4&gt;
+&lt;p&gt;The command line is a &lt;strong&gt;boundary between designers and developers&lt;/strong&gt; that we designers usually don’t want to cross. Instructions on opening the terminal can be quite intimidating for designers if they’re not familiar with it. I confess I’m guilty of steering clear of it most of the time.&lt;/p&gt;
+&lt;p&gt;But consider this: we keep talking about how we should learn and draw inspiration from the past — from print design, for example. We claim with pride to have deep knowledge of typography, color theory, layout, grids and scales. We see it as a requirement for anyone who calls themselves a professional designer.&lt;/p&gt;
+&lt;p&gt;This knowledge should be extended to encompass programming, at least at a basic level. After all, it is what powers our most precious creations.&lt;/p&gt;
+&lt;p&gt;Instead of being inspired by architecture — by its teachings, its processes and its vocabulary — why don’t we get inspired by &lt;strong&gt;the architect’s example&lt;/strong&gt;, by what they have to learn? Why not be inspired by the multitude of disciplines that an architect has to know intimately in order to be a great professional?&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.flickr.com/photos/nfiore23/4298936281/"&gt;&lt;img src="http://coding.smashingmagazine.com/wp-content/uploads/2011/09/13-architecture1.jpg" alt="Radiant City Model Lac Leman" title="Radiant City Model Lac Leman" width="375" height="500"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;How many disciplines can you spot in this model? (Image: &lt;a href="http://www.flickr.com/photos/nfiore23/4298936281/"&gt;n fiore&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Why not start now? Open Terminal. (Go on, don’t be scared. It’s only there to help.) Now type the following:&lt;/p&gt;
+&lt;pre&gt;
+$ gem install sass
+&lt;/pre&gt;
+&lt;p&gt;(You don’t have to write the &lt;code&gt;$&lt;/code&gt;; it’s just there to indicate this is a Terminal command.) There, you’ve just installed Sass (which we’ll cover shortly). That didn’t hurt, did it?&lt;/p&gt;
+&lt;p&gt;If you’re working on a Sass file, you could type the following simple command to make the original Sass-formatted file automatically update the corresponding normal CSS file whenever changes are made:&lt;/p&gt;
+&lt;pre&gt;
+$ sass --watch style.scss:style.css
+&lt;/pre&gt;
+&lt;h4&gt;The List Goes On&lt;/h4&gt;
+&lt;p&gt;There are several more tools you can keep in your arsenal that can move CSS another step into the future.&lt;/p&gt;
+&lt;p&gt;Quite a few Web designers and CSS authors are becoming enamoured with CSS preprocessors such as &lt;a href="http://sass-lang.com/"&gt;Sass&lt;/a&gt;, which make it possible to &lt;strong&gt;extend CSS’ syntax&lt;/strong&gt; to include, for example, variables, complex calculations and nested selectors. Not only do they enable you to use functionality not yet available in normal CSS, but you can increase efficiency by automating tasks such as updating a frequently used color on a file-wide basis, rather than having to change each instance by hand.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://sass-lang.com/"&gt;&lt;img src="http://coding.smashingmagazine.com/wp-content/uploads/2011/09/sass-website.jpg" alt="Sass homepage" title="Sass homepage" width="500" height="346"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;The increasingly popular &lt;a href="http://sass-lang.com/"&gt;Sass&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;And with all the improvements brought by &lt;a href="http://www.w3.org/Style/CSS/current-work"&gt;CSS3&lt;/a&gt;, even pure and simple CSS is becoming more powerful, enabling us to create very complex layouts and animations more easily and with fewer lines of code.&lt;/p&gt;
+&lt;p&gt;The list presented here is a short one, and I’d be happy to know what techniques you apply in your own projects to make the process of writing CSS more fluid and to make your style sheets smaller and more easily maintainable and sharable.&lt;/p&gt;
+&lt;h3&gt;This Is Just The Beginning&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://meyerweb.com/eric/thoughts/2008/04/17/crafting-ourselves/"&gt;Eric Meyer says&lt;/a&gt;, “You can’t identify a code craftsman by whether or not they use this framework or that language. You can identify them by how they decide which framework or language to use, or not use, in a given situation.” This statement couldn’t be closer to the truth. &lt;strong&gt;Discussing tools without context is pointless.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Saying that something is good or bad should be done in context. By deciding that a certain technique is fundamentally flawed because someone once said so, and holding to that opinion throughout your career without ever challenging it, is not what being creative is about.&lt;/p&gt;
+&lt;p&gt;In his &lt;a href="http://en.wikipedia.org/wiki/Critique_of_Pure_Reason"&gt;&lt;em&gt;Critique of Pure Reason&lt;/em&gt;&lt;/a&gt;, Kant says, “Have the courage to use your own intelligence.” I would ask you to &lt;strong&gt;set your biases aside&lt;/strong&gt; when when speaking about tools, techniques and processes with other designers and developers who write CSS. Don’t view different opinions as a sign of ignorance or poor craftsmanship.&lt;/p&gt;
+&lt;p&gt;Certainly, we may question certain aspects of our jobs as Web designers, and whether to be more liberal in letting automation into our processes is just one of them — but one I’m particularly interested in.&lt;/p&gt;
+&lt;p&gt;I know and work alongside very intelligent and creative programmers. These are people who understand systems so complex that my brain shrinks every time it tries to even begin to understand them. These are also people who are proud of their work, true craftsmen of their times. I find it quite interesting how these two groups (CSS authors and programmers) work on the same products but in such different ways, how they both work with code but with &lt;strong&gt;such contrasting values&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;There is a place for carefully handwritten, handmade, perfect CSS — I take great pleasure in this myself. But there is also a place for the study and perfection of a more mechanized approach to style sheets. Both can certainly run side by side.&lt;/p&gt;
+&lt;p&gt;What are your views on this subject? Have you been trying to automate any part of your CSS writing? Do you think style sheets should always be handcrafted?&lt;/p&gt;
+&lt;h3&gt;Further Resources&lt;/h3&gt;
+&lt;p&gt;Hopefully, I have linked to all of the resources used to write this article in the article itself. Here are &lt;a href="http://www.smashingmagazine.com/related-resources-the-future-of-css-embracing-the-machine/"&gt;a few more interesting reads&lt;/a&gt; that touch on this subject, if not in its entirety at least partially.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Front page image credits go to &lt;a href="http://www.flickr.com/photos/creative_stock/5227842611/in/photostream/"&gt;Creativity103&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(al) (il)&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;small&gt;© Inayaili de Leon for &lt;a href="http://www.smashingmagazine.com"&gt;Smashing Magazine&lt;/a&gt;, 2011.&lt;/small&gt;&lt;/p&gt;</content><author><name>Inayaili de Leon</name></author><gr:likingUser>05253795189344868577</gr:likingUser><gr:likingUser>17735640358022882448</gr:likingUser><gr:likingUser>16039903515083273640</gr:likingUser><gr:likingUser>00031669020313756786</gr:likingUser><gr:likingUser>15335489561382806189</gr:likingUser><gr:likingUser>10690317933094793566</gr:likingUser><gr:likingUser>00048640862741442703</gr:likingUser><gr:likingUser>06144116952449361650</gr:likingUser><gr:likingUser>15869252285113767748</gr:likingUser><gr:likingUser>15367369202759853594</gr:likingUser><gr:likingUser>08291324749542514461</gr:likingUser><gr:likingUser>07284533937857291179</gr:likingUser><source gr:stream-id="feed/http://rss1.smashingmagazine.com/feed/"><id>tag:google.com,2005:reader/feed/http://rss1.smashingmagazine.com/feed/</id><title type="html">Smashing Magazine Feed</title><link rel="alternate" href="http://www.smashingmagazine.com/" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1320675117552"><id gr:original-id="http://www.rubyinside.com/?p=5586">tag:google.com,2005:reader/item/2c97a6473178cea6</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="Miscellaneous" scheme="http://www.rubyinside.com"/><category term="News" scheme="http://www.rubyinside.com"/><title type="html">The Ruby Standard Library To Be Converted to Gems for Ruby 2.0?</title><published>2011-11-07T13:28:07Z</published><updated>2011-11-06T04:28:55Z</updated><link rel="alternate" href="http://feedproxy.google.com/~r/RubyInside/~3/f2XCTzMAxUY/the-ruby-standard-library-to-be-converted-to-gems-for-ruby-2-0-5586.html" type="text/html"/><link rel="replies" href="http://www.rubyinside.com/the-ruby-standard-library-to-be-converted-to-gems-for-ruby-2-0-5586.html#comments" type="text/html"/><link rel="replies" href="http://www.rubyinside.com/the-ruby-standard-library-to-be-converted-to-gems-for-ruby-2-0-5586.html/feed/atom" type="application/atom+xml"/><content xml:base="http://www.rubyinside.com/the-ruby-standard-library-to-be-converted-to-gems-for-ruby-2-0-5586.html" xml:lang="en" type="html">&lt;p&gt;&lt;img src="http://www.rubyinside.com/wp-content/uploads/2011/11/stdlib-gem.gif" alt="" title="stdlib-gem" width="140" height="128" style="float:right;margin-left:18px;margin-bottom:18px;border:1px solid #999"&gt;The Ruby standard library (a.k.a. stdlib) is a collection of Ruby libraries that, at one time or another, have been considered useful enough to include with the MRI Ruby implementation by standard. Due to the popularity of these libraries, other Ruby implementations have then tended to re-implement or include the standard library too.&lt;/p&gt;
+&lt;p&gt;As part of the &lt;a href="http://www.rubyinside.com/ruby-2-0-implementation-work-begins-what-is-ruby-2-0-and-whats-new-5515.html"&gt;march toward Ruby 2.0&lt;/a&gt;, the state of Ruby's 'standard library' has come up for discussion. A popular line of thinking (and IMHO, very likely to actually happen) is that &lt;em&gt;the standard library should be 'gemified' for Ruby 2.0.&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Why Gemify the Standard Library?&lt;/h3&gt;
+&lt;p&gt;The standard library approach has a significant flaw. Due to being a large and critical piece of software, MRI's release cycle is slow, yet some libraries require faster updates, perhaps for security or API updates. It would be better, therefore, to have the standard libraries maintained and distributed &lt;em&gt;separately&lt;/em&gt; while still being included 'by default' with Ruby implementations.&lt;/p&gt;
+&lt;p&gt;We have already seen this sort of approach with &lt;em&gt;RubyGems&lt;/em&gt; itself. For example, RubyGems is (at the time of writing) at version 1.8.11, yet the barely 2 week old Ruby 1.9.3p0 comes with RubyGems 1.8.10. While RubyGems is not itself distributed as a gem, it demonstrates the value of having something included with Ruby &lt;em&gt;and&lt;/em&gt; still updateable separately.&lt;/p&gt;
+&lt;h3&gt;Aaron Patterson (of the MRI Ruby Core Team) Explains&lt;/h3&gt;
+&lt;p&gt;In &lt;a href="http://vimeo.com/26507951"&gt;his talk at RubyKaigi&lt;/a&gt;, Aaron &lt;em&gt;tenderlove&lt;/em&gt; Patterson spoke about working out which parts of Ruby are 'third party libraries' and how to extract them. After such extraction, Ruby core should be able to commit to or change &lt;em&gt;anything&lt;/em&gt; within MRI, but also reference third party gems that are included and installed by default on new installations. Aaron noted that being able to 'iterate faster' was a significant benefit of this approach.&lt;/p&gt;
+&lt;p&gt;Aaron also explained that with less coupling between Ruby implementations and the libraries they depend upon, it could be possible in future to upgrade your Ruby &lt;em&gt;interpreter&lt;/em&gt; while still maintaining existing versions of the libraries you depend upon. This could help you migrate more gradually &lt;em&gt;or&lt;/em&gt; merely help you maintain existing compatibility.&lt;/p&gt;
+&lt;h3&gt;Further Reading&lt;/h3&gt;
+&lt;p&gt;The &lt;a href="https://redmine.ruby-lang.org/projects/ruby/wiki/StdlibGem"&gt;process of gemifying the Ruby standard library&lt;/a&gt; is explained on the Ruby implementation wiki with the proposal, implementation, and a list of to do items already laid out. A more &lt;a href="http://redmine.ruby-lang.org/issues/5481"&gt;extensive discussion&lt;/a&gt; (which you can join) is also taking place on the official MRI Ruby issue tracker.&lt;/p&gt;
+&lt;p&gt;This process is still in its early stages and there are likely to be opportunities to help maintain or even become the maintainer for certain standard libraries, if you want to get involved.&lt;/p&gt;
+&lt;div&gt;
+&lt;a href="http://feeds.feedburner.com/~ff/RubyInside?a=f2XCTzMAxUY:-Jx89l2evDY:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/RubyInside?d=qj6IDK7rITs" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/RubyInside?a=f2XCTzMAxUY:-Jx89l2evDY:3H-1DwQop_U"&gt;&lt;img src="http://feeds.feedburner.com/~ff/RubyInside?i=f2XCTzMAxUY:-Jx89l2evDY:3H-1DwQop_U" border="0"&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/RubyInside/~4/f2XCTzMAxUY" height="1" width="1"&gt;</content><author><name>Peter Cooper</name></author><gr:likingUser>03381511340255243263</gr:likingUser><source gr:stream-id="feed/http://feeds.feedburner.com/RubyInside"><id>tag:google.com,2005:reader/feed/http://feeds.feedburner.com/RubyInside</id><title type="html">Ruby Inside</title><link rel="alternate" href="http://www.rubyinside.com/" type="text/html"/></source></entry></feed>

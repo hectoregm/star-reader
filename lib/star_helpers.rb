@@ -23,7 +23,7 @@ module Sinatra
     def pretty_time(time)
       delta = (Time.now - time).to_i
       case delta
-      when 0..60
+      when 0..59
         'just now'
       when 60..119
         'a minute ago'
@@ -39,14 +39,14 @@ module Sinatra
         (delta/86400).to_s + ' days ago'
       when 604800..1209599
         'a week ago'
-      when 1209600..2678399
+      when 1209600..2419199
         (delta/604800).to_s + ' weeks ago'
-      when 2678400..5356799
-        ' a month ago'
-      when 5356800..31535999
-        (delta/2678400).to_s + ' months ago'
+      when 2419200..5270399
+        'a month ago'
+      when 5270400..31535999
+        (delta/2635200).to_s + ' months ago'
       when 31536000..63071999
-        ' a year ago'
+        'a year ago'
       else
         (delta/31536000).to_s + ' years ago'
       end

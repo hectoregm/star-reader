@@ -1,0 +1,378 @@
+<?xml version="1.0"?><feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:gr="http://www.google.com/schemas/reader/atom/" xmlns:idx="urn:atom-extension:indexing" xmlns="http://www.w3.org/2005/Atom" idx:index="no" gr:dir="ltr"><!--
+Content-type: Preventing XSRF in IE.
+
+--><generator uri="http://www.google.com/reader">Google Reader</generator><id>tag:google.com,2005:reader/user/03238720318766311921/state/com.google/starred</id><title>Hector's starred items in Google Reader</title><gr:continuation>CILWkOrdrawC</gr:continuation><link rel="self" href="http://www.google.com/reader/atom/user/-/state/com.google/starred?n=5&amp;c=COvA2LKSr6wC"/><author><name>Hector</name></author><updated>2011-11-11T17:49:59Z</updated><entry gr:crawl-timestamp-msec="1321033799180"><id gr:original-id="http://opinionated-programmer.com/?p=364">tag:google.com,2005:reader/item/f48854647c1c4075</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="Uncategorized"/><category term="capybara"/><category term="rails"/><category term="rspec"/><category term="ruby"/><category term="selenium"/><category term="testing"/><title type="html">Capybara (and Selenium) with RSpec &amp;amp; Rails 3: quick tutorial</title><published>2011-02-28T23:31:36Z</published><updated>2011-02-28T23:31:36Z</updated><link rel="alternate" href="http://opinionatedprogrammer.com/2011/02/capybara-and-selenium-with-rspec-and-rails-3/" type="text/html"/><content xml:base="http://opinionatedprogrammer.com/" type="html">&lt;p&gt;Here is how to set up &lt;a href="https://github.com/jnicklas/capybara"&gt;Capybara&lt;/a&gt; with &lt;a href="http://relishapp.com/rspec"&gt;RSpec 2&lt;/a&gt; and Ruby on Rails 3.  Further down I’ll also show you how to drive &lt;a href="http://seleniumhq.org/"&gt;Selenium&lt;/a&gt; through Capybara.  The only assumption is that you have a bare-bones Rails 3 application set up.&lt;/p&gt;
+&lt;p&gt;First, simply add Capybara to your Gemfile:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;group &lt;span style="color:#ff3333;font-weight:bold"&gt;:development&lt;/span&gt;, &lt;span style="color:#ff3333;font-weight:bold"&gt;:test&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+  gem &lt;span style="color:#996600"&gt;'rspec-rails'&lt;/span&gt;
+  gem &lt;span style="color:#996600"&gt;'capybara'&lt;/span&gt;
+&lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Run &lt;tt&gt;bundle install&lt;/tt&gt; (and if you have not installed RSpec, also run &lt;tt&gt;rails generate rspec:install&lt;/tt&gt; to set up your spec directory).&lt;/p&gt;
+&lt;p&gt;In &lt;tt&gt;spec/spec_helper.rb&lt;/tt&gt;, add two &lt;tt&gt;require&lt;/tt&gt; calls for Capybara near the top:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;ENV&lt;span style="color:#006600;font-weight:bold"&gt;[&lt;/span&gt;&lt;span style="color:#996600"&gt;&amp;quot;RAILS_ENV&amp;quot;&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;]&lt;/span&gt; &lt;span style="color:#006600;font-weight:bold"&gt;||&lt;/span&gt;= &lt;span style="color:#996600"&gt;'test'&lt;/span&gt;
+&lt;span style="color:#cc0066;font-weight:bold"&gt;require&lt;/span&gt; &lt;span style="color:#cc00ff;font-weight:bold"&gt;File&lt;/span&gt;.&lt;span style="color:#9900cc"&gt;expand_path&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#996600"&gt;&amp;quot;../../config/environment&amp;quot;&lt;/span&gt;, &lt;span style="color:#0000ff;font-weight:bold"&gt;__FILE__&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;)&lt;/span&gt;
+&lt;span style="color:#cc0066;font-weight:bold"&gt;require&lt;/span&gt; &lt;span style="color:#996600"&gt;'rspec/rails'&lt;/span&gt;
+ 
+&lt;span style="color:#008000;font-style:italic"&gt;# Add this to load Capybara integration:&lt;/span&gt;
+&lt;span style="color:#cc0066;font-weight:bold"&gt;require&lt;/span&gt; &lt;span style="color:#996600"&gt;'capybara/rspec'&lt;/span&gt;
+&lt;span style="color:#cc0066;font-weight:bold"&gt;require&lt;/span&gt; &lt;span style="color:#996600"&gt;'capybara/rails'&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You’re all set!  Capybara’s DSL will be available in all RSpec examples and example groups that have &lt;tt&gt;:type =&amp;gt; :request&lt;/tt&gt; set:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;describe &lt;span style="color:#996600"&gt;'home page'&lt;/span&gt;, &lt;span style="color:#ff3333;font-weight:bold"&gt;:type&lt;/span&gt; &lt;span style="color:#006600;font-weight:bold"&gt;=&amp;gt;&lt;/span&gt; &lt;span style="color:#ff3333;font-weight:bold"&gt;:request&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+  it &lt;span style="color:#996600"&gt;'should welcome the user'&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+    visit &lt;span style="color:#996600"&gt;'/'&lt;/span&gt;
+    page.&lt;span style="color:#9900cc"&gt;should&lt;/span&gt; have_content&lt;span style="color:#006600;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#996600"&gt;'Welcome'&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;)&lt;/span&gt;
+  &lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;
+&lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Because we are lazy typers, &lt;tt&gt;:type =&amp;gt; :request&lt;/tt&gt; will be automatically set on all examples in the &lt;tt&gt;spec/requests&lt;/tt&gt; directory, or synonymously &lt;tt&gt;spec/integration&lt;/tt&gt; or &lt;tt&gt;spec/acceptance&lt;/tt&gt;.  (You can pick whichever directory name you prefer: &lt;tt&gt;spec/requests&lt;/tt&gt; seems to be closer to official RSpec parlance — me, I prefer &lt;tt&gt;spec/integration&lt;/tt&gt; because it’s so much more descriptive.)&lt;/p&gt;
+&lt;p&gt;So, for example, in &lt;tt&gt;spec/requests/home_spec.rb&lt;/tt&gt; you might write:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;&lt;span style="color:#cc0066;font-weight:bold"&gt;require&lt;/span&gt; &lt;span style="color:#996600"&gt;'spec_helper'&lt;/span&gt;
+ 
+describe &lt;span style="color:#996600"&gt;'home page'&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+  it &lt;span style="color:#996600"&gt;'welcomes the user'&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+    visit &lt;span style="color:#996600"&gt;'/'&lt;/span&gt;
+    page.&lt;span style="color:#9900cc"&gt;should&lt;/span&gt; have_content&lt;span style="color:#006600;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#996600"&gt;'Welcome'&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;)&lt;/span&gt;
+  &lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;
+&lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Run &lt;tt&gt;rake spec&lt;/tt&gt; to run it.&lt;/p&gt;
+&lt;h2&gt;And now with Selenium!&lt;/h2&gt;
+&lt;p&gt;To run any example or example group through Selenium, just set &lt;tt&gt;:js =&amp;gt; true&lt;/tt&gt;:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;describe &lt;span style="color:#996600"&gt;'blog post page'&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+  it &lt;span style="color:#996600"&gt;'lets the user post a comment'&lt;/span&gt;, &lt;span style="color:#ff3333;font-weight:bold"&gt;:js&lt;/span&gt; &lt;span style="color:#006600;font-weight:bold"&gt;=&amp;gt;&lt;/span&gt; &lt;span style="color:#0000ff;font-weight:bold"&gt;true&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+    visit blog_post_path&lt;span style="color:#006600;font-weight:bold"&gt;(&lt;/span&gt;blog_posts&lt;span style="color:#006600;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#ff3333;font-weight:bold"&gt;:first_post&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;)&lt;/span&gt;.&lt;span style="color:#9900cc"&gt;id&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;)&lt;/span&gt;
+    fill_in &lt;span style="color:#996600"&gt;'Author'&lt;/span&gt;, &lt;span style="color:#ff3333;font-weight:bold"&gt;:with&lt;/span&gt; &lt;span style="color:#006600;font-weight:bold"&gt;=&amp;gt;&lt;/span&gt; &lt;span style="color:#996600"&gt;'J. Random Hacker'&lt;/span&gt;
+    fill_in &lt;span style="color:#996600"&gt;'Comment'&lt;/span&gt;, &lt;span style="color:#ff3333;font-weight:bold"&gt;:with&lt;/span&gt; &lt;span style="color:#006600;font-weight:bold"&gt;=&amp;gt;&lt;/span&gt; &lt;span style="color:#996600"&gt;'Awesome post!'&lt;/span&gt;
+    click_on &lt;span style="color:#996600"&gt;'Submit'&lt;/span&gt;  &lt;span style="color:#008000;font-style:italic"&gt;# this be an Ajax button -- only works with Selenium&lt;/span&gt;
+    page.&lt;span style="color:#9900cc"&gt;should&lt;/span&gt; have_content&lt;span style="color:#006600;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#996600"&gt;'has been submitted'&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;)&lt;/span&gt;
+    page.&lt;span style="color:#9900cc"&gt;should&lt;/span&gt; have_content&lt;span style="color:#006600;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#996600"&gt;'Awesome post!'&lt;/span&gt;&lt;span style="color:#006600;font-weight:bold"&gt;)&lt;/span&gt;
+  &lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;
+&lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you run &lt;tt&gt;rake spec&lt;/tt&gt; now, a Firefox should automatically fire up and run your test with Selenium.&lt;/p&gt;
+&lt;p&gt;You could make Capybara run &lt;em&gt;all&lt;/em&gt; your tests in Selenium by setting &lt;tt&gt;Capybara.default_driver = :selenium&lt;/tt&gt;, but I don’t recommend doing this: You can transparently switch between using &lt;a href="https://github.com/brynary/rack-test"&gt;Rack::Test&lt;/a&gt; (the default driver) and Selenium (the JavaScript driver) by setting the &lt;tt&gt;:js&lt;/tt&gt; attribute, since both are driven through the exact same Capybara DSL, and your tests will run much faster if you use Selenium only for those tests that actually require JavaScript.  The only difference (in theory) is that Rack::Test won’t run any JavaScript.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Update:&lt;/b&gt; You will also need &lt;a href="https://github.com/bmabey/database_cleaner"&gt;DatabaseCleaner&lt;/a&gt;, since transactional fixtures do not work with Selenium.  Add the &lt;tt&gt;database_cleaner&lt;/tt&gt; gem to the :test group of your Gemfile and put the following code into &lt;tt&gt;spec/support/database_cleaner.rb&lt;/tt&gt;:&lt;/p&gt;
+
+&lt;div&gt;&lt;div&gt;&lt;pre style="font-family:monospace"&gt;DatabaseCleaner.&lt;span style="color:#9900cc"&gt;strategy&lt;/span&gt; = &lt;span style="color:#ff3333;font-weight:bold"&gt;:truncation&lt;/span&gt;
+ 
+RSpec.&lt;span style="color:#9900cc"&gt;configure&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt; &lt;span style="color:#006600;font-weight:bold"&gt;|&lt;/span&gt;config&lt;span style="color:#006600;font-weight:bold"&gt;|&lt;/span&gt;
+  config.&lt;span style="color:#9900cc"&gt;use_transactional_fixtures&lt;/span&gt; = &lt;span style="color:#0000ff;font-weight:bold"&gt;false&lt;/span&gt;
+  config.&lt;span style="color:#9900cc"&gt;before&lt;/span&gt; &lt;span style="color:#ff3333;font-weight:bold"&gt;:each&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+    DatabaseCleaner.&lt;span style="color:#9900cc"&gt;start&lt;/span&gt;
+  &lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;
+  config.&lt;span style="color:#9900cc"&gt;after&lt;/span&gt; &lt;span style="color:#ff3333;font-weight:bold"&gt;:each&lt;/span&gt; &lt;span style="color:#9966cc;font-weight:bold"&gt;do&lt;/span&gt;
+    DatabaseCleaner.&lt;span style="color:#9900cc"&gt;clean&lt;/span&gt;
+  &lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;
+&lt;span style="color:#9966cc;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;See the comments at the bottom for a longer discussion.&lt;/p&gt;
+&lt;h2&gt;What’s next?&lt;/h2&gt;
+&lt;p&gt;If you haven’t done so, I recommend that you read the &lt;a href="https://github.com/jnicklas/capybara"&gt;Capybara README&lt;/a&gt; to familiarize you with Capybara and its DSL.  It might seem a bit daunting at first, but reading it top to bottom will help you get started so much faster.&lt;/p&gt;
+&lt;p&gt;You might also want to try using Capybara’s optional &lt;a href="http://jeffkreeftmeijer.com/2011/acceptance-testing-using-capybaras-new-rspec-dsl/"&gt;brand-new RSpec DSL&lt;/a&gt; instead of the standard syntax.  I’m not using it myself, but if you like your specs to read a bit more acceptance-test’ey, it might be just what you’re looking for.  (Caveat: It hasn’t been included in any release yet, so I guess it might still change.)&lt;/p&gt;
+&lt;img src="http://feeds.feedburner.com/~r/OpinionatedProgrammer/~4/1KBTOLSTwmw" height="1" width="1"&gt;</content><author><name>Jo Liss</name></author><source gr:stream-id="feed/http://feeds.opinionatedprogrammer.com/OpinionatedProgrammer"><id>tag:google.com,2005:reader/feed/http://feeds.opinionatedprogrammer.com/OpinionatedProgrammer</id><title type="html">Opinionated Programmer</title><link rel="alternate" href="http://opinionatedprogrammer.com" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1320985781510"><id gr:original-id="http://pivotallabs.com/users/shagemann/blog/articles/1918-another-first-four-weeks-concerned-and-delegated">tag:google.com,2005:reader/item/452d2d5cad75fe43</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><title type="html">Another first four weeks: concerned and delegated</title><published>2011-11-10T20:58:00Z</published><updated>2011-11-10T20:58:00Z</updated><link rel="alternate" href="http://pivotallabs.com/users/shagemann/blog/articles/1918-another-first-four-weeks-concerned-and-delegated" type="text/html"/><content xml:base="http://pivots.pivotallabs.com/blabs.rss" type="html">&lt;p&gt;&lt;a href="https://pivotallabs.com/users/jsomers/blog/articles/1889-ramping-up-at-pivotal"&gt;James' post from a couple of weeks ago&lt;/a&gt; inspired me to write up my own experiences of my first couple of weeks at Pivotal. However, instead of telling you how it felt, I will tell you about stuff I learned.&lt;/p&gt;&lt;h2&gt;ActiveSupport::Concern&lt;/h2&gt;
+
+&lt;p&gt;I have seen and used this pattern of adding both class and instance methods from a module to a class:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;module Foo
+  def self.included(base)
+    base.extend(ClassMethods)
+  end
+
+  module ClassMethods
+    def foo
+      &amp;#39;classy&amp;#39;
+    end
+  end
+
+  def foo
+    &amp;#39;instancy&amp;#39;
+  end
+end
+
+class Bar
+  include Foo
+end
+
+Bar.foo # =&amp;gt; &amp;quot;classy&amp;quot;
+Bar.new.foo # =&amp;gt; &amp;quot;instancy&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While the syntax for including Foo in Bar is nice and succinct, the definition of Foo contains the funny looking "included" hook to also extend the base class.&lt;/p&gt;
+
+&lt;p&gt;If you happen to have ActiveSupport around, you can instead define Foo as follows while achieving the same result:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;module Foo
+  extend ActiveSupport::Concern
+
+  module ClassMethods
+    def foo
+      'classy'
+    end
+  end
+
+  def foo
+    'instancy'
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="http://api.rubyonrails.org/classes/ActiveSupport/Concern.html"&gt;The documentation&lt;/a&gt; explains the more convenient feature of Concern, which is module dependency. Using Concern, module dependencies are correctly loaded without the need for you to be concerned.&lt;/p&gt;
+
+&lt;h2&gt;DelegateClass&lt;/h2&gt;
+
+&lt;p&gt;In one of the projects I worked on, we were exporting data from a Rails app. We wanted access to the business logic of the models while not littering the application&amp;#39;s code with export related code. We decided to extend the models using DelegateClass (see &lt;a href="https://pivotallabs.com/users/jdean/blog/articles/1138-delegateclass-rocks-my-world"&gt;Jeff's blog post on DelegateClass&lt;/a&gt; as a starting point). And &lt;a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/delegate/rdoc/Object.html#method-i-DelegateClass"&gt;DelegateClass&lt;/a&gt; rocked our world, too.&lt;/p&gt;
+
+&lt;p&gt;A couple of things to note:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It turns out, that these days there is no need to manually ensure that id gets delegated. It works out of the box.&lt;/li&gt;
+&lt;li&gt;Class methods need manual delegation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here is a basic delegation example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require &amp;#39;delegate&amp;#39;
+
+class Foo
+  def to_s
+    &amp;quot;foo&amp;quot;
+  end
+end
+
+module Export
+  class Foo &amp;lt; DelegateClass(Foo)
+    def bar
+      &amp;quot;#{self} bar&amp;quot;
+    end
+  end
+end
+
+foo = Foo.new
+
+foo.to_s # =&amp;gt; &amp;quot;foo&amp;quot;
+
+Export::Foo.new(foo).to_s # =&amp;gt; &amp;quot;foo&amp;quot;
+Export::Foo.new(foo).bar # =&amp;gt; &amp;quot;foo bar&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When delegating ActiveRecord models with associations between them, the following pattern can be helpful to make sure you get the delegated classes when traversing relationships:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Post &amp;lt; ActiveRecord::Base
+  has_many :comments
+end
+
+class Comment &amp;lt; ActiveRecord::Base
+  belongs_to :post
+end
+
+module Export
+  class Post &amp;lt; DelegateClass(Post)
+    alias_method :original_comments, :comments
+    def comments
+      original_comments.map { |comment| Export::Comment.new(comment) }
+    end
+
+    #some methods for exporting
+  end
+end
+
+module Export
+  class Comment &amp;lt; DelegateClass(Comment)
+    alias_method :original_post, :post
+    def post
+      Export::Post.new(original_post)
+    end
+
+    #some more methods for exporting
+  end
+end
+
+original_post = Post.new(comments: [Comment.new])
+original_post.comments.first.class # =&amp;gt; Comment(...)
+post = Export::Post.new(original_post)
+post.comments.first.class # =&amp;gt; Export::Comment
+
+#Be aware!
+original_post == post # =&amp;gt; true
+original_post.class == post.class # =&amp;gt; false
+&lt;/code&gt;&lt;/pre&gt;</content><author><name>Stephan Hagemann</name></author><source gr:stream-id="feed/http://pivots.pivotallabs.com/blabs.rss"><id>tag:google.com,2005:reader/feed/http://pivots.pivotallabs.com/blabs.rss</id><title type="html">Pivotal Blabs</title><link rel="alternate" href="http://pivots.pivotallabs.com/blabs.rss" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1320985749879"><id gr:original-id="http://mgmt.smashingmagazine.com/?p=119045">tag:google.com,2005:reader/item/e9f8c2525107b326</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="UX Design" scheme="http://www.smashingmagazine.com"/><category term="Design" scheme="http://www.smashingmagazine.com"/><category term="interaction" scheme="http://www.smashingmagazine.com"/><category term="patterns" scheme="http://www.smashingmagazine.com"/><category term="usability" scheme="http://www.smashingmagazine.com"/><title type="html">Redesigning The Country Selector</title><published>2011-11-10T15:54:32Z</published><updated>2011-11-10T16:00:13Z</updated><link rel="alternate" href="http://www.smashingmagazine.com/2011/11/10/redesigning-the-country-selector-2/" type="text/html"/><link rel="replies" href="http://www.smashingmagazine.com/2011/11/10/redesigning-the-country-selector-2/#comments" type="text/html"/><link rel="replies" href="http://www.smashingmagazine.com/2011/11/10/redesigning-the-country-selector-2/feed/atom/" type="application/atom+xml"/><content xml:base="http://www.smashingmagazine.com/2011/11/10/redesigning-the-country-selector-2/" xml:lang="en" type="html">&lt;table width="650"&gt;
+&lt;tr&gt;
+&lt;td width="650"&gt;
+&lt;div style="width:650px"&gt;
+        &lt;img src="http://statisches.auslieferung.commindo-media-ressourcen.de/advertisement.gif" alt="" border="0"&gt;&lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=1"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=1" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;&lt;br&gt;
+         &lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=2"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=2" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;&lt;br&gt;
+         &lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=3"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=3" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;The country selector. It’s there when you create an account for a new Web service, check out of an e-commerce store or sign up for a conference. The normal design? A drop-down list with all of the available countries.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.amazon.com/"&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/selector_lg.jpg" alt="Typical country selector" title="Typical country selector" width="500" height="350"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;However, when conducting a large session of user testing on check-out usability (which &lt;a href="http://uxdesign.smashingmagazine.com/2011/04/06/fundamental-guidelines-of-e-commerce-checkout-design/"&gt;we wrote about&lt;/a&gt; here on Smashing Magazine back in April 2011), we consistently found usability issues with the massive country selector drop-downs. Jakob Nielsen reported similar issues as far back as &lt;a href="http://www.useit.com/alertbox/20001112.html"&gt;2000&lt;/a&gt; and &lt;a href="http://www.useit.com/alertbox/annoyances.html"&gt;2007&lt;/a&gt; when testing drop-downs with a large number of options, such as state and country lists.&lt;/p&gt;
+&lt;p&gt;So, this past summer we set out to &lt;strong&gt;redesign the country selector&lt;/strong&gt;. This article focuses on the four design iterations we went through before arriving at the solution (free jQuery plugin included).&lt;/p&gt;
+&lt;p&gt;First, let’s take a closer look at the usability problems of traditional drop-down country selectors.&lt;/p&gt;
+&lt;h3&gt;The Usability Issues&lt;/h3&gt;
+&lt;p&gt;Drop-downs cause usability issues when used for country and state selectors for several reasons. Here are six:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Lack of overview&lt;/strong&gt;&lt;br&gt;
+Seeing more than 20 uncategorized options can be bewildering, and country drop-downs often offer hundreds of options (according to ISO 3166, there are 249 countries).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Unclear sorting&lt;/strong&gt;&lt;br&gt;
+When shown a massive list, the first thing users do is figure out the sorting logic. But because country drop-downs often include the three to five most popular options at the top, the sorting logic is unclear at first glance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scrolling Issues&lt;/strong&gt;&lt;br&gt;
+Multiple problems are related to scrolling large drop-downs. If your mouse cursor is outside of the drop-down, you will most likely scroll down the entire page, hiding the drop-down options from the screen. In other browsers, however, the drop-down will actually scroll as long as it has focus, likely leaving you with erroneous data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Inconsistent UI&lt;/strong&gt;&lt;br&gt;
+The UI of drop-downs differs from browser to browser and OS to OS. The drop-down will not only look different, but will also work differently. For example, on a Mac, Safari forces you to hover on two arrows to scroll up and down, whereas Firefox provides a traditional scrollbar. Now grab your smartphone, and suddenly the UI has dramatically changed again.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack of context&lt;/strong&gt;&lt;br&gt;
+Mobile devices have very limited screen real estate, which means you have less page context when scrolling, and actually finding the option you’re looking for takes longer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Breaking the flow&lt;/strong&gt;&lt;br&gt;
+Nearly all users — even those who otherwise tab through forms — will use the mouse when interacting with a drop-down, thus slowing their progress.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;It All Adds Up&lt;/h4&gt;
+&lt;p&gt;These usability issues are all minor interruptions that don’t occur every single time someone interacts with a drop-down country selector. But they all add up, and together with other minor usability issues on your website, they will &lt;strong&gt;degrade the overall user experience&lt;/strong&gt; — ultimately leading to abandonments.&lt;/p&gt;
+&lt;p&gt;With this in mind, we set out to redesign the standard drop-down country selector. Below are the four design iterations we went through.&lt;/p&gt;
+&lt;h3&gt;Iteration 1: Typing Vs. Scrolling&lt;/h3&gt;
+&lt;p&gt;The easiest way to get rid of the hundreds of options and the issues related to scrolling is to simply replace the drop-down with a text field — letting the user type their country. This works only if the user knows what to type, because there would be no recognition effect (this would never work for shipping options because the user would have to guess the names of the options). But a country selector is a good candidate for a text field because it is fair to assume that every user knows the country they reside in.&lt;/p&gt;
+&lt;p&gt;Okay, so we’ve got a text field. While good for usability, it’s bad for the courier who has to deliver a product. The drop-down offered a limited number of options, whereas the text field offers infinite (the user can type whatever they want). In order to restrict the input to values (i.e. countries) that our back-end system can handle, the &lt;strong&gt;text field needs to auto-complete&lt;/strong&gt; and accept a restricted set of options. This will enable us to 100% accurately map the text-field input to the countries that our back-end system (and courier) recognize.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.google.com"&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/smashing_search.jpg" alt="Google Auto-complete" title="Google Auto-complete" width="500" height="350"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;Today, most Web users are familiar with auto-complete functionality. Google has used it for its search field since 2008 (and as an experimental feature &lt;a href="http://googleblog.blogspot.com/2004/12/ive-got-suggestion.html"&gt;since 2004&lt;/a&gt;).&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Iteration 2: Typos And Sequencing&lt;/h3&gt;
+&lt;p&gt;By replacing the drop-down with an auto-complete text field, we’ve introduced a new problem. While the user can be expected to know the name of their own country, they can’t be expected to know what our back end calls it. If the user lives in the US and &lt;strong&gt;makes an omission&lt;/strong&gt;, such as “nited states,” or decides to type only part of the name, such as  “America” (instead of “United States of America”), then no correct results would appear:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.apple.com/"&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/11/apple.jpg" alt="Apple Email Subscription" title="Apple Email Subscription" width="500" height="350"&gt;&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;&lt;a href="http://www.apple.com/"&gt;Apple&lt;/a&gt;’s country auto-complete field requires you to spell the name 100% correctly and in the right sequence.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This is because a typical auto-complete field will be looking for values that are not only spelled correctly, but typed in the right sequence.&lt;/p&gt;
+&lt;p&gt;Numerous Web services — and especially e-commerce stores — are geographically restricted, and international users are well aware of this. Even big websites such as Amazon, Hulu and Spotify have serious geographical limitations on some or all of their services. While someone from the US will probably expect their country to be supported, an international user who cannot find their country might abandon your website before detecting their typo.&lt;/p&gt;
+&lt;p&gt;In short, the country selector has to account for omissions and sequencing. We achieve this by simply enabling loose partial matching:&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/nited-america.png" alt="" title="The matching results when typing &amp;#39;nited america&amp;#39; into the redesigned country selector" width="266" height="97"&gt;&lt;/p&gt;
+&lt;h3&gt;Iteration 3: When The Netherlands Isn’t Called “The Netherlands”&lt;/h3&gt;
+&lt;p&gt;We’ve now taken care of typos and sequencing, but there’s yet another problem. Some country names have multiple widely accepted spellings; for example, the Netherlands is sometimes referred to as Holland. Geographically, they are the same, but the average person &lt;a href="http://en.wikipedia.org/wiki/Netherlands_(terminology)#Holland"&gt;would say that they vacationed in “Holland,”&lt;/a&gt; whereas the Dutch themselves would typically spell it “Nederland.”&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/holland.png" alt="" title="A normal auto-complete field dosen&amp;#39;t allow common alternate spellings" width="409" height="121"&gt;&lt;/p&gt;
+&lt;p&gt;When we require the user to type a country name, we must &lt;strong&gt;consider all common spellings&lt;/strong&gt;. This includes synonyms, local spellings, common abbreviations and country codes. A typical auto-complete (and drop-down as well) would fail when charged with all of these spellings, such as mapping USA to United States, or Schweiz, Suisse, Svizzera and Svizra to Switzerland, or DE to Germany.&lt;/p&gt;
+&lt;p&gt;From a usability point of view, this is unacceptable because these are common spellings, and people will often type them into auto-complete fields.&lt;/p&gt;
+&lt;p&gt;In our redesigned country selector, we’ve added the possibility to map multiple words to a given value:&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/holland-correct.png" alt="" title="The matching results when typing &amp;#39;Holland&amp;#39; into the redesigned country selector" width="270" height="111"&gt;&lt;/p&gt;
+&lt;h3&gt;Iteration 4: When “United States” Is More Common Than “United Arab Emirates”&lt;/h3&gt;
+&lt;p&gt;Typing “United” into the auto-complete country selector on Apple’s website gives you the following list:&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/united.png" alt="" title="" width="366" height="150"&gt;&lt;/p&gt;
+&lt;p&gt;This list is simply sorted alphabetically. But because we don’t have to scroll through a long list anymore, there’s little reason to sort the list alphabetically. A more &lt;strong&gt;natural sorting order would be by popularity&lt;/strong&gt;. Apple might want to prioritize United States, followed by United Kingdom and United Arab Emirates. Whereas a British newspaper may want to put United Kingdom first.&lt;/p&gt;
+&lt;p&gt;To accommodate for this, all values (countries) could be given a weight. By default, all would be equal, and then each website could then apply their own weighting for their most popular countries:&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/united-correct.png" alt="" title="" width="270" height="216"&gt;&lt;/p&gt;
+&lt;h3&gt;Solution: The Redesigned Country Selector&lt;/h3&gt;
+&lt;p&gt;The solution is a redesigned country selector that addresses the issues of drop-down country selectors. It handles typos, various spelling sequences, synonyms and prioritized options.&lt;/p&gt;
+&lt;p&gt;The technically correct term for this would be something like an “auto-complete text field with loose partial matching, synonyms and weighted results.” That’s a bit long, so I’ve simply dubbed it the “Redesigned Country Selector” — you can &lt;strong&gt;&lt;a href="http://baymard.com/labs/country-selector"&gt;try the demo here&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;For those of you who own or work on a website with a country selector, &lt;strong&gt;I’ve decided to open-source the code&lt;/strong&gt;. It is a simple jQuery plugin for the progressive enhancement of drop-down menus (i.e. your current country drop-down), turning them into advanced auto-complete fields in modern browsers. It comes with &lt;a href="http://baymard.com/labs/country-selector"&gt;instructions and an FAQ&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(al)&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;small&gt;© Christian Holst for &lt;a href="http://www.smashingmagazine.com"&gt;Smashing Magazine&lt;/a&gt;, 2011.&lt;/small&gt;&lt;/p&gt;</content><author><name>Christian Holst</name></author><gr:likingUser>01463041917288618622</gr:likingUser><gr:likingUser>17993345600920765704</gr:likingUser><gr:likingUser>12402847538193095227</gr:likingUser><gr:likingUser>14533616225438586365</gr:likingUser><gr:likingUser>02322965499124862410</gr:likingUser><gr:likingUser>14905960142089718438</gr:likingUser><gr:likingUser>15718843520886200970</gr:likingUser><gr:likingUser>07495383078123622354</gr:likingUser><gr:likingUser>16634145521154353739</gr:likingUser><gr:likingUser>06954085623300168668</gr:likingUser><gr:likingUser>15946892436736114965</gr:likingUser><source gr:stream-id="feed/http://rss1.smashingmagazine.com/feed/"><id>tag:google.com,2005:reader/feed/http://rss1.smashingmagazine.com/feed/</id><title type="html">Smashing Magazine Feed</title><link rel="alternate" href="http://www.smashingmagazine.com/" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1320985639137"><id gr:original-id="http://pivotallabs.com/users/seanb/blog/articles/1921-new-tech-talk-hadoop-for-rubyists">tag:google.com,2005:reader/item/d583481d33be4a74</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><title type="html">New Tech Talk: Hadoop for Rubyists</title><published>2011-11-09T20:08:00Z</published><updated>2011-11-09T20:08:00Z</updated><link rel="alternate" href="http://pivotallabs.com/users/seanb/blog/articles/1921-new-tech-talk-hadoop-for-rubyists" type="text/html"/><content xml:base="http://pivots.pivotallabs.com/blabs.rss" type="html">&lt;p&gt;Is your MySQL database groaning under the weight of too much data? Are you tired of waiting for analytics rake tasks in Rails that take hours to run? Loren Siebert discusses how you can &lt;a href="http://pivotallabs.com/talks/150-hadoop-for-rubyists"&gt;leverage your existing Ruby codebase by building Hadoop Map/Reduce jobs using Hive&lt;/a&gt; and plugging in your own custom Ruby mappers/reducers. This is good for Rubyists who want to apply what they know to Hadoop, and good for Hadoop users who don't want to build MapReduce functionality in Java.&lt;/p&gt;
+
+&lt;p&gt;See all our talks at &lt;a href="http://pivotallabs.com/talks"&gt;http://pivotallabs.com/talks&lt;/a&gt;&lt;/p&gt;</content><author><name>Sean Beckett</name></author><source gr:stream-id="feed/http://pivots.pivotallabs.com/blabs.rss"><id>tag:google.com,2005:reader/feed/http://pivots.pivotallabs.com/blabs.rss</id><title type="html">Pivotal Blabs</title><link rel="alternate" href="http://pivots.pivotallabs.com/blabs.rss" type="text/html"/></source></entry><entry gr:crawl-timestamp-msec="1320985509899"><id gr:original-id="http://mgmt.smashingmagazine.com/?p=116434">tag:google.com,2005:reader/item/1637327d6b8dd048</id><category term="user/03238720318766311921/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/><category term="user/03238720318766311921/state/com.google/starred" scheme="http://www.google.com/reader/" label="starred"/><category term="user/03238720318766311921/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/><category term="Design" scheme="http://www.smashingmagazine.com"/><category term="Photoshop" scheme="http://www.smashingmagazine.com"/><title type="html">Establishing Your Grid In Photoshop</title><published>2011-11-09T12:49:42Z</published><updated>2011-11-09T12:50:25Z</updated><link rel="alternate" href="http://www.smashingmagazine.com/2011/11/09/establishing-your-grid-in-photoshop/" type="text/html"/><link rel="replies" href="http://www.smashingmagazine.com/2011/11/09/establishing-your-grid-in-photoshop/#comments" type="text/html"/><link rel="replies" href="http://www.smashingmagazine.com/2011/11/09/establishing-your-grid-in-photoshop/feed/atom/" type="application/atom+xml"/><link rel="enclosure" href="http://av.adobe.com/russellbrown/GuideGuide_SM.mov" type="video/quicktime" length="6008200"/><content xml:base="http://www.smashingmagazine.com/2011/11/09/establishing-your-grid-in-photoshop/" xml:lang="en" type="html">&lt;table width="650"&gt;
+&lt;tr&gt;
+&lt;td width="650"&gt;
+&lt;div style="width:650px"&gt;
+        &lt;img src="http://statisches.auslieferung.commindo-media-ressourcen.de/advertisement.gif" alt="" border="0"&gt;&lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=1"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=1" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;&lt;br&gt;
+         &lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=2"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=2" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;&lt;br&gt;
+         &lt;br&gt;
+        &lt;a href="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=target&amp;amp;collection=smashing-rss&amp;amp;position=3"&gt;&lt;br&gt;
+          &lt;img src="http://auslieferung.commindo-media-ressourcen.de/random.php?mode=image&amp;amp;collection=smashing-rss&amp;amp;position=3" border="0" alt=""&gt;&lt;br&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;Creating a grid is typically one of the very first things you do when starting a design comp. After all, it provides the basic structure on which the rest of your design will lie. In this article, we’ll provide two different methods for efficiently establishing a grid. These methods enable you to quickly and smartly form a grid so that you can spend more time designing.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/smashing-title-slide1.jpg" alt="Establishing Your Grid in Photoshop" width="500" height="320"&gt;&lt;/p&gt;
+&lt;h3&gt;Method 1&lt;/h3&gt;
+&lt;p&gt;The first method uses &lt;a title="GuideGuide" href="http://www.cameronmcefee.com/guideguide/"&gt;GuideGuide&lt;/a&gt; by &lt;a title="Cameron McEfee" href="http://www.cameronmcefee.com/"&gt;Cameron McEfee&lt;/a&gt; to set up vertical columns. This Photoshop plugin is said to be in beta, but from my experience with it everything works perfectly well, and there is even &lt;a title="GuideGuide 2" href="http://www.cameronmcefee.com/baseline-grid-with-guideguide/"&gt;talk of the release of GuideGuide 2&lt;/a&gt;, which will include more features. Instructions on installing it can be found on the &lt;a title="GuideGuide" href="http://www.cameronmcefee.com/guideguide/"&gt;GuideGuide page&lt;/a&gt;. There is also a &lt;a href="http://av.adobe.com/russellbrown/GuideGuide_SM.mov"&gt;video tutorial&lt;/a&gt; on using it that was put together by Russell Brown at Adobe.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/guide-guide.jpg" alt="GuideGuide"&gt;&lt;/p&gt;
+&lt;h4&gt;Set Up Your Grid in 5 Seconds&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Determine the margins, number of columns and gutter widths. Then click “Create Guides.”&lt;/li&gt;
+&lt;li&gt;If the canvas for your design comp is wide, do the quick math so that the margin lengths allow for the grid to be constrained to your 960 pixels. For example, if the canvas is 1200 pixels wide, then the left and right margins would be 120 pixels each.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/guideguide-overview-setup.jpg" alt="GuideGuide example"&gt;&lt;br&gt;
+&lt;em&gt;An example of 12 columns with 20-pixel gutters and margins set to 120 pixels.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;You can also set a baseline grid this way, but you’d end up with a lot of guides. A better option might be the method featured on a &lt;a title="Extensible Baseline Grids" href="http://methodandcraft.com/videos/extensible-baseline-grids/"&gt;Method &amp;amp; Craft video&lt;/a&gt; by Mike Precious…&lt;/p&gt;
+&lt;h4&gt;Method &amp;amp; Craft’s Extensible Baseline Grid&lt;/h4&gt;
+&lt;p&gt;Here is a brief summary of the steps for setting up an extensible baseline grid.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Establish the grid’s baseline value, then create your pattern template. The baseline grid is determined by the leading (or line height) of the body text. For example, if the main body copy of your design is set in 13-point Helvetica, with the leading at 18 points, then you would set up an 18-pixel baseline grid.&lt;/li&gt;
+&lt;li&gt;Create a Photoshop file that is the height of your baseline grid, fill the bottom pixel, and leave the remaining pixels transparent. In this case, the dimensions of your canvas would be 1-pixel wide and 18-pixels tall.&lt;/li&gt;
+&lt;li&gt;“Select All,” and then save this as a new pattern. You can do this by going to Edit → Define Pattern…&lt;br&gt;
+&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/baseline-grid1.jpg" alt="Baseline Grid"&gt;&lt;/li&gt;
+&lt;li&gt;Go to Adjustment Layer → Pattern, and select your newly created grid pattern.&lt;br&gt;
+&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/baseline-grid2.jpg" alt="Baseline Grid"&gt;&lt;/li&gt;
+&lt;li&gt;Adjust the opacity as desired.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/method-1.jpg" alt="Method #1"&gt;&lt;br&gt;
+&lt;em&gt;An example of method 1 with the columns and baseline grid together.&lt;/em&gt;&lt;/p&gt;
+&lt;h4&gt;Advantages&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;You get an optional baseline grid, which you can use independent of the vertical column grid. A baseline grid can create visual clutter when laid over top a design comp. With this method, it can just be toggled on when needed.&lt;/li&gt;
+&lt;li&gt;If you prefer to use guides for your grid, this is the better solution.&lt;/li&gt;
+&lt;li&gt;You can hide and show the grid through an easy shortcut.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Drawbacks&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Using vertical guides to mark other elements in the document can be difficult because you might confuse them with the grid.&lt;/li&gt;
+&lt;li&gt;Compared to method 2, your options for the grid are not as specific or comprehensive (such as setting the height of the horizontal module).&lt;/li&gt;
+&lt;li&gt;Grid lines are determined mathematically and won’t necessarily align with the pixel grid. This means that your guides could in some cases fall unevenly and end up being positioned down the middle of the actual pixels.&lt;/li&gt;
+&lt;li&gt;This method requires two separate processes to create a vertical and baseline grid, compared to just the one method coming up.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Method 2&lt;/h3&gt;
+&lt;p&gt;&lt;a title="Modular Grid Pattern" href="http://modulargrid.org/"&gt;Modular Grid Pattern&lt;/a&gt; is an all-in-one grid solution. The tool creates a vertical columnar grid and a baseline grid all as one pattern. There are two ways to go about using Modular Grid Pattern:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Application Panel&lt;/strong&gt;&lt;br&gt;
+In addition to Photoshop, this also works with Fireworks, GIMP and Microsoft Expression Design. Please note that you must have the latest software (Adobe CS5 or the equivalent of one of the other applications) and an Internet connection for this panel to work. That being said, if you have already created a pattern and saved it in your library, then you would be able to access it without needing anything else.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/modular-grid-ps.jpg" alt="Modular Grid Pattern Extension"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Web app&lt;/strong&gt;&lt;br&gt;
+This works in Chrome, Firefox, Safari and Opera. The Web app enables you to create a grid pattern and download it straight from the browser in all formats.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://media.smashingmagazine.com/wp-content/uploads/2011/10/modular-grid-web.jpg" alt="Modular Grid Pattern"&gt;&lt;/p&gt;
+&lt;p&gt;Whichever way you choose, just pick a module width, gutter width and baseline number, and Modular Grid Pattern does the rest. You can also specify a height for the horizontal module.&lt;/p&gt;
+&lt;h4&gt;Advantages&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;This is a fast way to get it all; an all-in-one layer.&lt;/li&gt;
+&lt;li&gt;You have the option to download a Photoshop pattern file, PNG or transparency mask.&lt;/li&gt;
+&lt;li&gt;You can label the patterns and put them in a folder so that you can come back to the grid with virtually no set-up required at all.&lt;/li&gt;
+&lt;li&gt;Frees your guide to be used for other purposes.&lt;/li&gt;
+&lt;li&gt;You can specify a height for the vertical module to establish an overall vertical rhythm.&lt;/li&gt;
+&lt;li&gt;The grid can be overlaid with varying degrees of opacity, so you can make it less distracting as you are designing.&lt;/li&gt;
+&lt;li&gt;Supports applications other than Photoshop.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Drawbacks&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;If your canvas is wide, then making the grid a pattern will make it extend across the entire page, which could be annoying and make it harder to see the boundaries of the content. This can be fixed in a couple of ways:
+&lt;ol&gt;
+&lt;li&gt;Apply a layer mask to constrain the grid to just the main content area.&lt;/li&gt;
+&lt;li&gt;Draw a rectangle the size of the main content area (for example, 960 × 1200 pixels), and apply the grid as a layer style, with the fill set to 0% in this case.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;This method forces you to choose a baseline grid, preventing you from just creating vertical columnar modules.&lt;/li&gt;
+&lt;li&gt;It requires you to manually hide and show the grid layer, without the benefit of a keyboard shortcut.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Concluding Thoughts&lt;/h3&gt;
+&lt;p&gt;We hope these methods will increase your efficiency and precision in establishing a grid. In the end, the way you set up the grid will depend on your workflow. Evaluate your needs, then choose the method best suited to them. Either method requires minimal set-up but can save much time and frustration.&lt;/p&gt;
+&lt;h4&gt;Additional Resources&lt;/h4&gt;
+&lt;p&gt;If neither method interests you, quite a few templates out there would also do the job. I recommend checking out Mindy Wagner’s &lt;a href="http://www.viget.com/inspire/free-psd-design-templates/" title="Design For Efficiency: Photoshop Techniques &amp;amp; Templates"&gt;layout template&lt;/a&gt; and Robbie Manson’s &lt;a href="http://www.robbiemanson.com/resources/960px-grid-templates/" title="960px Grid Templates"&gt;960-pixel grid templates&lt;/a&gt;. Also, &lt;a href="http://www.thegridsystem.org/" title="The Grid System"&gt;The Grid System&lt;/a&gt; links to a number of quality resources and tools.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(al)&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;small&gt;© Steve Schoeffel for &lt;a href="http://www.smashingmagazine.com"&gt;Smashing Magazine&lt;/a&gt;, 2011.&lt;/small&gt;&lt;/p&gt;</content><author><name>Steve Schoeffel</name></author><gr:likingUser>08444551714908603200</gr:likingUser><gr:likingUser>17023294351276712260</gr:likingUser><gr:likingUser>08199551657915922947</gr:likingUser><gr:likingUser>09224272190585328767</gr:likingUser><gr:likingUser>08961547350660358315</gr:likingUser><gr:likingUser>13372506526219131801</gr:likingUser><gr:likingUser>17704657613516415218</gr:likingUser><gr:likingUser>00098612839404937973</gr:likingUser><gr:likingUser>00415074154784910807</gr:likingUser><gr:likingUser>03696123229899474994</gr:likingUser><gr:likingUser>16708209639478756071</gr:likingUser><gr:likingUser>11709962433646333978</gr:likingUser><gr:likingUser>16634145521154353739</gr:likingUser><gr:likingUser>17634544236601895154</gr:likingUser><source gr:stream-id="feed/http://rss1.smashingmagazine.com/feed/"><id>tag:google.com,2005:reader/feed/http://rss1.smashingmagazine.com/feed/</id><title type="html">Smashing Magazine Feed</title><link rel="alternate" href="http://www.smashingmagazine.com/" type="text/html"/></source></entry></feed>
