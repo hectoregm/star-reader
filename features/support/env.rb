@@ -8,6 +8,7 @@ require 'capybara/cucumber'
 
 Capybara.app = Star
 Capybara.javascript_driver = :webkit
+Capybara.default_wait_time = 10
 
 class StarWorld
   include Capybara::DSL

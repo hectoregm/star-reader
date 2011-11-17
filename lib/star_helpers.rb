@@ -4,6 +4,14 @@ module Sinatra
 
   module StarHelpers
 
+    def json_status(code, reason)
+      status code
+      {
+        :status => code,
+        :reason => reason
+      }.to_json
+    end
+
     def first_login(user)
       load_all_tweets
       load_all_entries(greader_login(settings.glogin))

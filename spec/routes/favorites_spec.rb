@@ -6,10 +6,16 @@ describe Star do
     Star
   end
 
-  describe "GET /" do
+  describe "GET /favorites" do
+
+    it 'should flag as active the Main tab section' do
+      get '/favorites'
+      last_response.should be_ok
+      last_response.body.should have_selector('#main.active')
+    end
 
     it 'should render the star stream' do
-      get '/'
+      get '/favorites'
       last_response.should be_ok
       last_response.body.should have_selector('.star-container .star-stream')
       last_response.body.should have_selector('.star-item[data-source="twitter"]')

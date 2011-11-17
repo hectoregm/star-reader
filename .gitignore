@@ -5,3 +5,4 @@ features_report.html
 .rvmrc
 tmp
 coverage
+.jhw-cache

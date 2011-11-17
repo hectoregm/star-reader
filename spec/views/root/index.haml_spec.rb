@@ -4,21 +4,8 @@ describe "/index.haml", :type => :views do
 
   before :each do
     @favorites = []
-    @favorites << Favorite.new(source: 'greader',
-                               source_id: 'foo',
-                               image_url: "/images/greader.png",
-                               author: 'hectoregm',
-                               author_url: 'hectoregm.com',
-                               title: 'New Post',
-                               content: 'Blah blah Blah',
-                               ocreated_at: Time.now)
-    @favorites << Favorite.new(source: 'twitter',
-                               source_id: 'bar',
-                               image_url: "/images/twitter.png",
-                               author: 'barman',
-                               author_url: 'bar.com',
-                               content: 'Tweet Tweet',
-                               ocreated_at: Time.now)
+    @favorites << greader_fav
+    @favorites << twitter_fav
     assigns[:favorites] = @favorites
     render('/views/index.haml')
   end
@@ -46,7 +33,7 @@ describe "/index.haml", :type => :views do
     end
 
     it 'has an archive action' do
-      response.should have_selector('.star-item .star-action.archive')
+      response.should have_selector('.star-item .star-action[data-action=archive]')
     end
 
     it 'has a data-source attribute' do

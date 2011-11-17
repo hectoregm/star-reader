@@ -27,6 +27,31 @@ body {
     }
 }
 
+.span11{
+  margin: 0;
+}
+
+.span5{
+  width: 300px;
+}
+
+.tabs{
+  margin: 0 0 0 10px;
+}
+
+.star-empty {
+  font-size: 18px;
+  padding: 20px;
+}
+
+.star-container {
+  margin-top: 10px;
+
+  .star-stream {
+    clear: both;
+  }
+}
+
 .star-item {
   border-bottom:  1px solid #EBEBEB;
   border-top: 1px solid transparent;
@@ -55,47 +80,39 @@ body {
     float: left;
     height: 48px;
   }
+}
 
-  .star-content {
-    margin-left: 68px;
-    min-height: 60px;
+.star-content {
+  margin-left: 68px;
+  min-height: 60px;
 
-    .star-author {
-      font-weight: bold;
-      margin-bottom: 4px;
+  .star-author {
+    font-weight: bold;
+    margin-bottom: 4px;
 
-      a {
-        color: #404040;
-      }
-    }
-
-    .star-text {
-      line-height: 19px;
-      margin-bottom: 5px;
-    }
-
-    .star-timestamp {
-      font-size: 12px;
-      line-height: 16px;
-      color: #999;
-    }
-      
-    .star-actions {
-      font-size: 12px;
-      line-height: 12px;
-      margin-left: 20px;
-
-      .star-action a span img {
-        vertical-align: bottom;
-      }
+    a {
+      color: #404040;
     }
   }
-}
 
-.span11{
-  margin: 0;
-}
+  .star-text {
+    line-height: 19px;
+    margin-bottom: 5px;
+  }
 
-.span5{
-  width: 300px;
+  .star-timestamp {
+    font-size: 12px;
+    line-height: 16px;
+    color: #999;
+  }
+
+  .star-actions {
+    font-size: 12px;
+    line-height: 12px;
+    margin-left: 20px;
+
+    .star-action a span img {
+      vertical-align: bottom;
+    }
+  }
 }

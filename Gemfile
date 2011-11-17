@@ -25,4 +25,6 @@ group :test do
   gem "autotest"
   gem "autotest-growl"
   gem "fakeweb"
+  gem 'jasmine'
+  gem 'jasmine-headless-webkit'
 end

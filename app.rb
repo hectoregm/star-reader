@@ -13,7 +13,7 @@ class Star < Sinatra::Base
     AppConfig = YAML.load_file('config.yml')
     set :haml, { :format => :html5 }
     set :glogin, { email: AppConfig["greader"]["email"],
-                   password: AppConfig["greader"]["password"] }
+      password: AppConfig["greader"]["password"] }
 
     Twitter.configure do |config|
       twitter_conf = AppConfig["twitter"]
@@ -37,6 +37,10 @@ class Star < Sinatra::Base
     set :logging, true
     Mongoid.logger = Logger.new($stdout)
     User.create!(username: "hector") unless User.exists?(conditions: { username: "hector" })
+
+    # ruby-debug config
+    Debugger.settings[:reload_source_on_change] = true
+    Debugger.start_remote
   end
 
   configure :test do
@@ -47,17 +51,58 @@ class Star < Sinatra::Base
     User.create!(username: "hector") unless User.exists?(conditions: { username: "hector" })
   end
 
-  before '/' do
+  before %r{^(/favorites|/archive)$} do
     @user = User.find("hector")
+    @rate_limit = rate_limit
+    @page_title = "#{@user.username}'s Favorites"
+  end
+
+  before '/favorites' do
     first_login(@user) if @user.first_login?
     refresh_favorites unless @user.first_login?
-    @rate_limit = rate_limit
   end
 
   get '/' do
-    @page_title = "#{@user.username}'s Favorites"
-    @favorites = Favorite.all.order_by([[:ocreated_at, :desc]])
+    redirect to('/favorites')
+  end
+
+  get '/favorites' do
+    @favorites = Favorite.all(conditions: { archived: false }).order_by([[:ocreated_at, :desc]])
     haml :index
+  end
+
+  get '/archive' do
+    @archive = true
+    @favorites = Favorite.all(conditions: { archived: true }).order_by([[:ocreated_at, :desc]])
+    haml :index
+  end
+
+  post '/favorites/:id/archive' do
+    content_type :json
+    begin
+      fav = Favorite.find(params[:id])
+      fav.archived = true
+      if fav.save!
+        status 200
+        fav.to_json
+      end
+    rescue
+      json_status 404, "Not Found"
+    end
+  end
+
+  delete '/favorites/:id/archive' do
+    content_type :json
+    begin
+      fav = Favorite.find(params[:id])
+      fav.archived = false
+      if fav.save!
+        status 200
+        fav.to_json
+      end
+    rescue
+      json_status 404, "Not Found"
+    end
   end
 
   get '/stylesheets/star.css' do

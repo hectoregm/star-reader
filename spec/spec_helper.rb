@@ -90,11 +90,35 @@ module ViewHelpers
   end
 end
 
+module StarFactory
+  def twitter_fav
+    Favorite.new(source: 'twitter',
+                 source_id: '48324230',
+                 image_url: "/images/twitter.png",
+                 author: 'hectoregm',
+                 author_url: 'hectoregm.com',
+                 content: 'Tweet Tweet',
+                 ocreated_at: Time.now)
+  end
+  def greader_fav
+    Favorite.new(source: 'greader',
+                 source_id: 'Smashing123123',
+                 image_url: "/images/greader.png",
+                 author: 'Smashing Magazine',
+                 author_url: 'smashmag.com',
+                 title: 'Super Duper Design Tips',
+                 content: 'Tip 1: Blah Blah',
+                 ocreated_at: Time.now)
+  end
+end
+
 Capybara.app = Star
+Capybara.javascript_driver = :webkit
 
 RSpec.configure do |c|
   c.include Rack::Test::Methods
   c.include Capybara::RSpecMatchers
+  c.include StarFactory
   c.include ViewHelpers, :type => :views
   c.include Sinatra::StarHelpers, :type => :views
 
