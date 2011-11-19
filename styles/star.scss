@@ -1,9 +1,5 @@
-
-html, body {
-  background-color: #eee;
-}
-
 body {
+  background-color: #eee;
   padding-top: 40px;
   font-family: 'Open Sans';
 
@@ -13,7 +9,6 @@ body {
       margin: -20px -20px 0px;
     }
 
-      /* The white background content wrapper */
     .content {
       background-color: #fff;
       padding: 20px;
@@ -27,8 +22,13 @@ body {
     }
 }
 
-.span11{
+.row > .star-container {
   margin: 0;
+  margin-top: 10px;
+
+  .star-stream {
+    clear: both;
+  }
 }
 
 .span5{
@@ -42,14 +42,6 @@ body {
 .star-empty {
   font-size: 18px;
   padding: 20px;
-}
-
-.star-container {
-  margin-top: 10px;
-
-  .star-stream {
-    clear: both;
-  }
 }
 
 .star-item {
