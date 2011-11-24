@@ -5,7 +5,7 @@ Autotest.add_hook(:initialize) do |at|
   at.clear_exceptions
   at.clear_mappings
 
-  ['.autotest', '.git', 'Gemfile.lock'].each do |exception|
+  ['.autotest', '.git', 'Gemfile.lock', 'coverage'].each do |exception|
     at.add_exception(exception)
   end
 
