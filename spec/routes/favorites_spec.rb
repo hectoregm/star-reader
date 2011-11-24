@@ -22,6 +22,12 @@ describe Star do
       last_response.body.should have_selector('.star-item[data-source="greader"]')
     end
 
+    it 'should show up to 20 favorites per page' do
+      get '/favorites'
+      last_response.should be_ok
+      last_response.body.should have_css('.star-item', count: 20)
+    end
+
   end
 
 end

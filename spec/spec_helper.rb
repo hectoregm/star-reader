@@ -6,6 +6,8 @@ require File.expand_path(File.join(File.dirname(__FILE__), '../app'))
 require 'rack/test'
 require 'capybara/rspec'
 require 'singleton'
+require 'active_support/core_ext'
+
 
 set :environment, :test
 
@@ -109,6 +111,18 @@ module StarFactory
                  title: 'Super Duper Design Tips',
                  content: 'Tip 1: Blah Blah',
                  ocreated_at: Time.now)
+  end
+  def create_favorites(n)
+    n.times do |i|
+      Favorite.create!(source: 'greader',
+                   source_id: 'Smashing' + i.to_s,
+                   image_url: "/images/greader.png",
+                   author: 'Smashing Magazine',
+                   author_url: 'smashmag.com',
+                   title: 'Super Duper Design Tips',
+                   content: 'Tip 1: Blah Blah',
+                   ocreated_at: Time.now + i.days)
+    end
   end
 end
 

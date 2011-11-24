@@ -67,13 +67,14 @@ class Star < Sinatra::Base
   end
 
   get '/favorites' do
-    @favorites = Favorite.all(conditions: { archived: false }).order_by([[:ocreated_at, :desc]])
+    page = params[:page] || 1
+    @favorites = Favorite.unarchived.page(page)
     haml :index
   end
 
   get '/archive' do
     @archive = true
-    @favorites = Favorite.all(conditions: { archived: true }).order_by([[:ocreated_at, :desc]])
+    @favorites = Favorite.archived
     haml :index
   end
 

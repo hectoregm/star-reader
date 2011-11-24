@@ -20,4 +20,19 @@ class Favorite
   validates_presence_of :title,  :if => lambda { |o| o.source != 'twitter' }
   validates_inclusion_of :source, in: SOURCES, message: 'is an invalid source'
   validates_uniqueness_of :source_id, scope: :source
- end
+
+  default_scope order_by([[:ocreated_at, :desc]])
+  scope :archived, where(archived: true)
+  scope :unarchived, where(archived: false)
+  scope :page, ->(page) { skip((page - 1) * per_page).limit(per_page) }
+
+  class << self
+    def per_page
+      @per_page ||= 20
+    end
+
+    def per_page=(value)
+      @per_page = value
+    end
+  end
+end

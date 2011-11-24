@@ -162,4 +162,69 @@ describe Favorite do
 
   end
 
+  describe 'pagination' do
+
+    describe '.per_page' do
+
+      it 'returns the number of favs per page. Default is 20' do
+        Favorite.per_page.should == 20
+      end
+
+    end
+
+    describe '#page' do
+
+      before :each do
+        create_favorites(25)
+      end
+
+      it 'returns the favorites for the n page' do
+        Favorite.per_page = 10
+        Favorite.page(1).to_a.should have(10).items
+        Favorite.page(2).to_a.should have(10).items
+        Favorite.page(3).to_a.should have(5).items
+        Favorite.per_page = 20
+      end
+
+    end
+
+  end
+
+  describe 'default_scope' do
+
+    it 'should order results in desc order for ocreated_at' do
+      create_favorites(3)
+      fav_first, fav_second, fav_third = Favorite.all
+
+      fav_first.ocreated_at.should > fav_second.ocreated_at
+      fav_second.ocreated_at.should > fav_third.ocreated_at
+      fav_first.ocreated_at.should > fav_third.ocreated_at
+    end
+
+  end
+
+  describe 'archived' do
+
+    it 'scopes queries to favorites that are archived' do
+      create_favorites(3)
+      Favorite.archived.to_a.should be_empty
+      fav = Favorite.first
+      fav.update_attribute(:archived, true)
+      Favorite.archived.to_a.should have(1).items
+    end
+
+  end
+
+  describe 'unarchived' do
+
+    it 'scopes queries to non-archived favorites' do
+      create_favorites(3)
+      Favorite.unarchived.to_a.should have(3).items
+      fav = Favorite.first
+      fav.update_attribute(:archived, true)
+      Favorite.unarchived.to_a.should have(2).items
+    end
+
+  end
+
 end
