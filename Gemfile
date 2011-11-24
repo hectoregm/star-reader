@@ -2,7 +2,7 @@ source :rubygems
 
 gem 'rack'
 gem "sinatra"
-gem "twitter"
+gem 'twitter', '~> 1.7'
 gem "GoogleReaderApi", :require => "google_reader_api"
 gem "haml"
 gem "sass"
