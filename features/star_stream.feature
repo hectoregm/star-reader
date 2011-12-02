@@ -3,35 +3,35 @@ Feature: Star Stream
   I want to see my favorites
   So I can read all the good stuff
 
-Scenario: Displays the user favorites
+Scenario: Displays the user stars
   Given I am a star user
-  When I go to my favorites
-  Then I will see my favorites
+  When I go to my stars
+  Then I will see my stars
 
-Scenario: Displays a message when there are zero archived favorites
-  Given I am a star user login with zero archived favorites
+Scenario: Displays a message when there are zero archived stars
+  Given I am a star user login with zero archived stars
   When I go to the archive
-  Then I will see no archived favorites
+  Then I will see no archived stars
 
 @javascript
-Scenario: Archive a favorite
+Scenario: Archive a star
   Given I am a star user
-  And I go to my favorites
-  When I click Archive in a favorite
-  Then the favorite is removed from the stream
+  And I go to my stars
+  When I click Archive in a star
+  Then the star is removed from the stream
 
 @javascript
-Scenario: Unarchive an archived favorite
-  Given I am a star user with archived favorites
+Scenario: Unarchive an archived star
+  Given I am a star user with archived stars
   And I go to the archive
-  When I click Unarchive in an archived favorite
-  Then the favorite is removed from the stream
+  When I click Unarchive in an archived star
+  Then the star is removed from the stream
 
 @javascript
-Scenario: Archiving a favorite moves it to the Archive
+Scenario: Archiving a star moves it to the Archive
   Given I am a star user
-  And I go to my favorites
-  When I click Archive in a favorite
-  Then the favorite is removed from the stream
+  And I go to my stars
+  When I click Archive in a star
+  Then the star is removed from the stream
   And I go to the archive
-  Then that favorite is shown
+  Then that star is shown

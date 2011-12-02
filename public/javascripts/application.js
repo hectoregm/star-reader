@@ -5,7 +5,7 @@ var star = (function($) {
     $(content).on("click", ".star-action a", function() {
       var starItem = $(this).closest('.star-item');
       var starAction = $(this).closest('.star-action');
-      var url = '/favorites/' + starItem.data('id') + '/archive'
+      var url = '/stars/' + starItem.data('id') + '/archive'
 
       if (starAction.data('action') === 'archive') {
         var method = 'POST'

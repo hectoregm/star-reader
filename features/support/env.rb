@@ -6,7 +6,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), '../../app'))
 require 'capybara/cucumber'
 
 
-Capybara.app = Star
+Capybara.app = StarReader
 Capybara.javascript_driver = :webkit
 Capybara.default_wait_time = 10
 

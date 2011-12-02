@@ -32,7 +32,7 @@ describe Sinatra::StarHelpers do
         password: '@!*Adept189' }
     end
 
-    it "should load all favorites and update user." do
+    it "should load all stars and update user." do
       @helpers.should_receive(:load_all_tweets).once
       @helpers.should_receive(:load_all_entries).with(anything).once
       @user.should_receive(:first_login=).with(false)
@@ -40,15 +40,15 @@ describe Sinatra::StarHelpers do
       @helpers.first_login(@user)
     end
 
-    it "should save favorites" do
+    it "should save stars" do
       @helpers.first_login(@user)
-      Favorite.where(source: "twitter").count.should == 20
-      Favorite.where(source: "greader").count.should == 5
+      Star.where(source: "twitter").count.should == 20
+      Star.where(source: "greader").count.should == 5
     end
 
   end
 
-  describe '#refresh_favorites' do
+  describe '#refresh_stars' do
 
     before :each do
       @user = mock("User")
@@ -56,46 +56,46 @@ describe Sinatra::StarHelpers do
       @user.stub(:save!)
     end
 
-    it 'should update favorites from all sources' do
+    it 'should update stars from all sources' do
       @helpers.should_receive(:refresh_tweets).once
       @helpers.should_receive(:refresh_entries).with(anything).once
-      @helpers.refresh_favorites
+      @helpers.refresh_stars
     end
 
-    it 'should save favorites' do
-      @helpers.refresh_favorites
-      Favorite.where(source: "twitter").count.should == 20
-      Favorite.where(source: "greader").count.should == 15
+    it 'should save stars' do
+      @helpers.refresh_stars
+      Star.where(source: "twitter").count.should == 20
+      Star.where(source: "greader").count.should == 15
     end
 
-    context "favorites are up to date" do
+    context "stars are up to date" do
 
-      it 'should not change the amount of favorites' do
+      it 'should not change the amount of stars' do
         @helpers.first_login(@user)
-        Favorite.where(source: "twitter").count.should == 20
-        Favorite.where(source: "greader").count.should == 5
+        Star.where(source: "twitter").count.should == 20
+        Star.where(source: "greader").count.should == 5
 
-        @helpers.refresh_favorites
-        Favorite.where(source: "twitter").count.should == 40
-        Favorite.where(source: "greader").count.should == 15
+        @helpers.refresh_stars
+        Star.where(source: "twitter").count.should == 40
+        Star.where(source: "greader").count.should == 15
 
-        @helpers.refresh_favorites
-        Favorite.where(source: "twitter").count.should == 40
-        Favorite.where(source: "greader").count.should == 15
+        @helpers.refresh_stars
+        Star.where(source: "twitter").count.should == 40
+        Star.where(source: "greader").count.should == 15
       end
 
     end
 
-    context 'favorites are not up to date' do
+    context 'stars are not up to date' do
 
-      it 'should save new favorites' do
+      it 'should save new stars' do
         @helpers.first_login(@user)
-        Favorite.where(source: "twitter").count.should == 20
-        Favorite.where(source: "greader").count.should == 5
+        Star.where(source: "twitter").count.should == 20
+        Star.where(source: "greader").count.should == 5
 
-        @helpers.refresh_favorites
-        Favorite.where(source: "twitter").count.should == 40
-        Favorite.where(source: "greader").count.should == 15
+        @helpers.refresh_stars
+        Star.where(source: "twitter").count.should == 40
+        Star.where(source: "greader").count.should == 15
       end
     end
 
@@ -104,7 +104,7 @@ describe Sinatra::StarHelpers do
   describe '#link_author' do
 
     it 'should build a link to the author' do
-      @fav = mock('Favorite')
+      @fav = mock('Star')
       @fav.should_receive(:author_url).and_return('http://foo.com')
       @fav.should_receive(:author).and_return('fooman')
 

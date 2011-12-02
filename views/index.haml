@@ -9,9 +9,9 @@
           %a{ :href => "/archive" }
             Archive
     %section.star-stream
-      - if @archive && @favorites.empty?
-        .star-empty No archived favorites.
-      - @favorites.each do |fav|
+      - if @archive && @stars.empty?
+        .star-empty No archived stars.
+      - @stars.each do |fav|
         %article.star-item{ :"data-id" => "#{fav.id}", :"data-source" => "#{fav.source}"}
           .star-image
             %img{ :height => 48, :width => 48, :src => "#{fav.image_url}" }

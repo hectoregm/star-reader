@@ -3,10 +3,10 @@ require 'spec_helper'
 describe "/index.haml", :type => :views do
 
   before :each do
-    @favorites = []
-    @favorites << greader_fav
-    @favorites << twitter_fav
-    assigns[:favorites] = @favorites
+    @stars = []
+    @stars << greader_fav
+    @stars << twitter_fav
+    assigns[:stars] = @stars
     render('/views/index.haml')
   end
 

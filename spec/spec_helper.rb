@@ -94,7 +94,7 @@ end
 
 module StarFactory
   def twitter_fav
-    Favorite.new(source: 'twitter',
+    Star.new(source: 'twitter',
                  source_id: '48324230',
                  image_url: "/images/twitter.png",
                  author: 'hectoregm',
@@ -103,7 +103,7 @@ module StarFactory
                  ocreated_at: Time.now)
   end
   def greader_fav
-    Favorite.new(source: 'greader',
+    Star.new(source: 'greader',
                  source_id: 'Smashing123123',
                  image_url: "/images/greader.png",
                  author: 'Smashing Magazine',
@@ -112,9 +112,9 @@ module StarFactory
                  content: 'Tip 1: Blah Blah',
                  ocreated_at: Time.now)
   end
-  def create_favorites(n)
+  def create_stars(n)
     n.times do |i|
-      Favorite.create!(source: 'greader',
+      Star.create!(source: 'greader',
                    source_id: 'Smashing' + i.to_s,
                    image_url: "/images/greader.png",
                    author: 'Smashing Magazine',
@@ -126,7 +126,7 @@ module StarFactory
   end
 end
 
-Capybara.app = Star
+Capybara.app = StarReader
 Capybara.javascript_driver = :webkit
 
 RSpec.configure do |c|

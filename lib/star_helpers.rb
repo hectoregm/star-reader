@@ -19,7 +19,7 @@ module Sinatra
       user.save!
     end
 
-    def refresh_favorites
+    def refresh_stars
       refresh_tweets
       refresh_entries(greader_login(settings.glogin))
     end
@@ -74,9 +74,9 @@ module Sinatra
                                    include_entities: true)
         break if tweets.empty?
         tweets.each do |t|
-          next if Favorite.exists?(conditions: { source_id: t.id })
+          next if Star.exists?(conditions: { source_id: t.id })
           author = t.user.screen_name
-          Favorite.create!(source: 'twitter',
+          Star.create!(source: 'twitter',
                            source_id: t.id,
                            image_url: t.user.profile_image_url,
                            author: author,
@@ -94,10 +94,10 @@ module Sinatra
       entries = greader_starred_items(user)[0]
       entries.each do |e|
         id = e.id.content
-        next if Favorite.exists?(conditions: { source_id: id })
+        next if Star.exists?(conditions: { source_id: id })
         content =  e.content ? e.content.content : e.summary.content
         title = build_link(e.link.href, e.title.content)
-        Favorite.create!(source: 'greader',
+        Star.create!(source: 'greader',
                          source_id: id,
                          image_url: "/images/greader.png",
                          author: e.source.title.content,
@@ -116,9 +116,9 @@ module Sinatra
         break if tweets.empty?
 
         tweets.each do |t|
-          return if Favorite.exists?(conditions: { source_id: t.id })
+          return if Star.exists?(conditions: { source_id: t.id })
           author = t.user.screen_name
-          Favorite.create!(source: 'twitter',
+          Star.create!(source: 'twitter',
                            source_id: t.id,
                            image_url: t.user.profile_image_url,
                            author: author,
@@ -140,10 +140,10 @@ module Sinatra
                                                       { n: 5, c: continuation })
         entries.each do |e|
           id = e.id.content
-          return if Favorite.exists?(conditions: { source_id: id})
+          return if Star.exists?(conditions: { source_id: id})
           content = e.content ? e.content.content : e.summary.content
           title  = build_link(e.link.href, e.title.content)
-          Favorite.create!(source: 'greader',
+          Star.create!(source: 'greader',
                            source_id: id,
                            image_url: "/images/greader.png",
                            author: e.source.title.content,

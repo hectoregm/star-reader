@@ -17,12 +17,12 @@ describe("setupActions", function() {
     });
 
     describe("on success", function() {
-      it("archives target favorite", function() {
+      it("archives target star", function() {
         expect(request.method).toEqual('POST');
-        expect(request.url).toEqual('/favorites/12345/archive');
+        expect(request.url).toEqual('/stars/12345/archive');
       });
 
-      it("fades out the target favorite", function() {
+      it("fades out the target star", function() {
         var parent = $('.star-action[data-action=archive] a').closest('.star-item')
         expect(parent).toBeHidden();
       });
@@ -37,12 +37,12 @@ describe("setupActions", function() {
     });
 
     describe("on success", function() {
-      it("unarchives target favorite", function() {
+      it("unarchives target star", function() {
         expect(request.method).toEqual('DELETE');
-        expect(request.url).toEqual('/favorites/54321/archive');
+        expect(request.url).toEqual('/stars/54321/archive');
       });
 
-      it("fades out the target favorite", function() {
+      it("fades out the target star", function() {
         var parent = $('.star-action[data-action=unarchive] a').closest('.star-item')
         expect(parent).toBeHidden();
       });

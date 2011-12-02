@@ -5,4 +5,4 @@ require 'bundler'
 Bundler.require(:default, ENV["RACK_ENV"].to_sym)
 
 require File.expand_path(File.join(File.dirname(__FILE__), 'app'))
-run Star
+run StarReader

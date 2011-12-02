@@ -1,6 +1,6 @@
 require 'mongoid'
 
-class Favorite
+class Star
   include Mongoid::Document
   include Mongoid::Timestamps
 

@@ -2,11 +2,11 @@ require "sinatra/base"
 require "sinatra/reloader"
 require_relative "lib/star_helpers"
 require_relative 'models/user'
-require_relative 'models/favorite'
+require_relative 'models/star'
 require "yaml"
 require "time"
 
-class Star < Sinatra::Base
+class StarReader < Sinatra::Base
   helpers Sinatra::StarHelpers
 
   configure do
@@ -51,37 +51,37 @@ class Star < Sinatra::Base
     User.create!(username: "hector") unless User.exists?(conditions: { username: "hector" })
   end
 
-  before %r{^(/favorites|/archive)$} do
+  before %r{^(/stars|/archive)$} do
     @user = User.find("hector")
     @rate_limit = rate_limit
-    @page_title = "#{@user.username}'s Favorites"
+    @page_title = "#{@user.username}'s Stars"
   end
 
-  before '/favorites' do
+  before '/stars' do
     first_login(@user) if @user.first_login?
-    refresh_favorites unless @user.first_login?
+    refresh_stars unless @user.first_login?
   end
 
   get '/' do
-    redirect to('/favorites')
+    redirect to('/stars')
   end
 
-  get '/favorites' do
+  get '/stars' do
     page = params[:page] || 1
-    @favorites = Favorite.unarchived.page(page)
+    @stars = Star.unarchived.page(page)
     haml :index
   end
 
   get '/archive' do
     @archive = true
-    @favorites = Favorite.archived
+    @stars = Star.archived
     haml :index
   end
 
-  post '/favorites/:id/archive' do
+  post '/stars/:id/archive' do
     content_type :json
     begin
-      fav = Favorite.find(params[:id])
+      fav = Star.find(params[:id])
       fav.archived = true
       if fav.save!
         status 200
@@ -92,10 +92,10 @@ class Star < Sinatra::Base
     end
   end
 
-  delete '/favorites/:id/archive' do
+  delete '/stars/:id/archive' do
     content_type :json
     begin
-      fav = Favorite.find(params[:id])
+      fav = Star.find(params[:id])
       fav.archived = false
       if fav.save!
         status 200

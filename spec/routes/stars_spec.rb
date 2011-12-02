@@ -1,29 +1,29 @@
 require 'spec_helper'
 
-describe Star do
+describe StarReader do
 
   def app
-    Star
+    StarReader
   end
 
-  describe "GET /favorites" do
+  describe "GET /stars" do
 
     it 'should flag as active the Main tab section' do
-      get '/favorites'
+      get '/stars'
       last_response.should be_ok
       last_response.body.should have_selector('#main.active')
     end
 
     it 'should render the star stream' do
-      get '/favorites'
+      get '/stars'
       last_response.should be_ok
       last_response.body.should have_selector('.star-container .star-stream')
       last_response.body.should have_selector('.star-item[data-source="twitter"]')
       last_response.body.should have_selector('.star-item[data-source="greader"]')
     end
 
-    it 'should show up to 20 favorites per page' do
-      get '/favorites'
+    it 'should show up to 20 star items per page' do
+      get '/stars'
       last_response.should be_ok
       last_response.body.should have_css('.star-item', count: 20)
     end
