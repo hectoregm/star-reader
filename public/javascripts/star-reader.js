@@ -1,3 +1,9 @@
+var StarReader = {
+  init: function(stars) {
+    this.stars = new StarReader.Stars(stars);
+  }
+};
+
 var star = (function($) {
   var that = {};
 

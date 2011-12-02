@@ -4,6 +4,15 @@ module Sinatra
 
   module StarHelpers
 
+    def content_for(key, &block)
+      @content ||= {}
+      @content[key] = capture_haml(&block)
+    end
+
+    def content(key)
+      @content && @content[key]
+    end
+
     def json_status(code, reason)
       status code
       {
@@ -77,13 +86,13 @@ module Sinatra
           next if Star.exists?(conditions: { source_id: t.id })
           author = t.user.screen_name
           Star.create!(source: 'twitter',
-                           source_id: t.id,
-                           image_url: t.user.profile_image_url,
-                           author: author,
-                           author_url: "http://twitter.com/#{author}",
-                           content: linkify_text(t.text,
-                                                 t.entities),
-                           ocreated_at: Time.parse(t.created_at))
+                       source_id: t.id,
+                       image_url: t.user.profile_image_url,
+                       author: author,
+                       author_url: "http://twitter.com/#{author}",
+                       content: linkify_text(t.text,
+                                             t.entities),
+                       ocreated_at: Time.parse(t.created_at))
         end
 
         page += 1
@@ -98,13 +107,13 @@ module Sinatra
         content =  e.content ? e.content.content : e.summary.content
         title = build_link(e.link.href, e.title.content)
         Star.create!(source: 'greader',
-                         source_id: id,
-                         image_url: "/images/greader.png",
-                         author: e.source.title.content,
-                         author_url: e.source.link.href,
-                         title: title,
-                         content: content,
-                         ocreated_at: e.published.content)
+                     source_id: id,
+                     image_url: "/images/greader.png",
+                     author: e.source.title.content,
+                     author_url: e.source.link.href,
+                     title: title,
+                     content: content,
+                     ocreated_at: e.published.content)
       end
     end
 
@@ -119,13 +128,13 @@ module Sinatra
           return if Star.exists?(conditions: { source_id: t.id })
           author = t.user.screen_name
           Star.create!(source: 'twitter',
-                           source_id: t.id,
-                           image_url: t.user.profile_image_url,
-                           author: author,
-                           author_url: "http://twitter.com/#{author}",
-                           content: linkify_text(t.text,
-                                                 t.entities),
-                           ocreated_at: Time.parse(t.created_at))
+                       source_id: t.id,
+                       image_url: t.user.profile_image_url,
+                       author: author,
+                       author_url: "http://twitter.com/#{author}",
+                       content: linkify_text(t.text,
+                                             t.entities),
+                       ocreated_at: Time.parse(t.created_at))
         end
 
         page += 1
@@ -144,13 +153,13 @@ module Sinatra
           content = e.content ? e.content.content : e.summary.content
           title  = build_link(e.link.href, e.title.content)
           Star.create!(source: 'greader',
-                           source_id: id,
-                           image_url: "/images/greader.png",
-                           author: e.source.title.content,
-                           author_url: e.source.link.href,
-                           title: title,
-                           content: content,
-                           ocreated_at: e.published.content)
+                       source_id: id,
+                       image_url: "/images/greader.png",
+                       author: e.source.title.content,
+                       author_url: e.source.link.href,
+                       title: title,
+                       content: content,
+                       ocreated_at: e.published.content)
         end
 
         count += 5

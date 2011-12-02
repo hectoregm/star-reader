@@ -41,3 +41,9 @@
     %h3 Star
     %p Sinatra app to view you favorites from the main hubs of the web: Twitter, GReader, Gmail.
     %p More to come!!!
+
+- content_for :javascript do
+  :javascript
+    jQuery(function() {
+      StarReader.init(#{@stars.to_json})
+    });
