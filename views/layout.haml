@@ -5,8 +5,8 @@
     %title
       = @page_title
     %link{ :href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700,800", :rel => "stylesheet" }
-    %link{ :href => "stylesheets/bootstrap.css", :rel => "stylesheet" }
-    %link{ :href => "stylesheets/star.css", :rel => "stylesheet" }
+    %link{ :href => "/stylesheets/bootstrap.css", :rel => "stylesheet" }
+    %link{ :href => "/stylesheets/star.css", :rel => "stylesheet" }
   %body
     %div.container
       %div.content
@@ -17,10 +17,11 @@
 
       %footer
         %p= @rate_limit
-    %script{ :src => "javascripts/jquery.min.js" }
-    %script{ :src => "javascripts/underscore-min.js" }
-    %script{ :src => "javascripts/backbone-min.js" }
-    %script{ :src => "javascripts/star-reader.js" }
-    %script{ :src => "javascripts/star-reader/models.js" }
-    %script{ :src => "javascripts/star-reader/collections.js" }
+    %script{ :src => "/javascripts/jquery.min.js" }
+    %script{ :src => "/javascripts/underscore-min.js" }
+    %script{ :src => "/javascripts/backbone-min.js" }
+    %script{ :src => "/javascripts/jst.js" }
+    %script{ :src => "/javascripts/star-reader.js" }
+    %script{ :src => "/javascripts/star-reader/models.js" }
+    %script{ :src => "/javascripts/star-reader/collections.js" }
     = content :javascript

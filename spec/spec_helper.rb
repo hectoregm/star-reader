@@ -112,7 +112,7 @@ module StarFactory
                  content: 'Tip 1: Blah Blah',
                  ocreated_at: Time.now)
   end
-  def create_stars(n)
+  def create_stars(n, archived = false)
     n.times do |i|
       Star.create!(source: 'greader',
                    source_id: 'Smashing' + i.to_s,
@@ -121,6 +121,7 @@ module StarFactory
                    author_url: 'smashmag.com',
                    title: 'Super Duper Design Tips',
                    content: 'Tip 1: Blah Blah',
+                   archived: archived,
                    ocreated_at: Time.now + i.days)
     end
   end

@@ -1,5 +1,6 @@
 require "sinatra/base"
 require "sinatra/reloader"
+require 'sinatra/jstpages'
 require_relative "lib/star_helpers"
 require_relative 'models/user'
 require_relative 'models/star'
@@ -7,7 +8,10 @@ require "yaml"
 require "time"
 
 class StarReader < Sinatra::Base
+  register Sinatra::JstPages
   helpers Sinatra::StarHelpers
+
+  serve_jst '/javascripts/jst.js'
 
   configure do
     AppConfig = YAML.load_file('config.yml')
@@ -51,25 +55,35 @@ class StarReader < Sinatra::Base
     User.create!(username: "hector") unless User.exists?(conditions: { username: "hector" })
   end
 
-  before %r{^(/stars|/archive)$} do
+  before '/' do
     @user = User.find("hector")
     @rate_limit = rate_limit
     @page_title = "#{@user.username}'s Stars"
   end
 
-  before '/stars' do
-    first_login(@user) if @user.first_login?
-    refresh_stars unless @user.first_login?
-  end
+  # before '/' do
+  #   first_login(@user) if @user.first_login?
+  #   refresh_stars unless @user.first_login?
+  # end
 
   get '/' do
-    redirect to('/stars')
+    @stars = Star.unarchived.page(1)
+    haml :index
   end
 
   get '/stars' do
-    page = params[:page] || 1
-    @stars = Star.unarchived.page(page)
-    haml :index
+    content_type :json
+
+    page = 1
+    page = params[:page].to_i if params[:page]
+
+    status 200
+
+    if params[:sort] == 'archived'
+      Star.archived.page(page).to_json
+    else
+      Star.unarchived.page(page).to_json
+    end
   end
 
   get '/archive' do

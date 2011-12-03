@@ -10,35 +10,22 @@ describe "/index.haml", :type => :views do
     render('/views/index.haml')
   end
 
-  describe '.star-item' do
+  describe 'Basic Skeleton' do
 
-    it 'has an image' do
-      response.should have_selector('.star-item .star-image img')
+    describe '.star-container' do
+
+      it 'is a section' do
+        response.should have_selector('section.star-container')
+      end
+
     end
 
-    it 'has a content box' do
-      response.should have_selector('.star-item .star-content')
-    end
+    describe '.about' do
 
-    it 'has an author' do
-      response.should have_selector('.star-item .star-content .star-author')
-    end
+      it 'is a section' do
+        response.should have_selector('section.about')
+      end
 
-    it 'has text' do
-      response.should have_selector('.star-item .star-content .star-text')
-    end
-
-    it 'has a timestamp' do
-      response.should have_selector('.star-item .star-content .star-timestamp')
-    end
-
-    it 'has an archive action' do
-      response.should have_selector('.star-item .star-action[data-action=archive]')
-    end
-
-    it 'has a data-source attribute' do
-      response.should have_selector('.star-item[data-source="twitter"]')
-      response.should have_selector('.star-item[data-source="greader"]')
     end
 
   end

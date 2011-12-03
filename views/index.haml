@@ -1,42 +1,42 @@
 .row
   %section.span11.star-container
-    %nav
-      %ul.tabs
-        %li{ :id => "main", :class => @archive ? "" : "active"  }
-          %a{ :href => "/" }
-            Home
-        %li{ :id => "archive", :class => @archive ? "active" : "" }
-          %a{ :href => "/archive" }
-            Archive
-    %section.star-stream
-      - if @archive && @stars.empty?
-        .star-empty No archived stars.
-      - @stars.each do |fav|
-        %article.star-item{ :"data-id" => "#{fav.id}", :"data-source" => "#{fav.source}"}
-          .star-image
-            %img{ :height => 48, :width => 48, :src => "#{fav.image_url}" }
-          .star-content
-            .star-row
-              .star-author
-                = link_author(fav)
-            .star-row
-              .star-text
-                = fav.source == 'twitter' ? fav.content : fav.title
-            .star-row
-              %span.star-timestamp
-                = pretty_time(fav.ocreated_at)
-              %span.star-actions
-                %span.star-action{ :"data-action" => fav.archived? ? "unarchive" : "archive" }
-                  %a{ :href => "#"}
-                    %span
-                      %img{ :height => 16, :width => 16, :src => "/images/folder-open.png" }
-                      %b
-                        = fav.archived? ? "Unarchive" : "Archive"
-                %span.star-action.unstar
-                  %a{ :href => "#"}
-                    %span
-                      %img{ :height => 16, :width => 16, :src => "/images/star.png" }
-                      %b Unstar
+    -# %nav
+    -#   %ul.tabs
+    -#     %li{ :id => "main", :class => @archive ? "" : "active"  }
+    -#       %a{ :href => "/" }
+    -#         Home
+    -#     %li{ :id => "archive", :class => @archive ? "active" : "" }
+    -#       %a{ :href => "/archive" }
+    -#         Archive
+    -# %section.star-stream
+    -#   - if @archive && @stars.empty?
+    -#     .star-empty No archived stars.
+    -#   - @stars.each do |fav|
+    -#     %article.star-item{ :"data-id" => "#{fav.id}", :"data-source" => "#{fav.source}"}
+    -#       .star-image
+    -#         %img{ :height => 48, :width => 48, :src => "#{fav.image_url}" }
+    -#       .star-content
+    -#         .star-row
+    -#           .star-author
+    -#             = link_author(fav)
+    -#         .star-row
+    -#           .star-text
+    -#             = fav.source == 'twitter' ? fav.content : fav.title
+    -#         .star-row
+    -#           %span.star-timestamp
+    -#             = pretty_time(fav.ocreated_at)
+    -#           %span.star-actions
+    -#             %span.star-action{ :"data-action" => fav.archived? ? "unarchive" : "archive" }
+    -#               %a{ :href => "#"}
+    -#                 %span
+    -#                   %img{ :height => 16, :width => 16, :src => "/images/folder-open.png" }
+    -#                   %b
+    -#                     = fav.archived? ? "Unarchive" : "Archive"
+    -#             %span.star-action.unstar
+    -#               %a{ :href => "#"}
+    -#                 %span
+    -#                   %img{ :height => 16, :width => 16, :src => "/images/star.png" }
+    -#                   %b Unstar
   %section.span5.about
     %h3 Star
     %p Sinatra app to view you favorites from the main hubs of the web: Twitter, GReader, Gmail.
