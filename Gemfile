@@ -4,6 +4,7 @@ gem 'rack'
 gem "sinatra"
 gem 'twitter', '~> 1.7'
 gem "GoogleReaderApi", :require => "google_reader_api"
+gem 'sinatra-backbone', :require => 'sinatra/backbone'
 gem "haml"
 gem "sass"
 gem "mongoid", "~> 2.3.3"
