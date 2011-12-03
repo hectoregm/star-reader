@@ -12,9 +12,11 @@
 #
 src_files:
     - public/javascripts/jquery.min.js
-    - public/javascripts/application.js
-    - public/javascripts/Player.js
-    - public/javascripts/Song.js
+    - public/javascripts/underscore-min.js
+    - public/javascripts/backbone-min.js
+    - public/javascripts/star-reader.js
+    - public/javascripts/star-reader/models.js
+    - public/javascripts/star-reader/collections.js
 
 # stylesheets
 #
