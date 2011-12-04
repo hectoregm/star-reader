@@ -17,6 +17,8 @@ src_files:
     - public/javascripts/star-reader.js
     - public/javascripts/star-reader/models.js
     - public/javascripts/star-reader/collections.js
+    - public/javascripts/star-reader/views.js
+    - spec/javascripts/templates/jst.js
 
 # stylesheets
 #
