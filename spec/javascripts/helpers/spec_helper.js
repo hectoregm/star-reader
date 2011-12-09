@@ -26,4 +26,8 @@ beforeEach(function() {
     "source_id": "tag:google.com,2005:reader/item/b007de7befb0b525",
     "_id": "4ed849da7e2bf97eee00008d"
   }];
+
+  this.default_collection = _.map(this.starsJSON, function(star) {
+    new Backbone.Model(star);
+  });
 });

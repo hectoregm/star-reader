@@ -1,11 +1,26 @@
 describe("StarReader.Views", function() {
 
-  describe("StarReader.StarItemView", function() {
+  describe("StarReader.StarView", function() {
+
+    beforeEach(function() {
+      this.view = new StarReader.StarView();
+    });
 
     it("extends Backbone.View", function() {
-      var view = new StarReader.StarItemView();
-      expect(view instanceof Backbone.View).toBeTruthy();
-      expect(view instanceof StarReader.StarItemView).toBeTruthy();
+      expect(this.view instanceof Backbone.View).toBeTruthy();
+      expect(this.view instanceof StarReader.StarView).toBeTruthy();
+    });
+
+    describe("Initialization", function() {
+
+      it("create a root article element", function() {
+        expect(this.view.el.nodeName).toEqual("ARTICLE");
+      });
+
+      it("root element has class .star-item ", function() {
+        expect($(this.view.el)).toHaveClass("star-item");
+      });
+
     });
 
   });
@@ -37,16 +52,17 @@ describe("StarReader.Views", function() {
     describe("Rendering", function() {
 
       beforeEach(function() {
-        this.starItem = new Backbone.View();
-        this.starItemStub = sinon.stub(StarReader, "StarItemView")
-          .returns(this.starItem);
-        this.view.collection = new Backbone.Collection(this.starJSON);
+        this.starSpy = sinon.spy(StarReader, "StarView");
+        this.renderStarSpy = sinon.spy(this.view, "renderStar");
+        this.view.collection = new Backbone.Collection(this.default_collection);
         this.view.render();
       });
 
       afterEach(function() {
-        StarReader.StarItemView.restore();
+        StarReader.StarView.restore();
+        this.view.renderStar.restore();
       });
+
 
       it("creates nav element and ul list", function() {
         expect($(this.view.el)).toContain("nav");
@@ -55,6 +71,51 @@ describe("StarReader.Views", function() {
 
       it("creates star-stream section", function() {
         expect($(this.view.el)).toContain("section.star-stream");
+      });
+
+      it("creates a StarView for each star", function() {
+        expect(this.starSpy).toHaveBeenCalledTwice();
+      });
+
+      it("renders each StarView", function() {
+        expect(this.renderStarSpy).toHaveBeenCalledTwice();
+      });
+
+      it("appends the star view to the stream", function() {
+        expect($('.star-stream', this.view.el).children().length).toEqual(2);
+      });
+
+    });
+
+    describe("renderStar", function() {
+
+      beforeEach(function() {
+        this.view = new StarReader.StarStreamView();
+        this.view.collection = new Backbone.Collection([]);
+        this.starView = new Backbone.View();
+        this.starSpy = sinon.spy(this.starView, "render");
+        this.starViewStub = sinon.stub(StarReader, "StarView")
+          .returns(this.starView);
+        this.model = new Backbone.Model(this.starsJSON[0]);
+        this.view.render();
+        this.view.renderStar(this.model);
+      });
+
+      afterEach(function() {
+        StarReader.StarView.restore();
+      });
+
+      it("creates a StarView for a given star model", function() {
+        expect(this.starViewStub).toHaveBeenCalledOnce();
+        expect(this.starViewStub).toHaveBeenCalledWith({model: this.model});
+      });
+
+      it("renders the StarView", function() {
+        expect(this.starSpy).toHaveBeenCalledOnce();
+      });
+
+      it("appends the rendered StarView to .star-stream", function() {
+        expect($('.star-stream', this.view.el).children().length).toEqual(1);
       });
 
     });
