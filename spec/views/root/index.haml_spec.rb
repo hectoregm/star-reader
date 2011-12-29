@@ -12,14 +12,6 @@ describe "/index.haml", :type => :views do
 
   describe 'Basic Skeleton' do
 
-    describe '.star-container' do
-
-      it 'is a section' do
-        response.should have_selector('section.star-container')
-      end
-
-    end
-
     describe '.about' do
 
       it 'is a section' do

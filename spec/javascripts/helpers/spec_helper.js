@@ -27,7 +27,6 @@ beforeEach(function() {
     "_id": "4ed849da7e2bf97eee00008d"
   }];
 
-  this.default_collection = _.map(this.starsJSON, function(star) {
-    new Backbone.Model(star);
-  });
+  this.default_collection = new Backbone.Collection;
+  this.default_collection.reset(this.starsJSON);
 });

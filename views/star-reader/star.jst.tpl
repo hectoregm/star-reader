@@ -1,9 +1,11 @@
 <div class="star-image">
-  <img src="<%= image_url %>" />
+  <img height="48" width="48" src="<%= image_url %>" />
 </div>
 <div class="star-content">
   <div class="star-row">
-    <a href="<%=  author_url %>"><%= author %></a>
+    <div class="star-author">
+      <a href="<%= author_url %>"><%= author %></a>
+    </div>
   </div>
   <div class="star-row">
     <div class="star-text">
@@ -13,9 +15,9 @@
   <div class="star-row">
     <span class="star-timestamp"><%= ocreated_at %></span>
     <span class="star-actions">
-      <span class="star-action">
+      <span class="star-action" data-action="<%= archived ? "unarchive" : "archive" %>">
         <a href="#">
-          <img src="/images/folder-open.png" />
+          <img height="16" width="16" src="/images/folder-open.png" />
           <b><%= archived ? "Unarchived" : "Archive" %></b>
         </a>
       </span>

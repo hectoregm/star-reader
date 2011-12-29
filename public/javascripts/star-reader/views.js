@@ -1,16 +1,23 @@
 StarReader.StarView = Backbone.View.extend({
   tagName: "article",
-  className: "star-item"
+  className: "star-item",
+
+  render: function() {
+    $(this.el).html(JST['star-reader/star'](this.model.toJSON()));
+
+    return this;
+  }
 });
 
 StarReader.StarStreamView = Backbone.View.extend({
   tagName: "section",
   className: "star-container span11",
 
-  initialize: function() {
+  initialize: function(options) {
     _.bindAll(this,
               "render",
               "renderStar");
+    this.collection.bind('reset', this.render);
   },
 
   render: function() {

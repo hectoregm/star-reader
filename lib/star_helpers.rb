@@ -4,6 +4,32 @@ module Sinatra
 
   module StarHelpers
 
+    class ResponseFormat
+
+      FORMATS = [:html, :json]
+
+      def initialize(scope)
+        @scope = scope
+      end
+
+      def method_missing(m, *args, &block)
+        puts m
+        puts m.class
+        super unless FORMATS.include? m
+        if m == :json && @scope.request.xhr?
+          block.call
+        elsif m == :html && !(@scope.request.xhr?)
+          block.call
+        end
+      end
+
+    end
+
+    def respond_to(&block)
+      format = ResponseFormat.new(self)
+      yield format
+    end
+
     def content_for(key, &block)
       @content ||= {}
       @content[key] = capture_haml(&block)

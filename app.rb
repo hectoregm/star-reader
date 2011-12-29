@@ -57,7 +57,7 @@ class StarReader < Sinatra::Base
 
   before '/' do
     @user = User.find("hector")
-    @rate_limit = rate_limit
+    # @rate_limit = rate_limit
     @page_title = "#{@user.username}'s Stars"
   end
 
@@ -69,6 +69,21 @@ class StarReader < Sinatra::Base
   get '/' do
     @stars = Star.unarchived.page(1)
     haml :index
+  end
+
+  get '/stars2' do
+    respond_to do |format|
+      format.json do
+        status 300
+        Star.unarchived.page(1).to_json
+      end
+      format.html do
+        status 300
+        @user = User.find("hector")
+        @stars = Star.unarchived.page(1)
+        haml :index
+      end
+    end
   end
 
   get '/stars' do

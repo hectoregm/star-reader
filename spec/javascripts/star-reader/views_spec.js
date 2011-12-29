@@ -23,6 +23,35 @@ describe("StarReader.Views", function() {
 
     });
 
+    describe("Rendering", function() {
+
+      beforeEach(function() {
+        this.view.model = new Backbone.Model(this.starsJSON[0]);
+        this.view.render();
+      });
+
+      it("has an image", function() {
+        expect($(this.view.el)).toContain('.star-image');
+      });
+
+      it("has an author", function() {
+        expect($(this.view.el)).toContain('.star-author');
+      });
+
+      it("has text content", function() {
+        expect($(this.view.el)).toContain('.star-text');
+      });
+
+      it("has a timestamp", function() {
+        expect($(this.view.el)).toContain('.star-timestamp');
+      });
+
+      it("has actions", function() {
+        expect($(this.view.el)).toContain('.star-action');
+      });
+
+    });
+
   });
 
   describe("StarReader.StarStreamView", function() {
@@ -54,7 +83,7 @@ describe("StarReader.Views", function() {
       beforeEach(function() {
         this.starSpy = sinon.spy(StarReader, "StarView");
         this.renderStarSpy = sinon.spy(this.view, "renderStar");
-        this.view.collection = new Backbone.Collection(this.default_collection);
+        this.view.collection = this.default_collection;
         this.view.render();
       });
 
