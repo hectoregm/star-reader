@@ -57,7 +57,9 @@ describe("StarReader.Views", function() {
   describe("StarReader.StarStreamView", function() {
 
     beforeEach(function() {
-      this.view = new StarReader.StarStreamView();
+      this.view = new StarReader.StarStreamView({
+        collection: new Backbone.Collection()
+      });
     });
 
     it("extends Backbone.View", function() {
@@ -119,8 +121,9 @@ describe("StarReader.Views", function() {
     describe("renderStar", function() {
 
       beforeEach(function() {
-        this.view = new StarReader.StarStreamView();
-        this.view.collection = new Backbone.Collection([]);
+        this.view = new StarReader.StarStreamView({
+          collection: new Backbone.Collection()
+        });
         this.starView = new Backbone.View();
         this.starSpy = sinon.spy(this.starView, "render");
         this.starViewStub = sinon.stub(StarReader, "StarView")
