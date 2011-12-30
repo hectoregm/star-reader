@@ -55,49 +55,38 @@ class StarReader < Sinatra::Base
     User.create!(username: "hector") unless User.exists?(conditions: { username: "hector" })
   end
 
-  before '/' do
-    @user = User.find("hector")
-    # @rate_limit = rate_limit
-    @page_title = "#{@user.username}'s Stars"
-  end
-
-  # before '/' do
+  # before '/stars' do
   #   first_login(@user) if @user.first_login?
   #   refresh_stars unless @user.first_login?
   # end
 
   get '/' do
-    @stars = Star.unarchived.page(1)
-    haml :index
-  end
-
-  get '/stars2' do
-    respond_to do |format|
-      format.json do
-        status 300
-        Star.unarchived.page(1).to_json
-      end
-      format.html do
-        status 300
-        @user = User.find("hector")
-        @stars = Star.unarchived.page(1)
-        haml :index
-      end
-    end
+    redirect to('/stars')
   end
 
   get '/stars' do
-    content_type :json
-
     page = 1
     page = params[:page].to_i if params[:page]
 
-    status 200
-
+    @user = User.find("hector")
     if params[:sort] == 'archived'
-      Star.archived.page(page).to_json
+      @stars = Star.archived.page(page)
     else
-      Star.unarchived.page(page).to_json
+      @stars = Star.unarchived.page(page)
+    end
+
+    respond_to do |format|
+      format.html do
+        status 200
+        @page_title = "#{@user.username}'s Stars"
+        haml :index
+      end
+
+      format.json do
+        content_type :json
+        status 200
+        @stars.to_json
+      end
     end
   end
 

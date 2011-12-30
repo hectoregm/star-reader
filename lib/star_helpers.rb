@@ -4,30 +4,34 @@ module Sinatra
 
   module StarHelpers
 
-    class ResponseFormat
+    class ResponseWithFormat
 
       FORMATS = [:html, :json]
 
       def initialize(scope)
         @scope = scope
+        @handlers = { }
       end
 
-      def method_missing(m, *args, &block)
-        puts m
-        puts m.class
+      def method_missing(m, *args, &handler)
         super unless FORMATS.include? m
-        if m == :json && @scope.request.xhr?
-          block.call
-        elsif m == :html && !(@scope.request.xhr?)
-          block.call
+        @handlers[m] = handler
+      end
+
+      def response
+        if @scope.request.xhr? && @handlers[:json]
+          @handlers[:json].call
+        elsif !(@scope.request.xhr?) && @handlers[:html]
+          @handlers[:html].call
         end
       end
 
     end
 
     def respond_to(&block)
-      format = ResponseFormat.new(self)
+      format = ResponseWithFormat.new(self)
       yield format
+      format.response
     end
 
     def content_for(key, &block)
