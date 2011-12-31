@@ -15,8 +15,8 @@
   <div class="star-row">
     <span class="star-timestamp"><%= ocreated_at %></span>
     <span class="star-actions">
-      <span class="star-action" data-action="<%= archived ? "unarchive" : "archive" %>">
-        <a href="#">
+      <span class="star-action <%= archived ? "unarchive" : "archive" %>">
+        <a>
           <img height="16" width="16" src="/images/folder-open.png" />
           <b><%= archived ? "Unarchived" : "Archive" %></b>
         </a>

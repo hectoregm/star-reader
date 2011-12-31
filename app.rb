@@ -1,3 +1,5 @@
+# coding: UTF-8
+
 require "sinatra/base"
 require "sinatra/reloader"
 require 'sinatra/jstpages'
@@ -71,8 +73,10 @@ class StarReader < Sinatra::Base
     @user = User.find("hector")
     if params[:sort] == 'archived'
       @stars = Star.archived.page(page)
+      @section = "archives"
     else
       @stars = Star.unarchived.page(page)
+      @section = "main"
     end
 
     respond_to do |format|
@@ -87,6 +91,23 @@ class StarReader < Sinatra::Base
         status 200
         @stars.to_json
       end
+    end
+  end
+
+  put '/stars/:id' do
+    content_type :json
+    data = JSON.parse(request.body.read.force_encoding("UTF-8"))
+
+    begin
+      fav = Star.find(params[:id])
+      fav.archived = data["archived"]
+
+      if fav.save!
+        status 200
+        fav.to_json
+      end
+    rescue
+      json_status 404, data
     end
   end
 

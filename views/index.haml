@@ -45,5 +45,5 @@
 - content_for :javascript do
   :javascript
     jQuery(function() {
-      StarReader.init(#{@stars.to_json})
+      StarReader.init(#{@stars.to_json}, "#{@section}")
     });
