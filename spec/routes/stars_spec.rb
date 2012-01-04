@@ -10,7 +10,7 @@ describe StarReader do
 
     context 'HTML Request' do
 
-      it 'returns html' do
+      it 'returns HTML' do
         get '/stars'
         last_response.should be_ok
         last_response.content_type.should =~ %r|text/html|
@@ -24,6 +24,7 @@ describe StarReader do
       it 'bootstrap backbone code' do
         get '/stars'
         last_response.body.should match(/StarReader\.init/)
+        last_response.body.should match(/"main"/)
       end
 
     end
@@ -86,6 +87,27 @@ describe StarReader do
 
   describe 'GET /stars?sort=archived' do
 
+    context 'HTML Request' do
+
+      it 'returns HTML' do
+        get '/stars', sort: 'archived'
+        last_response.should be_ok
+        last_response.content_type.should =~ %r|text/html|
+      end
+
+      it 'returns code 200' do
+        get '/stars', sort: 'archived'
+        last_response.should be_ok
+      end
+
+      it 'bootstrap backbone code' do
+        get '/stars', sort: 'archived'
+        last_response.body.should match(/StarReader\.init/)
+        last_response.body.should match(/"archives"/)
+      end
+
+    end
+
     context 'XHR request' do
 
       before :each do
@@ -127,6 +149,50 @@ describe StarReader do
           JSON.parse(last_response.body).should have(4).items
         end
 
+      end
+
+    end
+
+  end
+
+  describe "PUT /stars/:id" do
+
+    before :each do
+      @star = twitter_fav
+      @star.save!
+      @star.archived = true
+      @star_json = @star.to_json
+      @data = { "archived" => true }.to_json
+    end
+
+    it 'returns json' do
+      put "/stars/#{@star.id}", @data
+      last_response.should be_ok
+      last_response.content_type.should =~ %r|application/json|
+    end
+
+    it 'return code 200' do
+      put "/stars/#{@star.id}", @data
+      last_response.should be_ok
+    end
+
+    it 'returns updated attributes in json' do
+      put "/stars/#{@star.id}", @data
+      last_response.body.should == @star_json
+    end
+
+    context "Invalid ID" do
+
+      it "returns json" do
+        json_data = { status: 404, reason: "Not Found" }.to_json
+        put "/stars/badid", @data
+        last_response.should be_not_found
+        last_response.body.should == json_data
+      end
+
+      it "returns code 404" do
+        put "/stars/badid", @data
+        last_response.should be_not_found
       end
 
     end

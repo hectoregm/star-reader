@@ -67,8 +67,7 @@ class StarReader < Sinatra::Base
   end
 
   get '/stars' do
-    page = 1
-    page = params[:page].to_i if params[:page]
+    page = params[:page] ? params[:page].to_i : 1
 
     @user = User.find("hector")
     if params[:sort] == 'archived'
@@ -96,49 +95,14 @@ class StarReader < Sinatra::Base
 
   put '/stars/:id' do
     content_type :json
-    data = JSON.parse(request.body.read.force_encoding("UTF-8"))
-
     begin
-      fav = Star.find(params[:id])
-      fav.archived = data["archived"]
+      data = JSON.parse(request.body.read.force_encoding("UTF-8"))
+      star = Star.find(params[:id])
+      star.archived = data["archived"] if data["archived"]
 
-      if fav.save!
+      if star.save!
         status 200
-        fav.to_json
-      end
-    rescue
-      json_status 404, data
-    end
-  end
-
-  get '/archive' do
-    @archive = true
-    @stars = Star.archived
-    haml :index
-  end
-
-  post '/stars/:id/archive' do
-    content_type :json
-    begin
-      fav = Star.find(params[:id])
-      fav.archived = true
-      if fav.save!
-        status 200
-        fav.to_json
-      end
-    rescue
-      json_status 404, "Not Found"
-    end
-  end
-
-  delete '/stars/:id/archive' do
-    content_type :json
-    begin
-      fav = Star.find(params[:id])
-      fav.archived = false
-      if fav.save!
-        status 200
-        fav.to_json
+        star.to_json
       end
     rescue
       json_status 404, "Not Found"

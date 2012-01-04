@@ -34,6 +34,19 @@ module Sinatra
       format.response
     end
 
+    def error_not_found
+      respond_to do |format|
+        format.html do
+          haml :'404'
+        end
+
+        format.json do
+          content_type :json
+          json_status 404, "Not Found"
+        end
+      end
+    end
+
     def content_for(key, &block)
       @content ||= {}
       @content[key] = capture_haml(&block)
@@ -61,42 +74,6 @@ module Sinatra
     def refresh_stars
       refresh_tweets
       refresh_entries(greader_login(settings.glogin))
-    end
-
-    def link_author(fav)
-      build_link(fav.author_url, fav.author)
-    end
-
-    def pretty_time(time)
-      delta = (Time.now - time).to_i
-      case delta
-      when 0..59
-        'just now'
-      when 60..119
-        'a minute ago'
-      when 120..3599
-        (delta/60).to_s + ' minutes ago'
-      when 3600..7199
-        'an hour ago'
-      when 7200..86399
-        (delta/3600).to_s + ' hours ago'
-      when 86400..172799
-        'a day ago'
-      when 172800..604799
-        (delta/86400).to_s + ' days ago'
-      when 604800..1209599
-        'a week ago'
-      when 1209600..2419199
-        (delta/604800).to_s + ' weeks ago'
-      when 2419200..5270399
-        'a month ago'
-      when 5270400..31535999
-        (delta/2635200).to_s + ' months ago'
-      when 31536000..63071999
-        'a year ago'
-      else
-        (delta/31536000).to_s + ' years ago'
-      end
     end
 
     def rate_limit
