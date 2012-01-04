@@ -98,7 +98,10 @@ class StarReader < Sinatra::Base
     begin
       data = JSON.parse(request.body.read.force_encoding("UTF-8"))
       star = Star.find(params[:id])
-      star.archived = data["archived"] if data["archived"]
+
+      if data.has_key?("archived")
+        star.archived = data["archived"]
+      end
 
       if star.save!
         status 200
