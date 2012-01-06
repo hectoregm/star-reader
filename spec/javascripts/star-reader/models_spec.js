@@ -32,6 +32,7 @@ describe("StarReader.Star", function() {
     beforeEach(function() {
       this.model.id = 10;
       this.model.collection = new Backbone.Collection(this.model);
+      this.spyCollection = sinon.spy(this.model.collection, "remove");
       this.body = "";
       this.server.respondWith("PUT",
                               /\/stars\/(\d+)/,
@@ -40,20 +41,18 @@ describe("StarReader.Star", function() {
                                 { "Content-Type": "application/json" },
                                 this.body
                               ]);
+      this.model.archive();
     });
 
     it("archives and saves the model ", function() {
-      this.model.archive();
       expect(this.server.requests[0].method).toEqual("PUT");
       expect(this.server.requests[0].url).toEqual("/stars/10");
       expect(this.server.requests[0].requestBody).toEqual('{\"archived\":true}');
     });
 
     it("removes model from collection", function() {
-      var collection = this.model.collection;
-      expect(collection.length).toEqual(1);
-      this.model.archive();
-      expect(collection.length).toEqual(0);
+      expect(this.spyCollection).toHaveBeenCalledOnce();
+      expect(this.spyCollection).toHaveBeenCalledWith(this.model);
     });
 
   });
@@ -63,6 +62,7 @@ describe("StarReader.Star", function() {
     beforeEach(function() {
       this.model.id = 10;
       this.model.collection = new Backbone.Collection(this.model);
+      this.spyCollection = sinon.spy(this.model.collection, "remove");
       this.body = "";
       this.server.respondWith("PUT",
                               /\/stars\/(\d+)/,
@@ -71,20 +71,18 @@ describe("StarReader.Star", function() {
                                 { "Content-Type": "application/json" },
                                 this.body
                               ]);
+      this.model.unarchive();
     });
 
     it("unarchives and saves the model ", function() {
-      this.model.unarchive();
       expect(this.server.requests[0].method).toEqual("PUT");
       expect(this.server.requests[0].url).toEqual("/stars/10");
       expect(this.server.requests[0].requestBody).toEqual('{\"archived\":false}');
     });
 
     it("removes model from collection", function() {
-      var collection = this.model.collection;
-      expect(collection.length).toEqual(1);
-      this.model.archive();
-      expect(collection.length).toEqual(0);
+      expect(this.spyCollection).toHaveBeenCalledOnce();
+      expect(this.spyCollection).toHaveBeenCalledWith(this.model);
     });
 
   });
