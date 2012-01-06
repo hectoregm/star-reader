@@ -3,6 +3,7 @@ StarReader.Stars = Backbone.Collection.extend({
   url: '/stars',
 
   initialize: function(models, section) {
+    this.reset(models, {silent: true});
     this.setSection(section);
   },
 
