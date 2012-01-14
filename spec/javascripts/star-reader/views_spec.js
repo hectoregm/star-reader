@@ -3,8 +3,10 @@ describe("StarReader.Views", function() {
   describe("StarReader.StarView", function() {
 
     beforeEach(function() {
+      this.model = new Backbone.Model();
+      this.spyBind = sinon.spy(this.model, "bind");
       this.view = new StarReader.StarView({
-        model: new Backbone.Model()
+        model: this.model
       });
     });
 
@@ -21,6 +23,11 @@ describe("StarReader.Views", function() {
 
       it("root element has class .star-item ", function() {
         expect($(this.view.el)).toHaveClass("star-item");
+      });
+
+      it("binds to remove event of model", function() {
+        expect(this.spyBind).toHaveBeenCalledOnce();
+        expect(this.spyBind).toHaveBeenCalledWith("remove", this.view.remove, this.view);
       });
 
     });
@@ -50,6 +57,34 @@ describe("StarReader.Views", function() {
 
       it("has actions", function() {
         expect($(this.view.el)).toContain('.star-action');
+      });
+
+    });
+
+    describe("archive", function() {
+
+      beforeEach(function() {
+        this.view.model.archive = function() {};
+        this.spy = sinon.stub(this.view.model, "archive");
+        this.view.archive();
+      });
+
+      it("delegates to model archive method", function() {
+        expect(this.spy).toHaveBeenCalledOnce();
+      });
+
+    });
+
+    describe("unarchive", function() {
+
+      beforeEach(function() {
+        this.view.model.unarchive = function() {};
+        this.spy = sinon.stub(this.view.model, "unarchive");
+        this.view.unarchive();
+      });
+
+      it("delegates to model unarchive method", function() {
+        expect(this.spy).toHaveBeenCalledOnce();
       });
 
     });
