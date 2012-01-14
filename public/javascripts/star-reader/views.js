@@ -7,6 +7,10 @@ StarReader.StarView = Backbone.View.extend({
     "click .unarchive a" : "unarchive"
   },
 
+  initialize: function() {
+    this.model.bind("remove", this.remove, this);
+  },
+
   render: function() {
     $(this.el).html(JST['star-reader/star'](this.model.toJSON()));
 
@@ -15,13 +19,12 @@ StarReader.StarView = Backbone.View.extend({
 
   archive: function() {
     this.model.archive();
-    this.remove();
   },
 
   unarchive: function() {
     this.model.unarchive();
-    this.remove();
   }
+
 });
 
 StarReader.StarStreamView = Backbone.View.extend({

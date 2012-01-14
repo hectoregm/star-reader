@@ -3,7 +3,9 @@ describe("StarReader.Views", function() {
   describe("StarReader.StarView", function() {
 
     beforeEach(function() {
-      this.view = new StarReader.StarView();
+      this.view = new StarReader.StarView({
+        model: new Backbone.Model()
+      });
     });
 
     it("extends Backbone.View", function() {

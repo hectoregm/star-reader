@@ -74,13 +74,7 @@ describe("StarReader.Stars", function() {
 
     });
 
-    describe("without trigger", function() {
-
-
-
-    });
-
-    describe("with trigger", function() {
+    describe("with trigger argument set to true", function() {
 
       beforeEach(function() {
         this.collection.setSection("archives");
@@ -91,6 +85,83 @@ describe("StarReader.Stars", function() {
         this.collection.bind("change:section", this.spy);
         this.collection.setSection("main", true);
         expect(this.spy).toHaveBeenCalledOnce();
+      });
+
+    });
+
+    describe("with trigger argument set to false", function() {
+
+      beforeEach(function() {
+        this.collection.setSection("main");
+        this.spy = sinon.spy();
+      });
+
+      it("no triggering of change:action event", function() {
+        this.collection.bind("change:section", this.spy);
+        this.collection.setSection("archives", false);
+        expect(this.spy).not.toHaveBeenCalled();
+      });
+
+    });
+
+  });
+
+  describe("getStars", function() {
+
+    beforeEach(function() {
+      this.server = sinon.fakeServer.create();
+      this.collection = new StarReader.Stars([], "main");
+      this.spySection = sinon.spy(this.collection, "setSection");
+      this.spyFetch = sinon.spy(this.collection, "fetch");
+      this.body = "";
+      this.server.respondWith("GET",
+                              "/stars",
+                              [
+                                200,
+                                { "Content-Type": "application/json"},
+                                this.body
+                              ]);
+    });
+
+    afterEach(function() {
+      this.server.restore();
+    });
+
+    describe("sort: archived", function() {
+
+      beforeEach(function() {
+        this.params = { sort: "archived" };
+      });
+
+      it("sets section to archives", function() {
+
+        this.collection.getStars(this.params);
+        expect(this.spySection).toHaveBeenCalledOnce();
+        expect(this.spySection).toHaveBeenCalledWith('archives');
+      });
+
+      it("fetches data", function() {
+        this.collection.getStars(this.params);
+        expect(this.spyFetch).toHaveBeenCalledOnce();
+      });
+
+    });
+
+    describe("sort: unarchived", function() {
+
+      beforeEach(function() {
+        this.params = {};
+      });
+
+      it("sets section to main", function() {
+        this.collection.getStars(this.params);
+        expect(this.spySection).toHaveBeenCalledOnce();
+        expect(this.spySection).toHaveBeenCalledWith('main');
+      });
+
+      it("fetches data", function() {
+        this.collection.getStars(this.params);
+        expect(this.spyFetch).toHaveBeenCalledOnce();
       });
 
     });
