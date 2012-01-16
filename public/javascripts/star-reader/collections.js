@@ -19,14 +19,10 @@ StarReader.Stars = Backbone.Collection.extend({
     }
   },
 
-  getStars: function(params) {
-    if (params.sort && params.sort === 'archived') {
-      this.setSection('archives');
-    } else {
-      this.setSection('main');
-    }
+  getStars: function(section, page, trigger) {
+    this.setSection(section, trigger);
 
-    var page = params.page ? sort.page : 1
-    this.fetch({ data: { page: page }});
+    var p = page ? page : 1;
+    this.fetch({ data: { page: p }});
   }
 });

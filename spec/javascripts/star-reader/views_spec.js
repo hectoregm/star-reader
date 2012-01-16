@@ -69,6 +69,10 @@ describe("StarReader.Views", function() {
         this.view.archive();
       });
 
+      afterEach(function() {
+        this.view.model.archive.restore();
+      });
+
       it("delegates to model archive method", function() {
         expect(this.spy).toHaveBeenCalledOnce();
       });
@@ -83,6 +87,10 @@ describe("StarReader.Views", function() {
         this.view.unarchive();
       });
 
+      afterEach(function() {
+        this.view.model.unarchive.restore();
+      });
+
       it("delegates to model unarchive method", function() {
         expect(this.spy).toHaveBeenCalledOnce();
       });
@@ -94,8 +102,10 @@ describe("StarReader.Views", function() {
   describe("StarReader.StarStreamView", function() {
 
     beforeEach(function() {
+      this.collection = new Backbone.Collection();
+      this.spyBind = sinon.spy(this.collection, "bind");
       this.view = new StarReader.StarStreamView({
-        collection: new Backbone.Collection()
+        collection: this.collection
       });
     });
 
@@ -113,6 +123,11 @@ describe("StarReader.Views", function() {
       it("root element has classes .span11 and .star-container", function() {
         expect($(this.view.el)).toHaveClass("span11");
         expect($(this.view.el)).toHaveClass("star-container");
+      });
+
+      it("binds collection:reset event to render", function() {
+        expect(this.spyBind).toHaveBeenCalledOnce();
+        expect(this.spyBind).toHaveBeenCalledWith('reset', this.view.render);
       });
 
     });
@@ -158,9 +173,6 @@ describe("StarReader.Views", function() {
     describe("renderStar", function() {
 
       beforeEach(function() {
-        this.view = new StarReader.StarStreamView({
-          collection: new Backbone.Collection()
-        });
         this.starView = new Backbone.View();
         this.starSpy = sinon.spy(this.starView, "render");
         this.starViewStub = sinon.stub(StarReader, "StarView")
@@ -185,6 +197,36 @@ describe("StarReader.Views", function() {
 
       it("appends the rendered StarView to .star-stream", function() {
         expect($('.star-stream', this.view.el).children().length).toEqual(1);
+      });
+
+    });
+
+    describe("getArchived", function() {
+
+      beforeEach(function() {
+        this.view.collection.getStars = function() {};
+        this.spy = sinon.spy(this.view.collection, "getStars");
+        this.view.getArchived();
+      });
+
+      it("gets archived stars", function() {
+        expect(this.spy).toHaveBeenCalledOnce();
+        expect(this.spy).toHaveBeenCalledWith("archives");
+      });
+
+    });
+
+    describe("getUnarchived", function() {
+
+      beforeEach(function() {
+        this.view.collection.getStars = function() {};
+        this.spy = sinon.spy(this.view.collection, "getStars");
+        this.view.getUnarchived();
+      });
+
+      it("gets archived stars", function() {
+        expect(this.spy).toHaveBeenCalledOnce();
+        expect(this.spy).toHaveBeenCalledWith("main");
       });
 
     });

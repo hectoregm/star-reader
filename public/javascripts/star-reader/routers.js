@@ -15,7 +15,7 @@ StarReader.StarRouter = Backbone.Router.extend({
 
   root: function(query) {
     var params = this.parseQuery(query);
-    this.view.collection.getStars(params);
+    this.view.collection.getStars(params.section, params.page);
   },
 
   changeSection: function() {
@@ -23,7 +23,7 @@ StarReader.StarRouter = Backbone.Router.extend({
   },
 
   parseQuery: function(query) {
-    var result = {};
+    var result = {}, section;
     if (query && query.charAt(0) === '?') {
       var params = query.slice(1).split('&');
       var array = _.map(params, function(param) {
@@ -34,6 +34,10 @@ StarReader.StarRouter = Backbone.Router.extend({
         return accum;
       }, {});
     }
+
+    section = (result["sort"] === "archived") ? "archives" : "main";
+    result["section"] = section;
+    delete result.sort;
 
     return result;
   }

@@ -78,7 +78,6 @@ describe("StarReader.Stars", function() {
 
       beforeEach(function() {
         this.collection.setSection("archives");
-        this.spy = sinon.spy();
       });
 
       it("triggers change:action event", function() {
@@ -93,7 +92,6 @@ describe("StarReader.Stars", function() {
 
       beforeEach(function() {
         this.collection.setSection("main");
-        this.spy = sinon.spy();
       });
 
       it("no triggering of change:action event", function() {
@@ -127,40 +125,35 @@ describe("StarReader.Stars", function() {
       this.server.restore();
     });
 
-    describe("sort: archived", function() {
+    describe("section: archives", function() {
 
       beforeEach(function() {
-        this.params = { sort: "archived" };
+        this.collection.getStars("archives");
       });
 
       it("sets section to archives", function() {
-
-        this.collection.getStars(this.params);
         expect(this.spySection).toHaveBeenCalledOnce();
         expect(this.spySection).toHaveBeenCalledWith('archives');
       });
 
       it("fetches data", function() {
-        this.collection.getStars(this.params);
         expect(this.spyFetch).toHaveBeenCalledOnce();
       });
 
     });
 
-    describe("sort: unarchived", function() {
+    describe("section: main", function() {
 
       beforeEach(function() {
-        this.params = {};
+        this.collection.getStars("main");
       });
 
       it("sets section to main", function() {
-        this.collection.getStars(this.params);
         expect(this.spySection).toHaveBeenCalledOnce();
         expect(this.spySection).toHaveBeenCalledWith('main');
       });
 
       it("fetches data", function() {
-        this.collection.getStars(this.params);
         expect(this.spyFetch).toHaveBeenCalledOnce();
       });
 
