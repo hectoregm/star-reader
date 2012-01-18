@@ -1,19 +1,19 @@
 StarReader.StarRouter = Backbone.Router.extend({
   routes: {
-    '' : 'root',
-    'stars:query' : 'root'
+    '' : 'starstream',
+    'stars:query' : 'starstream'
   },
 
-  initialize: function() {
+  initialize: function(options) {
     this.view = new StarReader.StarStreamView({
-      collection: StarReader.stars
+      collection: options.collection
     })
     $('#star-content').empty();
     $('#star-content').append(this.view.el);
     this.view.collection.bind('change:section', this.changeSection, this);
   },
 
-  root: function(query) {
+  starstream: function(query) {
     var params = this.parseQuery(query);
     this.view.collection.getStars(params.section, params.page);
   },

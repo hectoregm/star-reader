@@ -4,8 +4,16 @@ describe("StarReader", function() {
 
   describe("init", function() {
 
-    it("accepts stars JSON and instantiates a collection from it", function() {
+    beforeEach(function() {
+      this.history = sinon.stub(Backbone.history, "start");
       StarReader.init(this.starsJSON);
+    });
+
+    afterEach(function() {
+      this.history.restore();
+    })
+
+    it("accepts stars JSON and instantiates a collection from it", function() {
       expect(StarReader.stars).toBeDefined();
       expect(StarReader.stars.length).toEqual(2);
       expect(StarReader.stars.models[0].get('source')).toEqual('twitter');
