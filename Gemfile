@@ -16,6 +16,7 @@ end
 
 group :development do
   gem "sinatra-reloader"
+  gem "tux"
 end
 
 group :test do
