@@ -41,6 +41,15 @@ StarReader.StarStreamView = Backbone.View.extend({
               "render",
               "renderStar");
     this.collection.bind('reset', this.render);
+    this.collection.bind('add', this.renderStar);
+
+    var nearbottom = _.debounce(function() {
+      if ($(window).scrollTop() > $(document).height() - $(window).height() - 30) {
+        this.collection.addStars();
+      }
+    }, 300);
+    nearbottom = _.bind(nearbottom, this);
+    $(document).on('scroll', nearbottom);
   },
 
   render: function() {

@@ -20,7 +20,7 @@ describe("StarReader.Stars", function() {
   describe("Initialization", function() {
 
     beforeEach(function() {
-      this.collection = new StarReader.Stars([], "main");
+      this.collection = new StarReader.Stars([], {section: 'main'});
     });
 
     it("sets section", function() {

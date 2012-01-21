@@ -68,6 +68,12 @@ class StarReader < Sinatra::Base
 
   get '/stars' do
     page = params[:page] ? params[:page].to_i : 1
+    @pages = "1"
+
+    if params[:page]
+      page = params[:page].to_i
+      @pages = params[:page]
+    end
 
     @user = User.find("hector")
     if params[:sort] == 'archived'
