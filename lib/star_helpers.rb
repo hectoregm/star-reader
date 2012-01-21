@@ -28,6 +28,26 @@ module Sinatra
 
     end
 
+    def get_pages(query)
+      return [1,1] unless query[:page] || query[:pages]
+      result = []
+
+      if query[:page]
+        result[0] = result[1] = query[:page].to_i
+      elsif query[:pages]
+        range = query[:pages].split('-')
+        if range[1]
+          result[0] = range[0].to_i
+          result[1] = range[1].to_i
+        else
+          result[0] = 1
+          result[1] = range[0].to_i
+        end
+      end
+
+      result
+    end
+
     def respond_to(&block)
       format = ResponseWithFormat.new(self)
       yield format

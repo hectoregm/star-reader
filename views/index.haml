@@ -7,5 +7,5 @@
 - content_for :javascript do
   :javascript
     jQuery(function() {
-      StarReader.init(#{@stars.to_json}, "#{@section}", "#{@pages}")
+      StarReader.init(#{@stars.to_json}, "#{@section}", "#{@start_page}", "#{@end_page}")
     });

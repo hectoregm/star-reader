@@ -22,6 +22,43 @@ describe Sinatra::StarHelpers do
     end
   end
 
+  describe '#get_pages' do
+
+    context 'no pagination' do
+
+      it 'returns [1,1]' do
+        @helpers.get_pages({}).should == [1,1]
+      end
+
+    end
+
+    context 'page=<number>' do
+
+      it 'returns [<number>,<number>]' do
+        @helpers.get_pages({ page: "10"}).should == [10,10]
+      end
+
+    end
+
+    context 'pages=<number>' do
+
+      it 'returns [1, <number>]' do
+        @helpers.get_pages({ pages: "6"}).should == [1,6]
+      end
+
+
+    end
+
+    context 'pages=<numberA>-<numberB>' do
+
+      it 'returns [<numberA>, <numberB>]' do
+        @helpers.get_pages({ pages: "4-10"}).should == [4,10]
+      end
+
+    end
+
+  end
+
   describe '#first_login' do
 
     before :each do

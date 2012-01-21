@@ -205,8 +205,8 @@ describe("StarReader.Views", function() {
     describe("getArchived", function() {
 
       beforeEach(function() {
-        this.view.collection.getStars = function() {};
-        this.spy = sinon.spy(this.view.collection, "getStars");
+        this.view.collection.resetStars = function() {};
+        this.spy = sinon.spy(this.view.collection, "resetStars");
         this.view.getArchived();
       });
 
@@ -220,8 +220,8 @@ describe("StarReader.Views", function() {
     describe("getUnarchived", function() {
 
       beforeEach(function() {
-        this.view.collection.getStars = function() {};
-        this.spy = sinon.spy(this.view.collection, "getStars");
+        this.view.collection.resetStars = function() {};
+        this.spy = sinon.spy(this.view.collection, "resetStars");
         this.view.getUnarchived();
       });
 

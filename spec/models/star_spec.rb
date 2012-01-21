@@ -188,6 +188,26 @@ describe Star do
 
     end
 
+    describe '#pages' do
+
+      before :each do
+        create_stars(40)
+        Star.per_page = 10
+      end
+
+      it 'returns the stars from the given page range' do
+        Star.pages(1, 1).to_a.should have(10).items
+        Star.pages(1, 2).to_a.should have(20).items
+        Star.pages(1, 3).to_a.should have(30).items
+        Star.pages(2, 3).to_a.should have(20).items
+      end
+
+      after :each do
+        Star.per_page = 20
+      end
+
+    end
+
   end
 
   describe 'default_scope' do

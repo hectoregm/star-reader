@@ -25,6 +25,7 @@ class Star
   scope :archived, where(archived: true)
   scope :unarchived, where(archived: false)
   scope :page, ->(page) { skip((page - 1) * per_page).limit(per_page) }
+  scope :pages, ->(start_page, end_page) { skip((start_page - 1) * per_page).limit(per_page * (end_page - start_page + 1)) }
 
   class << self
     def per_page

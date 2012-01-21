@@ -67,10 +67,10 @@ StarReader.StarStreamView = Backbone.View.extend({
   },
 
   getArchived: function(event) {
-    this.collection.getStars("archives", 1, true);
+    this.collection.resetStars("archives");
   },
 
   getUnarchived: function(event) {
-    this.collection.getStars("main", 1, true);
+    this.collection.resetStars("main");
   },
 });

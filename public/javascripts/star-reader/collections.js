@@ -8,9 +8,8 @@ StarReader.Stars = Backbone.Collection.extend({
     }
 
     if (options && options.pages) {
-      var range = options.pages.split("-");
-      this.start_page = parseInt(range[0], 10);
-      this.end_page = range[1] ? parseInt(range[1], 10) : parseInt(range[0], 10);
+      this.start_page = parseInt(options.pages.start_page);
+      this.end_page = parseInt(options.pages.end_page);
     }
   },
 
@@ -21,9 +20,16 @@ StarReader.Stars = Backbone.Collection.extend({
     } else if (this.section === "archives"){
       this.url = "/stars?sort=archived"
     }
+    this.start_page = 1;
+    this.end_page = 1;
     if (trigger) {
       this.trigger('change:section');
     }
+  },
+
+  resetStars: function(section) {
+    this.setSection(section, true);
+    this.fetch();
   },
 
   getStars: function(section, page, trigger) {

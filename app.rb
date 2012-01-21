@@ -67,20 +67,14 @@ class StarReader < Sinatra::Base
   end
 
   get '/stars' do
-    page = params[:page] ? params[:page].to_i : 1
-    @pages = "1"
-
-    if params[:page]
-      page = params[:page].to_i
-      @pages = params[:page]
-    end
+    @start_page, @end_page = get_pages(params)
 
     @user = User.find("hector")
     if params[:sort] == 'archived'
-      @stars = Star.archived.page(page)
+      @stars = Star.archived.pages(@start_page, @end_page)
       @section = "archives"
     else
-      @stars = Star.unarchived.page(page)
+      @stars = Star.unarchived.pages(@start_page, @end_page)
       @section = "main"
     end
 
