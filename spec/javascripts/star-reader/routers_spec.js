@@ -47,7 +47,7 @@ describe("StarReader.Routers", function() {
 
       it("calls getStars to initialize the collection", function() {
         expect(this.spyCollection).toHaveBeenCalledOnce();
-        expect(this.spyCollection).toHaveBeenCalledWith("main");
+        expect(this.spyCollection).toHaveBeenCalledWith({section: "main"});
       });
 
     });

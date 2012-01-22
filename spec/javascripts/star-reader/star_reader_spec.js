@@ -22,4 +22,44 @@ describe("StarReader", function() {
 
   });
 
+  describe("getPages", function() {
+
+    describe("no pagination", function() {
+
+      it("returns [1,1]", function() {
+        var result = StarReader.getPages({});
+        expect(result).toEqual([1,1]);
+      });
+
+    });
+
+    describe("page=<number>", function() {
+
+      it("returns [<number>,<number>]", function() {
+        var result = StarReader.getPages({ page: "10" });
+        expect(result).toEqual([10,10]);
+      });
+
+    });
+
+    describe("pages=<number>", function() {
+
+      it("returns [1,<number>]", function() {
+        var result = StarReader.getPages({ pages: "6" });
+        expect(result).toEqual([1,6]);
+      });
+
+    });
+
+    describe("pages=<numberA>-<numberB>", function() {
+
+      it("returns [<numberA>,<numberB>]", function() {
+        var result = StarReader.getPages({ pages: "4-15" });
+        expect(result).toEqual([4,15]);
+      });
+
+    });
+
+  });
+
 });

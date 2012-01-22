@@ -15,7 +15,7 @@ StarReader.StarRouter = Backbone.Router.extend({
 
   starstream: function(query) {
     var params = this.parseQuery(query);
-    this.view.collection.getStars(params.section, params.page);
+    this.view.collection.getStars(params);
   },
 
   changeSection: function() {

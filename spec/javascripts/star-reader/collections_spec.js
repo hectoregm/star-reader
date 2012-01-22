@@ -128,7 +128,7 @@ describe("StarReader.Stars", function() {
     describe("section: archives", function() {
 
       beforeEach(function() {
-        this.collection.getStars("archives");
+        this.collection.getStars({section: "archives"});
       });
 
       it("sets section to archives", function() {
@@ -138,6 +138,7 @@ describe("StarReader.Stars", function() {
 
       it("fetches data", function() {
         expect(this.spyFetch).toHaveBeenCalledOnce();
+        expect(this.spyFetch).toHaveBeenCalledWith();
       });
 
     });
@@ -145,7 +146,7 @@ describe("StarReader.Stars", function() {
     describe("section: main", function() {
 
       beforeEach(function() {
-        this.collection.getStars("main");
+        this.collection.getStars({section: "main"});
       });
 
       it("sets section to main", function() {
@@ -155,6 +156,7 @@ describe("StarReader.Stars", function() {
 
       it("fetches data", function() {
         expect(this.spyFetch).toHaveBeenCalledOnce();
+        expect(this.spyFetch).toHaveBeenCalledWith();
       });
 
     });
