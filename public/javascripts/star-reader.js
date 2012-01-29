@@ -27,6 +27,20 @@ var StarReader = {
     }
 
     return result
-  }
+  },
 
+  replaceStatePages: function(start_page, end_page) {
+    var new_loc, spr;
+    var location = window.location.href;
+    var pages = "pages=" + start_page + "-" + end_page;
+
+    if (/pages?=(\d+)-?(\d*)/.test(location)) {
+      new_loc = location.replace(/pages?=(\d+)-?(\d*)/, pages);
+    } else {
+      spr = /stars\?/.test(location) ? "&" : "?";
+      new_loc = location + spr + pages;
+    }
+
+    window.history.replaceState({}, "", new_loc);
+  }
 };

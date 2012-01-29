@@ -11,6 +11,7 @@ StarReader.StarRouter = Backbone.Router.extend({
     $('#star-content').empty();
     $('#star-content').append(this.view.el);
     this.view.collection.bind('change:section', this.changeSection, this);
+    this.view.collection.bind('change:pagination', this.changePagination, this);
   },
 
   starstream: function(query) {
@@ -22,11 +23,16 @@ StarReader.StarRouter = Backbone.Router.extend({
     Backbone.history.navigate(this.view.collection.url);
   },
 
+  changePagination: function() {
+    var collection = this.view.collection;
+    StarReader.replaceStatePages(collection.start_page, collection.end_page);
+  },
+
   parseQuery: function(query) {
-    var result = {}, section;
+    var result = {}, section, params, array;
     if (query && query.charAt(0) === '?') {
-      var params = query.slice(1).split('&');
-      var array = _.map(params, function(param) {
+      params = query.slice(1).split('&');
+      array = _.map(params, function(param) {
         return param.split('=');
       });
       result = _.reduce(array, function(accum, param) {
@@ -41,4 +47,5 @@ StarReader.StarRouter = Backbone.Router.extend({
 
     return result;
   }
+
 });
