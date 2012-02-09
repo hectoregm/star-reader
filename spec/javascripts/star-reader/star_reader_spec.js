@@ -5,6 +5,7 @@ describe("StarReader", function() {
   describe("init", function() {
 
     beforeEach(function() {
+      new Backbone.Router({routes: { "dummy": ""}});
       this.history = sinon.stub(Backbone.history, "start");
       StarReader.init(this.starsJSON);
     });

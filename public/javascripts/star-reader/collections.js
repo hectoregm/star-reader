@@ -53,7 +53,7 @@ StarReader.Stars = Backbone.Collection.extend({
 
   addStars: function() {
     this.end_page += 1;
-    this.fetch({ add: true, data: { page: this.end_page }});
+    this.fetch({ cache: false, add: true, data: { page: this.end_page }});
     this.trigger('change:pagination');
   }
 });

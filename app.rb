@@ -58,6 +58,7 @@ class StarReader < Sinatra::Base
   end
 
   # before '/stars' do
+  #   @user = User.find("hector")
   #   first_login(@user) if @user.first_login?
   #   refresh_stars unless @user.first_login?
   # end

@@ -1,14 +1,15 @@
 source :rubygems
 
+gem 'rake'
 gem 'rack'
 gem "sinatra"
-gem 'twitter', '~> 1.7'
+gem 'twitter', '~> 2.1'
 gem "GoogleReaderApi", :require => "google_reader_api"
 gem 'sinatra-backbone', :require => 'sinatra/backbone'
 gem "haml"
 gem "sass"
-gem "mongoid", "~> 2.3.3"
-gem "bson_ext", "~> 1.3"
+gem "mongoid", "~> 2.4"
+gem "bson_ext", "~> 1.5"
 
 group :test, :development do
   gem 'ruby-debug19', :require => 'ruby-debug'

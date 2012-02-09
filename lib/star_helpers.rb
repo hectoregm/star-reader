@@ -118,8 +118,8 @@ module Sinatra
                        author: author,
                        author_url: "http://twitter.com/#{author}",
                        content: linkify_text(t.text,
-                                             t.entities),
-                       ocreated_at: Time.parse(t.created_at))
+                                             t.attrs['entities']),
+                       ocreated_at: t.created_at)
         end
 
         page += 1
@@ -160,8 +160,8 @@ module Sinatra
                        author: author,
                        author_url: "http://twitter.com/#{author}",
                        content: linkify_text(t.text,
-                                             t.entities),
-                       ocreated_at: Time.parse(t.created_at))
+                                             t.attrs["entities"]),
+                       ocreated_at: t.created_at)
         end
 
         page += 1
@@ -234,23 +234,23 @@ module Sinatra
 
     def linkify_text(tweet_text, tweet_entities)
       entities = tweet_entities.collect { |e,v| v }.flatten
-      entities.sort! {|x,y| y[:indices][0] <=> x[:indices][1] }
+      entities.sort! {|x,y| y["indices"][0] <=> x["indices"][1] }
       entities.each do |entity|
-        length = entity[:indices][1] - entity[:indices][0]
+        length = entity["indices"][1] - entity["indices"][0]
 
         result = case
-                 when url = entity.url
-                   display_url = entity.display_url || url
+                 when url = entity["url"]
+                   display_url = entity["display_url"] || url
                    build_link(url, display_url)
-                 when user = entity.screen_name
+                 when user = entity["screen_name"]
                    build_link("http://twitter.com/#{user}",
                               '@' + user)
-                 when ht = entity.text
+                 when ht = entity["text"]
                    build_link("http://twitter.com/search?q=%23#{ht}",
                               "##{ht}")
                  end
 
-        tweet_text[entity[:indices][0], length] = result
+        tweet_text[entity["indices"][0], length] = result
       end
 
       tweet_text
