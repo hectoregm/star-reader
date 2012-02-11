@@ -29,18 +29,18 @@ var StarReader = {
     return result
   },
 
-  replaceStatePages: function(start_page, end_page) {
-    var new_loc, spr;
-    var location = window.location.href;
+  getNewUrl: function(start_page, end_page) {
+    var new_loc, separator;
+    var location = Backbone.history.fragment;
     var pages = "pages=" + start_page + "-" + end_page;
 
     if (/pages?=(\d+)-?(\d*)/.test(location)) {
       new_loc = location.replace(/pages?=(\d+)-?(\d*)/, pages);
     } else {
-      spr = /stars\?/.test(location) ? "&" : "?";
-      new_loc = location + spr + pages;
+      separator = /stars\?/.test(location) ? "&" : "?";
+      new_loc = location + separator + pages;
     }
 
-    window.history.replaceState({}, "", new_loc);
+    return new_loc;
   }
 };

@@ -12,7 +12,7 @@ StarReader.StarView = Backbone.View.extend({
   },
 
   render: function() {
-    $(this.el).html(JST['star-reader/star'](this.model.toJSON()));
+    this.$el.html(JST['star-reader/star'](this.model.toJSON()));
 
     return this;
   },
@@ -53,7 +53,7 @@ StarReader.StarStreamView = Backbone.View.extend({
   },
 
   render: function() {
-    $(this.el).html(JST['star-reader/stream']({
+    this.$el.html(JST['star-reader/stream']({
       section: this.collection.section
     }));
     this.collection.each(this.renderStar);

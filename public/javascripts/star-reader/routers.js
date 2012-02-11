@@ -25,7 +25,9 @@ StarReader.StarRouter = Backbone.Router.extend({
 
   changePagination: function() {
     var collection = this.view.collection;
-    StarReader.replaceStatePages(collection.start_page, collection.end_page);
+    var url = StarReader.getNewUrl(collection.start_page,
+                                        collection.end_page);
+    Backbone.history.navigate(url, {replace: true});
   },
 
   parseQuery: function(query) {
